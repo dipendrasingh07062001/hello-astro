@@ -1,10 +1,15 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
+import 'package:hello_astro_user/views/home/drawer.dart';
 
 import '../../controllers/home/homecontroller.dart';
+import '../../widgets/cards.dart';
+import 'freeservices.dart';
+import 'horoscope.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -20,6 +25,8 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palatt.white,
+      key: controller.scaffoldKey,
+      drawer: const HomeDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -60,22 +67,8 @@ class _HomeViewState extends State<HomeView> {
                             padding: EdgeInsets.only(
                                 left: w * .04, top: h * .01, right: w * .032),
                             child: InkWell(
+                              onTap: controller.openDrawer,
                               child: SvgPicture.asset(AppImages.menu),
-                              // Icon(
-                              //   Icons.format_list_bulleted,
-                              //   size: w * .068,
-                              // ),
-                              onTap: () {
-                                // homeController.scaffoldKey.currentState!
-                                //     .openDrawer();
-                                // drawerVisible = true;
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => const HomeDrawer(),
-                                //   ),
-                                // );
-                              },
                             ),
                           ),
                           // SvgPicture.asset(
@@ -226,12 +219,7 @@ class _HomeViewState extends State<HomeView> {
                           style: TextStyle(fontSize: w * .049),
                           decoration: InputDecoration(
                             contentPadding: EdgeInsets.only(top: h * .0022),
-                            prefixIcon: Transform.scale(
-                              scale: .38,
-                              child: SvgPicture.asset(
-                                'assets/icons/feather_search.svg',
-                              ),
-                            ),
+                            prefixIcon: const Icon(Icons.search),
                             hintText: 'Astrologers, products,........'.tr,
                             hintStyle: TextStyle(
                                 fontSize: w * .04,
@@ -252,6 +240,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                     ),
+
                     // Offer Banner
                     // Padding(
                     //   padding: EdgeInsets.symmetric(horizontal: w * .042),
@@ -311,6 +300,169 @@ class _HomeViewState extends State<HomeView> {
                 // ),
               ],
             ),
+            Wrap(
+              children: [
+                Fcard(
+                  image: AppImages.chat,
+                  text: "Chat with Astrologer",
+                  width: 80,
+                  onTap: () {},
+                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                Fcard(
+                  image: AppImages.call,
+                  text: "Call with Astrologer",
+                  width: 80,
+                  onTap: () {},
+                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                Fcard(
+                  image: AppImages.blog,
+                  text: "Blogs",
+                  width: 80,
+                  onTap: () {},
+                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ],
+            ),
+            const Horoscope(),
+            const FreeServices(),
+            const Text(
+              "Our Astrologer",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+            ),
+            Wrap(
+              children: List.generate(10, (index) {
+                return Container(
+                  height: 150,
+                  width: Get.width / 2.3,
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  decoration:
+                      BoxDecoration(color: Palatt.yellow2nd, boxShadow: [
+                    BoxShadow(
+                      color: Palatt.black.withOpacity(0.1),
+                      spreadRadius: 2,
+                      blurRadius: 4,
+                    )
+                  ]),
+                  child: Stack(
+                    children: [
+                      Column(
+                        children: [
+                          Expanded(
+                              flex: 5,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                      flex: 2,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Stack(
+                                          children: [
+                                            Positioned(
+                                              top: 0,
+                                              left: 0,
+                                              right: 0,
+                                              child: CircleAvatar(
+                                                radius: 25,
+                                                backgroundImage: NetworkImage(
+                                                  "https://myworkdesk.tech/designer/html/hello-astro/assets/images/user-profile.png",
+                                                ),
+                                              ),
+                                            ),
+                                            Positioned(
+                                                top: 38,
+                                                left: 0,
+                                                right: 0,
+                                                child: Container(
+                                                  height: 15,
+                                                  decoration: BoxDecoration(
+                                                    color: Palatt.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                  ),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 3),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: List.generate(
+                                                        5,
+                                                        (index) => Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      right: 1),
+                                                              child: Icon(
+                                                                Icons.star,
+                                                                size: 8,
+                                                              ),
+                                                            )),
+                                                  ),
+                                                )),
+                                            Positioned(
+                                              top: 55,
+                                              right: 0,
+                                              left: 0,
+                                              child: FittedBox(
+                                                child: Text(
+                                                  "70000 Orders",
+                                                  style: TextStyle(
+                                                    fontSize: 9,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )),
+                                  Expanded(
+                                      flex: 3,
+                                      child: Column(
+                                        children: [],
+                                      ))
+                                ],
+                              )),
+                          Expanded(
+                              flex: 4,
+                              child: Container(
+                                color: Palatt.white,
+                              )),
+                        ],
+                      ),
+                      Positioned(
+                        top: -5,
+                        right: -20,
+                        child: Transform.rotate(
+                          angle: 0.8,
+                          child: Container(
+                            height: 10,
+                            width: 60,
+                            margin: const EdgeInsets.only(
+                              top: 20,
+                            ),
+                            color: Palatt.primary,
+                            alignment: Alignment.center,
+                            child: const Text(
+                              "Celebrity",
+                              style: TextStyle(
+                                fontSize: 8,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
+            )
           ],
         ),
       ),

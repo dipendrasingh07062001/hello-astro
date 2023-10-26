@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/onboarding/onboardingcontroller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
+import 'package:hello_astro_user/widgets/loader.dart';
 
 import '../../utils/buttons.dart';
 import '../../widgets/textwidgets.dart';
@@ -17,7 +18,7 @@ class OtpVerfication extends StatefulWidget {
 
 class _OtpVerficationState extends State<OtpVerfication> {
   OnboardingController onboardingController =
-      Get.put(OnboardingController(), permanent: true);
+      Get.put(OnboardingController(), permanent: false);
   double h = Get.height, w = Get.width;
   @override
   void initState() {
@@ -361,34 +362,19 @@ class _OtpVerficationState extends State<OtpVerfication> {
                 SizedBox(
                   height: h * .050,
                 ),
-                EltdButton(
-                  title: 'Continue',
-                  width: w * .92,
-                  height: h * .065,
-                  press: () {
-                    String sub =
-                        "${onboardingController.first.text}${onboardingController.second.text}${onboardingController.third.text}${onboardingController.fourth.text}";
-
-                    if (onboardingController.first.text.isNotEmpty &&
-                        onboardingController.second.text.isNotEmpty &&
-                        onboardingController.third.text.isNotEmpty &&
-                        onboardingController.fourth.text.isNotEmpty) {
-                    } else {
-                      final snackBar = SnackBar(
-                        content: textStyle(
-                          'Please enter valid OTP',
-                          Palatt.white,
-                          fontSize: 16,
+                Obx(
+                  () => onboardingController.isLoading.value
+                      ? loader
+                      : EltdButton(
+                          title: 'Continue',
+                          width: w * .92,
+                          height: h * .065,
+                          press: () => onboardingController.onotpverfy(context),
+                          color: Palatt.primary,
+                          radius: 10.0,
+                          fntSize: w * .04,
+                          fntwgt: FontWeight.w500,
                         ),
-                        backgroundColor: Palatt.red,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    }
-                  },
-                  color: Palatt.primary,
-                  radius: 10.0,
-                  fntSize: w * .04,
-                  fntwgt: FontWeight.w500,
                 ),
                 SizedBox(
                   height: h * .193,

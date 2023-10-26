@@ -17,7 +17,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   OnboardingController onboardingController =
-      Get.put(OnboardingController(), permanent: true);
+      Get.put(OnboardingController(), permanent: false);
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
@@ -163,65 +163,24 @@ class _LoginState extends State<Login> {
                     SizedBox(
                       height: h * .03,
                     ),
-                    onboardingController.isLoading == true
-                        ? loader
-                        : ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Palatt.primary,
-                              minimumSize: Size(w * .94, h * .065),
-                              maximumSize: Size(w * .94, h * .065),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
+                    Obx(
+                      () => onboardingController.isLoading.value == true
+                          ? loader
+                          : ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Palatt.primary,
+                                minimumSize: Size(w * .94, h * .065),
+                                maximumSize: Size(w * .94, h * .065),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0)),
+                              ),
+                              onPressed: () =>
+                                  onboardingController.ontapContinue(context),
+                              child: textStyle('Continue', Palatt.white,
+                                  fontSize: w * .04,
+                                  fontWeight: FontWeight.w500),
                             ),
-                            onPressed: () {
-                              if (onboardingController
-                                  .phoneController.text.isEmpty) {
-                                final snackBar = SnackBar(
-                                  content: textStyle(
-                                      'Please enter your phone number',
-                                      Palatt.white,
-                                      fontSize: 16),
-                                  backgroundColor: Palatt.red,
-                                );
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-
-                                return;
-                              }
-
-                              if (onboardingController
-                                      .phoneController.text.length !=
-                                  10) {
-                                final snackBar = SnackBar(
-                                  content: textStyle(
-                                      'Please enter your valid phone number',
-                                      Palatt.white,
-                                      fontSize: 16),
-                                  backgroundColor: Palatt.red,
-                                );
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-
-                                return;
-                              }
-
-                              if (onboardingController.val == false) {
-                                final snackBar = SnackBar(
-                                  content: textStyle(
-                                      'Please accept terms & conditions',
-                                      Palatt.white,
-                                      fontSize: 16),
-                                  backgroundColor: Palatt.red,
-                                );
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
-
-                                return;
-                              }
-                            },
-                            child: textStyle('Continue', Palatt.white,
-                                fontSize: w * .04, fontWeight: FontWeight.w500),
-                          ),
+                    ),
                     const SizedBox(
                       height: 10,
                     ),

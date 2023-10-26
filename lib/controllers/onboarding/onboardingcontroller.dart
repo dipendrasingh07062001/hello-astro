@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/api/apiconstants.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+
+import '../../api/apiservices.dart';
+import '../../theme/colorpalatt.dart';
+import '../../widgets/textwidgets.dart';
 
 class OnboardingController extends GetxController {
   ///// login view parameters and functions
   bool isPhoneError = false;
   bool isPhonevalidError = false;
-  TextEditingController phoneController =
-      TextEditingController(text: "0000000000");
+  TextEditingController phoneController = TextEditingController();
   bool val = false;
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
 
   splashcounterstart() {
     Future.delayed(const Duration(seconds: 3), () {
@@ -22,7 +26,6 @@ class OnboardingController extends GetxController {
   TextEditingController second = TextEditingController();
   TextEditingController third = TextEditingController();
   TextEditingController fourth = TextEditingController();
-  bool isloading = false;
 
   late FocusNode pin1FocusNode;
   late FocusNode pin2FocusNode;
@@ -50,6 +53,88 @@ class OnboardingController extends GetxController {
   void previousField(String value, FocusNode focusNode) {
     if (value.isEmpty) {
       focusNode.requestFocus();
+    }
+  }
+
+  ontapContinue(BuildContext context) {
+    if (phoneController.text.isEmpty) {
+      final snackBar = SnackBar(
+        content: textStyle('Please enter your phone number', Palatt.white,
+            fontSize: 16),
+        backgroundColor: Palatt.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      return;
+    }
+
+    if (phoneController.text.length != 10) {
+      final snackBar = SnackBar(
+        content: textStyle('Please enter your valid phone number', Palatt.white,
+            fontSize: 16),
+        backgroundColor: Palatt.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      return;
+    }
+
+    if (val == false) {
+      final snackBar = SnackBar(
+        content: textStyle('Please accept terms & conditions', Palatt.white,
+            fontSize: 16),
+        backgroundColor: Palatt.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+      return;
+    }
+    signin();
+  }
+
+// signup/login api
+  signin() async {
+    isLoading.value = true;
+    ApiClient apiClient = ApiClient();
+    Map<String, String> map = {"phone": phoneController.text};
+    await apiClient.postRequest(ApiUrls.signUp, map).then((value) {
+      if (value != null) {
+        print("==$value");
+        Get.toNamed(Routes.otpverification);
+        isLoading.value = false;
+      }
+    });
+    isLoading.value = false;
+  }
+
+  onotpverfy(BuildContext context) async {
+    String sub = "${first.text}${second.text}${third.text}${fourth.text}";
+
+    if (first.text.isNotEmpty &&
+        second.text.isNotEmpty &&
+        third.text.isNotEmpty &&
+        fourth.text.isNotEmpty) {
+      isLoading.value = true;
+      ApiClient apiClient = ApiClient();
+      Map<String, String> map = {"phone": phoneController.text, "otp": sub};
+      await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
+        if (value != null) {
+          print("==$value");
+          Get.toNamed(Routes.home);
+          isLoading.value = false;
+        }
+      });
+      isLoading.value = false;
+    } else {
+      final snackBar = SnackBar(
+        content: textStyle(
+          'Please enter valid OTP',
+          Palatt.white,
+          fontSize: 16,
+        ),
+        backgroundColor: Palatt.red,
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
