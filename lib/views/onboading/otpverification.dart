@@ -24,6 +24,7 @@ class _OtpVerficationState extends State<OtpVerfication> {
   void initState() {
     super.initState();
     onboardingController.onInit();
+    onboardingController.setphonenumber(Get.arguments);
   }
 
   @override

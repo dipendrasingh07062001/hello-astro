@@ -5,7 +5,9 @@ class Palatt {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color blacklightshade = Color(0xFF636363);
-  static const Color boxShadow = Color(0x82828229);
+  static const Color greybackground = Color(0xFFF2F2F2);
+  static const Color grey = Colors.grey;
+  static const Color boxShadow = Color(0xFFAEAEAE);
   static const Color red = Color(0xFFFF0000);
   static const Color otpborder = Color(0xffC9C8C8);
   static const Color yellow = Color(0xffffc107);

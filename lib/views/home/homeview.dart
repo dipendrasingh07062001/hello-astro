@@ -7,7 +7,9 @@ import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/home/drawer.dart';
 
 import '../../controllers/home/homecontroller.dart';
+import '../../models/sunshins.dart';
 import '../../widgets/cards.dart';
+import '../wallet/walletbalance.dart';
 import 'freeservices.dart';
 import 'horoscope.dart';
 
@@ -28,6 +30,7 @@ class _HomeViewState extends State<HomeView> {
       key: controller.scaffoldKey,
       drawer: const HomeDrawer(),
       body: SingleChildScrollView(
+        physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [
             Stack(
@@ -37,9 +40,11 @@ class _HomeViewState extends State<HomeView> {
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
-                          color: Palatt.boxShadow,
-                          blurRadius: 4,
-                          offset: Offset(0, 5)),
+                        color: Palatt.boxShadow,
+                        blurRadius: 4,
+                        spreadRadius: -2,
+                        offset: Offset(0, 5),
+                      ),
                     ],
                     gradient: LinearGradient(
                       begin: Alignment.topCenter,
@@ -56,153 +61,86 @@ class _HomeViewState extends State<HomeView> {
                 Column(
                   children: [
                     SizedBox(
-                      height: h * .05,
+                      height: h * .07,
                     ),
-                    SizedBox(
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: w * .040),
                       height: 50,
                       width: Get.width,
                       child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: w * .04, top: h * .01, right: w * .032),
-                            child: InkWell(
-                              onTap: controller.openDrawer,
-                              child: SvgPicture.asset(AppImages.menu),
+                          InkWell(
+                            onTap: controller.openDrawer,
+                            child: SvgPicture.asset(
+                              AppImages.menu,
+                              height: 22,
+                              width: 22,
                             ),
                           ),
-                          // SvgPicture.asset(
-                          //   locationImage,
-                          //   height: w * .068,
-                          // ),
-                          // Padding(
-                          //   padding:
-                          //       EdgeInsets.only(left: w * .01, right: w * .15),
-                          //   child: Column(
-                          //     crossAxisAlignment: CrossAxisAlignment.start,
-                          //     children: [
-                          //       textStyle('Your City'.tr, colYrCity,
-                          //           fontSize: w * .022),
-                          //       Row(
-                          //         children: [
-                          //           DropdownButton<String>(
-                          //             isDense: true,
-                          //             elevation: 8,
-                          //             value: dropvalue,
-                          //             underline: Container(),
-                          //             icon: Icon(Icons.keyboard_arrow_down,
-                          //                 color: colBlack, size: w * .07),
-                          //             items: <String>[
-                          //               'Ajmer',
-                          //               'Churu',
-                          //               'Jaipur',
-                          //               'Kota',
-                          //               'Nagaur',
-                          //               'Sikar',
-                          //               'Sirohi',
-                          //             ].map<DropdownMenuItem<String>>(
-                          //                 (String value) {
-                          //               return DropdownMenuItem<String>(
-                          //                 value: value,
-                          //                 child: textStyle(value, colBlack,
-                          //                     fontSize: w * .039,
-                          //                     fontWeight: FontWeight.w500),
-                          //               );
-                          //             }).toList(),
-                          //             onChanged: (String? newValue) {
-                          //               setState(() {
-                          //                 dropvalue = newValue!;
-                          //               });
-                          //             },
-                          //           ),
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
-                          // Expanded(
-                          //   child: SingleChildScrollView(
-                          //     scrollDirection: Axis.horizontal,
-                          //     child: Row(
-                          //       children: [
-                          //         InkWell(
-                          //           onTap: (box.read(UserData.isguestuser) ??
-                          //                   false)
-                          //               ? () {
-                          //                   Get.bottomSheet(
-                          //                       Container(
-                          //                           padding:
-                          //                               const EdgeInsets.only(
-                          //                                   top: 50),
-                          //                           child: const Login(
-                          //                             alreadyguest: true,
-                          //                           )),
-                          //                       isScrollControlled: true);
-                          //                 }
-                          //               : () {
-                          //                   Navigator.push(
-                          //                       context,
-                          //                       MaterialPageRoute(
-                          //                           builder: ((context) =>
-                          //                               const Payment())));
-                          //                 },
-                          //           child: Container(
-                          //             decoration: const BoxDecoration(
-                          //               color: colPrimary,
-                          //               borderRadius: BorderRadius.all(
-                          //                   Radius.circular(20)),
-                          //             ),
-                          //             height: h * .036,
-                          //             // width: w * .22,
-                          //             padding: const EdgeInsets.symmetric(
-                          //                 horizontal: 10),
-                          //             child: Row(
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.spaceEvenly,
-                          //               children: [
-                          //                 SvgPicture.asset(walletImage),
-                          //                 const SizedBox(
-                          //                   width: 10,
-                          //                 ),
-                          //                 WalletBalance(
-                          //                   color: Palatt.white,
-                          //                 ),
-                          //                 // textStyle("₹ 200", Palatt.white,
-                          //                 //     w * .039, FontWeight.bold),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //         Padding(
-                          //           padding: EdgeInsets.only(right: w * 0.00),
-                          //           child: Padding(
-                          //             padding: EdgeInsets.only(
-                          //                 left: w * .025, right: w * .02),
-                          //             child: InkWell(
-                          //               child: SvgPicture.asset(notifiImage),
-                          //               onTap: () {
-                          //                 Navigator.push(
-                          //                     context,
-                          //                     MaterialPageRoute(
-                          //                         builder: ((context) =>
-                          //                             const Notification1())));
-                          //               },
-                          //             ),
-                          //           ),
-                          //         ),
-                          //         // SvgPicture.asset('assets/icons/language_1.svg')
-                          //         GestureDetector(
-                          //           onTap: () {
-                          //             Get.offAll(const Language());
-                          //           },
-                          //           child: Image.asset(
-                          //               'assets/icons/language@2x.png',
-                          //               height: h * .025),
-                          //         )
-                          //       ],
-                          //     ),
-                          //   ),
-                          // ),
+                          Expanded(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                InkWell(
+                                  onTap: () {},
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      color: Palatt.primary,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(20)),
+                                    ),
+                                    height: h * .036,
+                                    // width: w * .22,
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 10),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        SvgPicture.asset(
+                                          AppImages.wallet,
+                                          height: 20,
+                                          width: 20,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        const WalletBalance(
+                                          color: Palatt.white,
+                                        ),
+                                        // textStyle("₹ 200", Palatt.white,
+                                        //     w * .039, FontWeight.bold),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: w * 0.00),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: w * .025, right: w * .02),
+                                    child: InkWell(
+                                      child: SvgPicture.asset(
+                                        AppImages.notification,
+                                        height: 25,
+                                        width: 25,
+                                      ),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                ),
+                                // SvgPicture.asset('assets/icons/language_1.svg')
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: SvgPicture.asset(
+                                    AppImages.language,
+                                    height: 25,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -210,258 +148,750 @@ class _HomeViewState extends State<HomeView> {
                     Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: w * .040, vertical: h * .015),
-                      child: SizedBox(
-                        width: double.infinity,
-                        // w * .92,
-                        height: h * .05,
-                        child: TextFormField(
-                          keyboardType: TextInputType.text,
-                          style: TextStyle(fontSize: w * .049),
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(top: h * .0022),
-                            prefixIcon: const Icon(Icons.search),
-                            hintText: 'Astrologers, products,........'.tr,
-                            hintStyle: TextStyle(
-                                fontSize: w * .04,
-                                color: const Color(0xffbababa)),
-                            fillColor: Palatt.white,
-                            filled: true,
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Palatt.white),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7)),
-                            ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Palatt.white),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(7)),
-                            ),
+                      child: TextFormField(
+                        keyboardType: TextInputType.text,
+                        style: TextStyle(fontSize: w * .049),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(top: h * .0022),
+                          prefixIcon: const Icon(Icons.search),
+                          // isDense: tr,
+                          hintText: 'Astrologers, products,........'.tr,
+                          hintStyle: TextStyle(
+                              fontSize: w * .04,
+                              color: const Color(0xffbababa)),
+                          fillColor: Palatt.white,
+                          filled: true,
+                          focusedBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Palatt.white),
+                            borderRadius: BorderRadius.all(Radius.circular(7)),
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Palatt.white),
+                            borderRadius: BorderRadius.all(Radius.circular(7)),
                           ),
                         ),
                       ),
                     ),
-
-                    // Offer Banner
-                    // Padding(
-                    //   padding: EdgeInsets.symmetric(horizontal: w * .042),
-                    //   child: Image.network(
-                    //     homeController.bannerlist
-                    //         .where((p0) => p0.position!.toLowerCase() == "top")
-                    //         .toList()
-                    //         .first
-                    //         .image!,
-                    //     fit: BoxFit.cover,
-                    //   ),
-                    // ),
                   ],
                 ),
-                // Astrologer Scroll cards
-                // Container(
-                //   height: h * .18,
-                //   margin: EdgeInsets.only(top: h * .4),
-                //   child: ListView.builder(
-                //     physics: const BouncingScrollPhysics(),
-                //     shrinkWrap: true,
-                //     controller: controller.scrollController,
-                //     scrollDirection: Axis.horizontal,
-                //     itemCount: 0,
-                //     itemBuilder: (BuildContext context, int index) {
-                //       homeController.astrologerlist[index];
-                //       return GestureDetector(
-                //         onTap: () {
-                //           Get.to(() => AstroProfile(
-                //                 id: homeController.astrologerlist[index].id,
-                //               ));
-                //         },
-                //         child: AstroCard(
-                //           name: homeController.astrologerlist[index].name ?? "",
-                //           experience:
-                //               "Exp: ${homeController.astrologerlist[index].experience} years",
-                //           ability:
-                //               homeController.astrologerlist[index].expertise ??
-                //                   "",
-                //           language:
-                //               "Language: ${(homeController.astrologerlist[index].language) ?? ""}",
-                //           offer:
-                //               homeController.astrologerlist[index].offer ?? "",
-                //           price: homeController.astrologerlist[index].price
-                //               .toString(),
-                //           image:
-                //               homeController.astrologerlist[index].image ?? "",
-                //           islive:
-                //               homeController.astrologerlist[index].livestatus ==
-                //                       1
-                //                   ? true
-                //                   : false,
-                //         ),
-                //       );
-                //     },
-                //   ),
-                // ),
               ],
             ),
-            Wrap(
-              children: [
-                Fcard(
-                  image: AppImages.chat,
-                  text: "Chat with Astrologer",
-                  width: 80,
-                  onTap: () {},
-                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                Fcard(
-                  image: AppImages.call,
-                  text: "Call with Astrologer",
-                  width: 80,
-                  onTap: () {},
-                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                Fcard(
-                  image: AppImages.blog,
-                  text: "Blogs",
-                  width: 80,
-                  onTap: () {},
-                  margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ],
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: w * .040, vertical: h * .015),
+              child: Row(
+                children: [
+                  Fcard(
+                    image: AppImages.chat,
+                    text: "Chat with \nAstrologer",
+                    width: 80,
+                    height: 100,
+                    onTap: () {},
+                    margin: const EdgeInsets.only(
+                      top: 20,
+                      right: 12.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  Fcard(
+                    image: AppImages.call,
+                    text: "Call with \nAstrologer",
+                    width: 80,
+                    height: 100,
+                    onTap: () {},
+                    margin: const EdgeInsets.only(top: 20, left: 12.5),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  // Fcard(
+                  //   image: AppImages.blog,
+                  //   text: "Blogs",
+                  //   width: 80,
+                  //   onTap: () {},
+                  //   margin: const EdgeInsets.only(top: 20, right: 20, left: 20),
+                  //   borderRadius: BorderRadius.circular(10),
+                  // ),
+                ],
+              ),
             ),
-            const Horoscope(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Horoscope",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Palatt.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: w * .040, vertical: h * .0),
+              child: Row(
+                  children: List.generate(4, (index) {
+                Sunshine e = SunshineData.sunshines[index];
+                return Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.only(right: index == 3 ? 0 : 10),
+                    child: HoroCard(
+                      image: e.image,
+                      onTap: () {},
+                      title: e.name,
+                    ),
+                  ),
+                );
+              })),
+            ),
+
+            // const Horoscope(),
             const FreeServices(),
-            const Text(
-              "Our Astrologer",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Chat with Astrologer",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Palatt.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Wrap(
-              children: List.generate(10, (index) {
-                return Container(
-                  height: 150,
-                  width: Get.width / 2.3,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  decoration:
-                      BoxDecoration(color: Palatt.yellow2nd, boxShadow: [
-                    BoxShadow(
-                      color: Palatt.black.withOpacity(0.1),
-                      spreadRadius: 2,
-                      blurRadius: 4,
-                    )
-                  ]),
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Expanded(
-                              flex: 5,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      flex: 2,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Stack(
-                                          children: [
-                                            Positioned(
-                                              top: 0,
-                                              left: 0,
-                                              right: 0,
-                                              child: CircleAvatar(
-                                                radius: 25,
-                                                backgroundImage: NetworkImage(
-                                                  "https://myworkdesk.tech/designer/html/hello-astro/assets/images/user-profile.png",
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned(
-                                                top: 38,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(5, (index) {
+                  return Container(
+                    height: 160,
+                    width: 240,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Palatt.yellow2nd,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Palatt.black.withOpacity(0.1),
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                          )
+                        ]),
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                                height: 100,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                top: 0,
                                                 left: 0,
                                                 right: 0,
-                                                child: Container(
-                                                  height: 15,
-                                                  decoration: BoxDecoration(
-                                                    color: Palatt.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            4),
-                                                  ),
-                                                  padding: const EdgeInsets
-                                                      .symmetric(horizontal: 3),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: List.generate(
-                                                        5,
-                                                        (index) => Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      right: 1),
-                                                              child: Icon(
-                                                                Icons.star,
-                                                                size: 8,
-                                                              ),
-                                                            )),
-                                                  ),
-                                                )),
-                                            Positioned(
-                                              top: 55,
-                                              right: 0,
-                                              left: 0,
-                                              child: FittedBox(
-                                                child: Text(
-                                                  "70000 Orders",
-                                                  style: TextStyle(
-                                                    fontSize: 9,
+                                                child: CircleAvatar(
+                                                  radius: 33,
+                                                  backgroundColor: Palatt.white,
+                                                  child: CircleAvatar(
+                                                    radius: 31,
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                    ),
                                                   ),
                                                 ),
+                                              ),
+                                              Positioned(
+                                                  top: 48,
+                                                  left: 7,
+                                                  right: 7,
+                                                  child: Container(
+                                                    width: 60,
+                                                    height: 15,
+                                                    decoration: BoxDecoration(
+                                                      color: Palatt.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 2),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: List.generate(
+                                                          5,
+                                                          (index) => Padding(
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        1),
+                                                                child: Icon(
+                                                                  Icons.star,
+                                                                  size: 10,
+                                                                  color: Palatt
+                                                                      .primary,
+                                                                ),
+                                                              )),
+                                                    ),
+                                                  )),
+                                              Positioned(
+                                                top: 65,
+                                                right: 0,
+                                                left: 0,
+                                                child: Center(
+                                                  child: Text(
+                                                    "70000 Orders",
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Zoha Merchant",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "English, Hindi",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Tarot, Life Coach",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
                                               ),
                                             ),
                                           ],
-                                        ),
-                                      )),
-                                  Expanded(
-                                      flex: 3,
-                                      child: Column(
-                                        children: [],
-                                      ))
+                                        ))
+                                  ],
+                                )),
+                            Expanded(
+                                child: Container(
+                              color: Palatt.white,
+                              width: Get.width,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Exp: 6 year",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Palatt.grey),
+                                      ),
+                                      Text(
+                                        "Jaipur, Raj",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Palatt.grey),
+                                      ),
+                                      Text(
+                                        "₹ 12/min",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600,
+                                            color: Palatt.black),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      width: 60,
+                                      height: 25,
+                                      decoration: BoxDecoration(
+                                          color: Palatt.primary,
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      padding: const EdgeInsets.all(5),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          SvgPicture.asset(
+                                            AppImages.chaticon,
+                                            color: Palatt.white,
+                                            height: 13,
+                                          ),
+                                          Text(
+                                            "Chat",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w600,
+                                                color: Palatt.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
                                 ],
-                              )),
-                          Expanded(
-                              flex: 4,
-                              child: Container(
-                                color: Palatt.white,
-                              )),
-                        ],
+                              ),
+                            )),
+                          ],
+                        ),
+                        // Positioned(
+                        //   top: -5,
+                        //   right: -20,
+                        //   child: Transform.rotate(
+                        //     angle: 0.8,
+                        //     child: Container(
+                        //       height: 10,
+                        //       width: 60,
+                        //       margin: const EdgeInsets.only(
+                        //         top: 20,
+                        //       ),
+                        //       color: Palatt.primary,
+                        //       alignment: Alignment.center,
+                        //       child: const Text(
+                        //         "Celebrity",
+                        //         style: TextStyle(
+                        //           fontSize: 8,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // )
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Call with Astrologer",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Palatt.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
                       ),
-                      Positioned(
-                        top: -5,
-                        right: -20,
-                        child: Transform.rotate(
-                          angle: 0.8,
-                          child: Container(
-                            height: 10,
-                            width: 60,
-                            margin: const EdgeInsets.only(
-                              top: 20,
-                            ),
-                            color: Palatt.primary,
-                            alignment: Alignment.center,
-                            child: const Text(
-                              "Celebrity",
-                              style: TextStyle(
-                                fontSize: 8,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(5, (index) {
+                  return Container(
+                    height: 160,
+                    width: 240,
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Palatt.yellow2nd,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Palatt.black.withOpacity(0.1),
+                            spreadRadius: 2,
+                            blurRadius: 4,
+                          )
+                        ]),
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                                height: 100,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Stack(
+                                            children: [
+                                              Positioned(
+                                                top: 0,
+                                                left: 0,
+                                                right: 0,
+                                                child: CircleAvatar(
+                                                  radius: 33,
+                                                  backgroundColor: Palatt.white,
+                                                  child: CircleAvatar(
+                                                    radius: 31,
+                                                    backgroundImage:
+                                                        NetworkImage(
+                                                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                  top: 48,
+                                                  left: 7,
+                                                  right: 7,
+                                                  child: Container(
+                                                    width: 60,
+                                                    height: 15,
+                                                    decoration: BoxDecoration(
+                                                      color: Palatt.white,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10),
+                                                    ),
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 2),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: List.generate(
+                                                          5,
+                                                          (index) => Padding(
+                                                                padding: const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        1),
+                                                                child: Icon(
+                                                                  Icons.star,
+                                                                  size: 10,
+                                                                  color: Palatt
+                                                                      .primary,
+                                                                ),
+                                                              )),
+                                                    ),
+                                                  )),
+                                              Positioned(
+                                                top: 65,
+                                                right: 0,
+                                                left: 0,
+                                                child: Center(
+                                                  child: Text(
+                                                    "70000 Orders",
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        )),
+                                    Expanded(
+                                        flex: 3,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "Zoha Merchant",
+                                              style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Text(
+                                              "English, Hindi",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                            Text(
+                                              "Tarot, Life Coach",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ))
+                                  ],
+                                )),
+                            Expanded(
+                                child: Container(
+                              color: Palatt.white,
+                              width: Get.width,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 5),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Exp: 6 year",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Palatt.grey),
+                                      ),
+                                      Text(
+                                        "Jaipur, Raj",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300,
+                                            color: Palatt.grey),
+                                      ),
+                                      Text(
+                                        "₹ 12/min",
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w600,
+                                            color: Palatt.black),
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: Container(
+                                      width: 60,
+                                      height: 25,
+                                      decoration: BoxDecoration(
+                                          color: Palatt.primary,
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      padding: const EdgeInsets.all(5),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          SvgPicture.asset(
+                                              AppImages.callfilled),
+                                          Text(
+                                            "Call",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w600,
+                                                color: Palatt.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            )),
+                          ],
+                        ),
+                        // Positioned(
+                        //   top: -5,
+                        //   right: -20,
+                        //   child: Transform.rotate(
+                        //     angle: 0.8,
+                        //     child: Container(
+                        //       height: 10,
+                        //       width: 60,
+                        //       margin: const EdgeInsets.only(
+                        //         top: 20,
+                        //       ),
+                        //       color: Palatt.primary,
+                        //       alignment: Alignment.center,
+                        //       child: const Text(
+                        //         "Celebrity",
+                        //         style: TextStyle(
+                        //           fontSize: 8,
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // )
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Call with Astrologer",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
+                  InkWell(
+                    onTap: () {},
+                    child: const Text(
+                      "See All",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Palatt.primary,
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 160,
+              child: ListView.builder(
+                itemCount: 5,
+                shrinkWrap: true,
+                padding: const EdgeInsets.symmetric(vertical: 7.5),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 145,
+                    width: 270,
+                    margin:
+                        EdgeInsets.only(right: 15, left: index == 0 ? 15 : 0),
+                    decoration: BoxDecoration(
+                        color: Palatt.white,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Palatt.boxShadow.withOpacity(0.2),
+                            blurRadius: 13,
+                            offset: const Offset(0, 2),
+                          )
+                        ]),
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            CircleAvatar(
+                              radius: 30,
+                              backgroundImage: NetworkImage(
+                                "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
                               ),
                             ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Rohan Sharma",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    color: Palatt.black,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Row(
+                                  children: List.generate(
+                                      5,
+                                      (index) => const Padding(
+                                            padding: EdgeInsets.only(right: 5),
+                                            child: Icon(
+                                              Icons.star,
+                                              size: 13,
+                                              color: Palatt.primary,
+                                            ),
+                                          )),
+                                ),
+                                Text(
+                                  "Jaipur",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Palatt.grey,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Lorem ipsum dolor sit amet, constetur adipisicing eiusmod tempor ...",
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Palatt.grey,
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                );
-              }),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            SizedBox(
+              height: 40,
             )
           ],
         ),

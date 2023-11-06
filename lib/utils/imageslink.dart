@@ -4,6 +4,12 @@ class AppImages {
   static const _svg = "$_assets/svg";
   // icons
   static const menu = "$_svg/icons/menu.svg";
+  static const wallet = "$_svg/icons/wallet.svg";
+  static const notification = "$_svg/icons/notification.svg";
+  static const language = "$_svg/icons/language.svg";
+  static const callfilled = "$_svg/icons/call_filled.svg";
+  static const callicon = "$_svg/icons/call.svg";
+  static const chaticon = "$_svg/icons/chat.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";
@@ -34,4 +40,5 @@ class AppImages {
   static const horoscope = "$_png/images/horoscope.jpg";
   static const kundlimaching = "$_png/images/kunli-matching.png";
   static const panchang = "$_png/images/panchang.jpg";
+  static const directory = "$_png/images/directory.png";
 }

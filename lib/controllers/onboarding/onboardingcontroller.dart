@@ -17,7 +17,7 @@ class OnboardingController extends GetxController {
 
   splashcounterstart() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.toNamed(Routes.login);
+      Get.offAndToNamed(Routes.login);
     });
   }
 
@@ -42,6 +42,10 @@ class OnboardingController extends GetxController {
     pin3FocusNode = FocusNode();
     pin4FocusNode = FocusNode();
     super.onInit();
+  }
+
+  setphonenumber(String number) {
+    phoneController.text = number;
   }
 
   void nextField(String value, FocusNode focusNode) {
@@ -99,8 +103,7 @@ class OnboardingController extends GetxController {
     Map<String, String> map = {"phone": phoneController.text};
     await apiClient.postRequest(ApiUrls.signUp, map).then((value) {
       if (value != null) {
-        print("==$value");
-        Get.toNamed(Routes.otpverification);
+        Get.toNamed(Routes.otpverification, arguments: phoneController.text);
         isLoading.value = false;
       }
     });

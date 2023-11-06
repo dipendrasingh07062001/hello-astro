@@ -7,7 +7,7 @@ part './app_routes.dart';
 
 class AppPages {
   AppPages._();
-  static const initial = Routes.splash;
+  static const initial = Routes.home;
   static final routes = [
     GetPage(name: _Paths.splash, page: () => Splash()),
     GetPage(name: _Paths.login, page: () => Login()),

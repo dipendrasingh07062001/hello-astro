@@ -82,6 +82,7 @@ class _LoginState extends State<Login> {
                             BoxShadow(
                               color: Palatt.boxShadow,
                               blurRadius: 5,
+                              offset: Offset(-1, 2),
                             ),
                           ]),
                       child: TextFormField(
