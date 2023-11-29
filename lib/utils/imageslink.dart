@@ -10,6 +10,17 @@ class AppImages {
   static const callfilled = "$_svg/icons/call_filled.svg";
   static const callicon = "$_svg/icons/call.svg";
   static const chaticon = "$_svg/icons/chat.svg";
+  static const aboutus = "$_svg/icons/aboutus.svg";
+  static const blogs = "$_svg/icons/blogs.svg";
+  static const directoryofastro = "$_svg/icons/directoryofastro.svg";
+  static const faqs = "$_svg/icons/faqs.svg";
+  static const following = "$_svg/icons/following.svg";
+  static const helpnsupport = "$_svg/icons/helpnsupport.svg";
+  static const myorders = "$_svg/icons/myorders.svg";
+  static const privacypolicy = "$_svg/icons/privacypolicy.svg";
+  static const recargehistory = "$_svg/icons/rechargehistory.svg";
+  static const refernearn = "$_svg/icons/refernearn.svg";
+  static const termsnconditions = "$_svg/icons/termsnconditions.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";
@@ -18,12 +29,21 @@ class AppImages {
   static const call = "$_svg/images/call.svg";
   static const blog = "$_svg/images/blog.svg";
   static const wave = "$_svg/images/wave.svg";
+  static const languageview = "$_svg/images/language.svg";
 
   ///// png
   static const _png = "$_assets/png";
 
+  //icons
+  static const facebook = "$_png/icons/facebook.png";
+  static const instagram = "$_png/icons/instagram.png";
+  static const linkenin = "$_png/icons/linkedin.png";
+  static const twitter = "$_png/icons/twitter.png";
+  static const youtube = "$_png/icons/youtube.png";
+
   //images
   static const background = "$_png/images/background.png";
+  static const background2 = "$_png/images/background2.png";
   static const horoscrope1 = "$_png/images/1.png";
   static const horoscrope2 = "$_png/images/2.png";
   static const horoscrope3 = "$_png/images/3.png";
@@ -41,4 +61,6 @@ class AppImages {
   static const kundlimaching = "$_png/images/kunli-matching.png";
   static const panchang = "$_png/images/panchang.jpg";
   static const directory = "$_png/images/directory.png";
+  static const hand = "$_png/images/hand.png";
+  static const handng = "$_png/images/hand_bg.png";
 }

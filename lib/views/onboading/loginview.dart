@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:hello_astro_user/widgets/backgroundimages.dart';
 import '../../controllers/onboarding/onboardingcontroller.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/textwidgets.dart';
@@ -41,22 +42,22 @@ class _LoginState extends State<Login> {
         title: textStyle('Login Now', Palatt.black,
             fontSize: w * .058, fontWeight: FontWeight.w500),
       ),
-      body: Stack(
-        children: [
-          GestureDetector(
-            onTap: () {
-              FocusScope.of(context).requestFocus(FocusNode());
-            },
-            child: SingleChildScrollView(
-              child: Container(
-                // height: h * .906,
-                padding: EdgeInsets.symmetric(horizontal: w * .04),
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(AppImages.background),
-                      alignment: Alignment.bottomCenter,
-                      fit: BoxFit.fitWidth),
-                ),
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: w * .04),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(AppImages.background),
+                alignment: Alignment.bottomCenter,
+                fit: BoxFit.fitWidth),
+          ),
+          child: Stack(
+            children: [
+              Background2(),
+              SingleChildScrollView(
                 child: Column(
                   children: [
                     SizedBox(
@@ -207,9 +208,9 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

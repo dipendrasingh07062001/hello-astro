@@ -25,6 +25,74 @@ class _HomeViewState extends State<HomeView> {
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
+    Widget hangimage = SizedBox(
+      height: 148,
+      width: 140,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              AppImages.handng,
+              fit: BoxFit.fill,
+              height: 148,
+              width: 148,
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Image.asset(
+              AppImages.hand,
+              width: 65,
+              height: 76,
+            ),
+          )
+        ],
+      ),
+    );
+
+    Widget Banners = Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 20),
+        CarouselSlider.builder(
+          itemCount: 3,
+          itemBuilder: (_, index1, index2) {
+            return Container(
+              margin: EdgeInsets.symmetric(horizontal: w * .040),
+              height: 120,
+              width: w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: NetworkImage(
+                        "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXN0cm9waG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"),
+                    fit: BoxFit.cover,
+                  )),
+            );
+          },
+          options: CarouselOptions(
+            // height: 120,
+            aspectRatio: 25 / 8,
+            viewportFraction: 1,
+          ),
+        ),
+        const SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [1, 2, 3]
+              .map((e) => const Padding(
+                    padding: EdgeInsets.all(2.0),
+                    child: CircleAvatar(
+                      radius: 4,
+                      backgroundColor: Palatt.primary,
+                    ),
+                  ))
+              .toList(),
+        )
+      ],
+    );
+
     return Scaffold(
       backgroundColor: Palatt.white,
       key: controller.scaffoldKey,
@@ -36,7 +104,8 @@ class _HomeViewState extends State<HomeView> {
             Stack(
               children: [
                 Container(
-                  height: h * .47,
+                  height: 360,
+                  width: w,
                   decoration: const BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -55,6 +124,15 @@ class _HomeViewState extends State<HomeView> {
                         Palatt.primary,
                       ],
                     ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      hangimage,
+                      SizedBox(
+                        height: 20,
+                      )
+                    ],
                   ),
                 ),
                 //Top Bar starting from here
@@ -176,6 +254,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
+            Banners,
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: w * .040, vertical: h * .015),

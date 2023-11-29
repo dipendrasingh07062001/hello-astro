@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
+import 'package:hello_astro_user/controllers/onboarding/languagecontroller.dart';
 import 'package:hello_astro_user/views/home/homeview.dart';
+import 'package:hello_astro_user/views/onboading/languageselectview.dart';
 import 'package:hello_astro_user/views/onboading/loginview.dart';
 import 'package:hello_astro_user/views/onboading/otpverification.dart';
+import 'package:hello_astro_user/views/onboading/referview.dart';
 import 'package:hello_astro_user/views/onboading/splash.dart';
 part './app_routes.dart';
 
@@ -13,5 +16,10 @@ class AppPages {
     GetPage(name: _Paths.login, page: () => Login()),
     GetPage(name: _Paths.otpverification, page: () => OtpVerfication()),
     GetPage(name: _Paths.home, page: () => HomeView()),
+    GetPage(name: _Paths.referview, page: () => ReferCodeView()),
+    GetPage(
+        name: _Paths.languageview,
+        page: () => LanguageSelectView(),
+        binding: LanguageBinding()),
   ];
 }

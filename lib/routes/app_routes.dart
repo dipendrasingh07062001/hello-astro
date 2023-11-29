@@ -6,6 +6,8 @@ abstract class Routes {
   static const login = _Paths.login;
   static const otpverification = _Paths.otpverification;
   static const home = _Paths.home;
+  static const referview = _Paths.referview;
+  static const languageview = _Paths.languageview;
 }
 
 abstract class _Paths {
@@ -14,4 +16,6 @@ abstract class _Paths {
   static const login = '/login';
   static const otpverification = '/otpverification';
   static const home = '/home';
+  static const referview = '/referview';
+  static const languageview = '/languageview';
 }
