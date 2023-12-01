@@ -8,10 +8,10 @@ import 'package:hello_astro_user/views/home/drawer.dart';
 
 import '../../controllers/home/homecontroller.dart';
 import '../../models/sunshins.dart';
+import '../../routes/app_pages.dart';
 import '../../widgets/cards.dart';
 import '../wallet/walletbalance.dart';
 import 'freeservices.dart';
-import 'horoscope.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
 
-    Widget Banners = Column(
+    Widget banners = Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 20),
@@ -64,7 +64,7 @@ class _HomeViewState extends State<HomeView> {
               width: w,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: NetworkImage(
                         "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXN0cm9waG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"),
                     fit: BoxFit.cover,
@@ -129,7 +129,7 @@ class _HomeViewState extends State<HomeView> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       hangimage,
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       )
                     ],
@@ -161,7 +161,9 @@ class _HomeViewState extends State<HomeView> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed(Routes.walletBalance);
+                                  },
                                   child: Container(
                                     decoration: const BoxDecoration(
                                       color: Palatt.primary,
@@ -178,8 +180,8 @@ class _HomeViewState extends State<HomeView> {
                                       children: [
                                         SvgPicture.asset(
                                           AppImages.wallet,
-                                          height: 20,
-                                          width: 20,
+                                          height: 12,
+                                          width: 14,
                                         ),
                                         const SizedBox(
                                           width: 10,
@@ -254,7 +256,7 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ],
             ),
-            Banners,
+            banners,
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: w * .040, vertical: h * .015),
@@ -397,7 +399,7 @@ class _HomeViewState extends State<HomeView> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Stack(
                                             children: [
-                                              Positioned(
+                                              const Positioned(
                                                 top: 0,
                                                 left: 0,
                                                 right: 0,
@@ -427,7 +429,7 @@ class _HomeViewState extends State<HomeView> {
                                                               10),
                                                     ),
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 2),
                                                     child: Row(
                                                       mainAxisAlignment:
@@ -435,11 +437,12 @@ class _HomeViewState extends State<HomeView> {
                                                               .center,
                                                       children: List.generate(
                                                           5,
-                                                          (index) => Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        1),
+                                                          (index) =>
+                                                              const Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal:
+                                                                            1),
                                                                 child: Icon(
                                                                   Icons.star,
                                                                   size: 10,
@@ -449,7 +452,7 @@ class _HomeViewState extends State<HomeView> {
                                                               )),
                                                     ),
                                                   )),
-                                              Positioned(
+                                              const Positioned(
                                                 top: 65,
                                                 right: 0,
                                                 left: 0,
@@ -465,7 +468,7 @@ class _HomeViewState extends State<HomeView> {
                                             ],
                                           ),
                                         )),
-                                    Expanded(
+                                    const Expanded(
                                         flex: 3,
                                         child: Column(
                                           crossAxisAlignment:
@@ -502,13 +505,13 @@ class _HomeViewState extends State<HomeView> {
                                 child: Container(
                               color: Palatt.white,
                               width: Get.width,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
+                                  const Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -551,10 +554,11 @@ class _HomeViewState extends State<HomeView> {
                                         children: [
                                           SvgPicture.asset(
                                             AppImages.chaticon,
+                                            // ignore: deprecated_member_use
                                             color: Palatt.white,
                                             height: 13,
                                           ),
-                                          Text(
+                                          const Text(
                                             "Chat",
                                             style: TextStyle(
                                                 fontSize: 10,
@@ -655,7 +659,7 @@ class _HomeViewState extends State<HomeView> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Stack(
                                             children: [
-                                              Positioned(
+                                              const Positioned(
                                                 top: 0,
                                                 left: 0,
                                                 right: 0,
@@ -685,7 +689,7 @@ class _HomeViewState extends State<HomeView> {
                                                               10),
                                                     ),
                                                     padding: const EdgeInsets
-                                                            .symmetric(
+                                                        .symmetric(
                                                         horizontal: 2),
                                                     child: Row(
                                                       mainAxisAlignment:
@@ -693,11 +697,12 @@ class _HomeViewState extends State<HomeView> {
                                                               .center,
                                                       children: List.generate(
                                                           5,
-                                                          (index) => Padding(
-                                                                padding: const EdgeInsets
-                                                                        .symmetric(
-                                                                    horizontal:
-                                                                        1),
+                                                          (index) =>
+                                                              const Padding(
+                                                                padding: EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal:
+                                                                            1),
                                                                 child: Icon(
                                                                   Icons.star,
                                                                   size: 10,
@@ -707,7 +712,7 @@ class _HomeViewState extends State<HomeView> {
                                                               )),
                                                     ),
                                                   )),
-                                              Positioned(
+                                              const Positioned(
                                                 top: 65,
                                                 right: 0,
                                                 left: 0,
@@ -723,7 +728,7 @@ class _HomeViewState extends State<HomeView> {
                                             ],
                                           ),
                                         )),
-                                    Expanded(
+                                    const Expanded(
                                         flex: 3,
                                         child: Column(
                                           crossAxisAlignment:
@@ -760,13 +765,13 @@ class _HomeViewState extends State<HomeView> {
                                 child: Container(
                               color: Palatt.white,
                               width: Get.width,
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   horizontal: 10, vertical: 5),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
+                                  const Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
@@ -809,7 +814,7 @@ class _HomeViewState extends State<HomeView> {
                                         children: [
                                           SvgPicture.asset(
                                               AppImages.callfilled),
-                                          Text(
+                                          const Text(
                                             "Call",
                                             style: TextStyle(
                                                 fontSize: 10,
@@ -905,19 +910,19 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Row(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 30,
                               backgroundImage: NetworkImage(
                                 "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
+                                const Text(
                                   "Rohan Sharma",
                                   style: TextStyle(
                                     fontSize: 16,
@@ -937,7 +942,7 @@ class _HomeViewState extends State<HomeView> {
                                             ),
                                           )),
                                 ),
-                                Text(
+                                const Text(
                                   "Jaipur",
                                   style: TextStyle(
                                     fontSize: 15,
@@ -949,10 +954,10 @@ class _HomeViewState extends State<HomeView> {
                             )
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
-                        Text(
+                        const Text(
                           "Lorem ipsum dolor sit amet, constetur adipisicing eiusmod tempor ...",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -969,7 +974,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
 
-            SizedBox(
+            const SizedBox(
               height: 40,
             )
           ],

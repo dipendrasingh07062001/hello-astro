@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/widgets/space.dart';
@@ -36,13 +38,13 @@ class HomeDrawer extends StatelessWidget {
             spaceVertical(20),
             ListTile(
               onTap: () {},
-              leading: CircleAvatar(
+              leading: const CircleAvatar(
                 radius: 23,
                 backgroundImage: NetworkImage(
                   "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                 ),
               ),
-              title: Text(
+              title: const Text(
                 "Rohan Sharma",
                 style: TextStyle(
                   fontSize: 17,
@@ -50,7 +52,7 @@ class HomeDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              subtitle: Text(
+              subtitle: const Text(
                 "+91-7891023456",
                 style: TextStyle(
                   color: Palatt.white,
@@ -78,7 +80,9 @@ class HomeDrawer extends StatelessWidget {
                   DrawerTile(
                     image: AppImages.recargehistory,
                     title: "Recharge History",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.rechargeHistory);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(

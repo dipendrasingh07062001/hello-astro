@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
-
 import '../../widgets/textwidgets.dart';
 
+// ignore: must_be_immutable
 class LanguageTile extends StatelessWidget {
   String text;
   String val;
@@ -21,7 +21,7 @@ class LanguageTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: Palatt.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Palatt.boxShadow,
             spreadRadius: 0,

@@ -31,7 +31,7 @@ class EltdButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        elevation: elevation ?? 5,
+        elevation: elevation ?? 0,
         foregroundColor: foregroundColor,
         minimumSize: Size(width!, height!),
         maximumSize: Size(width!, height!),

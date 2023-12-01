@@ -8,6 +8,8 @@ abstract class Routes {
   static const home = _Paths.home;
   static const referview = _Paths.referview;
   static const languageview = _Paths.languageview;
+  static const rechargeHistory = _Paths.rechargeHistory;
+  static const walletBalance = _Paths.walletBalance;
 }
 
 abstract class _Paths {
@@ -18,4 +20,6 @@ abstract class _Paths {
   static const home = '/home';
   static const referview = '/referview';
   static const languageview = '/languageview';
+  static const rechargeHistory = '/rechargeHistory';
+  static const walletBalance = '/walletBalance';
 }

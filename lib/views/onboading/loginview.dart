@@ -56,7 +56,7 @@ class _LoginState extends State<Login> {
           ),
           child: Stack(
             children: [
-              Background2(),
+              const Background2(),
               SingleChildScrollView(
                 child: Column(
                   children: [

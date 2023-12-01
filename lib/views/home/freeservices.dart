@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import '../../theme/colorpalatt.dart';
 import '../../utils/imageslink.dart';
 import '../../widgets/cards.dart';

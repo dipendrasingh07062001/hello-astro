@@ -51,7 +51,7 @@ class LanguageSelectView extends GetView<LanguageController> {
           ),
           child: Stack(
             children: [
-              Background2(),
+              const Background2(),
               SingleChildScrollView(
                 child: Column(
                   children: [
@@ -62,7 +62,7 @@ class LanguageSelectView extends GetView<LanguageController> {
                       AppImages.languageview,
                       width: w * .63,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 55,
                     ),
                     ListView.builder(
@@ -90,7 +90,7 @@ class LanguageSelectView extends GetView<LanguageController> {
                     //         fontSize: 17, fontWeight: FontWeight.w500),
                     //   ),
                     // ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Obx(

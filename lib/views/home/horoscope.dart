@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hello_astro_user/theme/colorpalatt.dart';
-
 import '../../models/sunshins.dart';
 
 class Horoscope extends StatelessWidget {

@@ -8,6 +8,7 @@ import 'package:hello_astro_user/utils/nevugationservices.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   Preference.getInstance();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Hello Astro User",
       navigatorKey: NavigationServices.navigatorKey,
       initialRoute: AppPages.initial,

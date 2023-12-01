@@ -122,7 +122,7 @@ class OnboardingController extends GetxController {
       Map<String, String> map = {"phone": phoneController.text, "otp": sub};
       await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
         if (value != null) {
-          print("==$value");
+          debugPrint("==$value");
           Get.toNamed(Routes.home);
           isLoading.value = false;
         }

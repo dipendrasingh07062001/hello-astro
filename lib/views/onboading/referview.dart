@@ -9,6 +9,7 @@ import '../../widgets/backgroundimages.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/textwidgets.dart';
 
+// ignore: must_be_immutable
 class ReferCodeView extends StatelessWidget {
   ReferCodeView({super.key});
   final ReferController referController =
@@ -51,7 +52,7 @@ class ReferCodeView extends StatelessWidget {
           ),
           child: Stack(
             children: [
-              Background2(),
+              const Background2(),
               SingleChildScrollView(
                 child: Column(
                   children: [

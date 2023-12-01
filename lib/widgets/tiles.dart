@@ -21,7 +21,7 @@ class DrawerTile extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ListTile(
-          onTap: () {},
+          onTap: onTap,
           leading: SvgPicture.asset(
             image,
             height: 40,
