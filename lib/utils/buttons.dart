@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
+import 'package:hello_astro_user/theme/colorpalatt.dart';
 
 class EltdButton extends StatelessWidget {
   String? title;
@@ -96,6 +97,97 @@ class SocialMediabutton extends StatelessWidget {
           radius: 11,
         ),
       ),
+    );
+  }
+}
+
+class RRButton extends StatelessWidget {
+  final void Function()? onTap;
+  final String data;
+  final double? height, width, radius;
+  final Color? backgroundColor, borderColor;
+  final TextStyle? style;
+  final EdgeInsetsGeometry? padding, margin;
+  final List<BoxShadow>? boxShadow;
+  const RRButton(
+      {super.key,
+      required this.onTap,
+      required this.data,
+      this.backgroundColor,
+      this.height,
+      this.radius,
+      this.borderColor,
+      this.padding,
+      this.margin,
+      this.boxShadow,
+      this.width,
+      this.style});
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: padding,
+        margin: margin,
+        height: height,
+        width: width,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+            border: Border.all(
+              width: 1,
+              color: borderColor ?? Palatt.transparent,
+            ),
+            borderRadius: BorderRadius.circular(radius ?? 0),
+            color: backgroundColor,
+            boxShadow: boxShadow),
+        child: Text(
+          data,
+          style: style,
+        ),
+      ),
+    );
+  }
+}
+
+class RRButton2 extends StatelessWidget {
+  final void Function()? onTap;
+  final Widget child;
+  final double? height, width, radius;
+  final Color? backgroundColor, borderColor;
+  final EdgeInsetsGeometry? padding, margin;
+  final List<BoxShadow>? boxShadow;
+  const RRButton2({
+    super.key,
+    required this.onTap,
+    required this.child,
+    this.backgroundColor,
+    this.height,
+    this.radius,
+    this.borderColor,
+    this.padding,
+    this.margin,
+    this.boxShadow,
+    this.width,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+          padding: padding,
+          margin: margin,
+          height: height,
+          width: width,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              border: Border.all(
+                width: 1,
+                color: borderColor ?? Palatt.transparent,
+              ),
+              borderRadius: BorderRadius.circular(radius ?? 0),
+              color: backgroundColor,
+              boxShadow: boxShadow),
+          child: child),
     );
   }
 }

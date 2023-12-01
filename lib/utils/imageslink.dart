@@ -21,6 +21,12 @@ class AppImages {
   static const recargehistory = "$_svg/icons/rechargehistory.svg";
   static const refernearn = "$_svg/icons/refernearn.svg";
   static const termsnconditions = "$_svg/icons/termsnconditions.svg";
+  static const check = "$_svg/icons/check.svg";
+  static const attachment = "$_svg/icons/attachment.svg";
+  static const send = "$_svg/icons/send.svg";
+  static const menu_burger = "$_svg/icons/menu_burger.svg";
+  static const filter = "$_svg/icons/filter.svg";
+  static const rocketchat = "$_svg/icons/rocketchat.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";

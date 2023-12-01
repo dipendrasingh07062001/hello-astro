@@ -1,0 +1,1 @@
+enum ContactMode { call, chat }
