@@ -13,6 +13,13 @@ abstract class Routes {
   static const myorders = _Paths.myorders;
   static const helpnsupport = _Paths.helpnsupport;
   static const chatwithastrologer = _Paths.chatwithastrologer;
+  static const astrodetailsview = _Paths.astrodetailsview;
+  static const profile = _Paths.profile;
+  static const aboutus = _Paths.aboutus;
+  static const privacypolicy = _Paths.privacypolicy;
+  static const termsncondition = _Paths.termsncondition;
+  static const faqs = _Paths.faqs;
+  static const homenav = _Paths.homenav;
 }
 
 abstract class _Paths {
@@ -28,4 +35,11 @@ abstract class _Paths {
   static const myorders = '/myorders';
   static const helpnsupport = '/helpnsupport';
   static const chatwithastrologer = '/chatwithastrologer';
+  static const astrodetailsview = '/astrodetailsview';
+  static const profile = '/profile';
+  static const aboutus = '/aboutus';
+  static const privacypolicy = '/privacypolicy';
+  static const termsncondition = '/termsncondition';
+  static const faqs = '/faqs';
+  static const homenav = '/homenav';
 }

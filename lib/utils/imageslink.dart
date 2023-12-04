@@ -27,6 +27,10 @@ class AppImages {
   static const menu_burger = "$_svg/icons/menu_burger.svg";
   static const filter = "$_svg/icons/filter.svg";
   static const rocketchat = "$_svg/icons/rocketchat.svg";
+  static const male = "$_svg/icons/male.svg";
+  static const female = "$_svg/icons/female.svg";
+  static const home = "$_svg/icons/home.svg";
+  static const walletborder = "$_svg/icons/walletborder.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";

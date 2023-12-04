@@ -112,25 +112,33 @@ class HomeDrawer extends StatelessWidget {
                   DrawerTile(
                     image: AppImages.aboutus,
                     title: "About us",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.aboutus);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.privacypolicy,
                     title: "Privacy Policy",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.privacypolicy);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.termsnconditions,
                     title: "Terms and Conditions",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.termsncondition);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.faqs,
                     title: "FAQ's",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.faqs);
+                    },
                     showdivider: false,
                   ),
                 ],
