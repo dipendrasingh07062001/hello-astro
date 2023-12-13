@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/controllers/home/homecontroller.dart';
 import 'package:hello_astro_user/views/home/homeview.dart';
 
 import '../../utils/imageslink.dart';
@@ -10,10 +12,12 @@ class HomeNavBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut<HomeNavController>(() => HomeNavController());
+    Get.lazyPut<HomeController>(() => HomeController());
   }
 }
 
 class HomeNavController extends GetxController {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   RxInt currentpage = 0.obs;
   RxList<Widget> body = RxList([
     HomeView(),

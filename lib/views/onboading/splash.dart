@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/utils/imageslink.dart';
 
 import '../../controllers/onboarding/onboardingcontroller.dart';
 
@@ -13,17 +14,11 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.splashcounterstart();
-    return const Scaffold(
-        backgroundColor: Colors.amber,
+    return Scaffold(
+        backgroundColor: Palatt.primary,
         body: Center(
-          child: Text(
-            "Hello Astrologer",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 66,
-              color: Palatt.white,
-              fontWeight: FontWeight.w600,
-            ),
+          child: Image.asset(
+            AppImages.splashpic,
           ),
         ));
   }

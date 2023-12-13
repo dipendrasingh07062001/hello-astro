@@ -1,245 +1,252 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:hello_astro_user/routes/app_pages.dart';
-import 'package:hello_astro_user/theme/colorpalatt.dart';
-import 'package:hello_astro_user/utils/buttons.dart';
+import 'package:hello_astro_user/views/bottomsheet/contactastro.dart';
+import 'package:hello_astro_user/views/directory/widgets.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
-import 'package:hello_astro_user/widgets/space.dart';
 import 'package:intl/intl.dart';
 
-import '../../widgets/textwidgets.dart';
+import '../../theme/colorpalatt.dart';
+import '../../utils/buttons.dart';
+import '../../widgets/space.dart';
+import '../astroprofile/astroview.dart';
 
-class AstroDetailView extends GetView {
-  const AstroDetailView({super.key});
-
+class DirectoryAstroDetails extends GetView {
   @override
   Widget build(BuildContext context) {
-    Widget astrodetails = SizedBox(
-      height: 230,
-      child: Stack(
+    Widget astrodetails = Container(
+      margin: EdgeInsets.symmetric(horizontal: 15),
+      decoration: BoxDecoration(
+          color: Palatt.white,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(width: 1, color: Palatt.yellow2nd),
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 6,
+              spreadRadius: 3,
+              color: Palatt.greybackground,
+            )
+          ]),
+      width: Get.width,
+      padding: const EdgeInsets.all(10),
+      child: Row(
         children: [
-          Container(
-            height: 200,
-            width: Get.width,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: 30,
-            ),
-            decoration: const BoxDecoration(
-                color: Palatt.primary,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40),
-                )),
-            child: Row(
+          SizedBox(
+            width: 99,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
-                    child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Container(
-                    height: 77,
-                    width: 77,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                          image: NetworkImage(
-                              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkiIFjCOZ-mMeqxd2ryrneiHedE8G9S0AboA&usqp=CAU")),
+                CircleAvatar(
+                  radius: 33,
+                  backgroundColor: Palatt.primary,
+                  child: CircleAvatar(
+                    radius: 32.5,
+                    backgroundColor: Palatt.white,
+                    child: CircleAvatar(
+                      radius: 31.5,
+                      backgroundImage: NetworkImage(
+                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                      ),
                     ),
                   ),
-                )),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        "Zoha Merchant",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Palatt.white,
-                        ),
-                      ),
-                      const Text(
-                        "Tarot, Life Coach",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.white,
-                        ),
-                      ),
-                      const Text(
-                        "Language: Hindi, English",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.white,
-                        ),
-                      ),
-                      const Text(
-                        "Jaipur, Raj",
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.white,
-                        ),
-                      ),
-                      spaceVertical(5),
-                      RRButton(
-                        width: 90,
-                        radius: 6,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 9, vertical: 4),
-                        borderColor: Palatt.white,
-                        style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Palatt.white,
-                        ),
-                        onTap: () {},
-                        data: "Follow",
-                      )
-                    ],
+                ),
+                spaceVertical(10),
+                Container(
+                  width: 66,
+                  height: 15,
+                  decoration: BoxDecoration(
+                      color: Palatt.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(color: Palatt.boxShadow, blurRadius: 3)
+                      ]),
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                        5,
+                        (index) => const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 1),
+                              child: Icon(
+                                Icons.star,
+                                size: 10,
+                                color: Palatt.primary,
+                              ),
+                            )),
                   ),
+                ),
+                spaceVertical(5),
+                Text(
+                  "View - 70000",
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
           ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-              height: 60,
-              margin: const EdgeInsets.symmetric(horizontal: 30),
-              width: Get.width,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              decoration: BoxDecoration(
-                  color: Palatt.white,
-                  borderRadius: BorderRadius.circular(40),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Palatt.boxShadow,
-                      blurRadius: 4,
-                    )
-                  ]),
-              alignment: Alignment.center,
-              child: const Row(
-                children: [
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "5",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Palatt.black,
+          spaceHorizontal(10),
+          Expanded(
+            flex: 3,
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Text(
+                          "Name : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Rating",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.grey,
+                        const Text(
+                          "Zoha Merchant",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
                         ),
-                      ),
-                    ],
-                  )),
-                  VerticalDivider(
-                    width: 2,
-                    thickness: 2,
-                    color: Palatt.primary,
-                    endIndent: 10,
-                    indent: 10,
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Expertise : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "Tarot, Psychic",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Expertise : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "Tarot, Psychic",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Language : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "English, Hindi",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "Years of experience : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "22 Years",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "City : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "Jaipur",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Text(
+                          "State : ",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.black,
+                          ),
+                        ),
+                        const Text(
+                          "Rajasthan",
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w400,
+                            color: Palatt.black,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.topRight,
+                  child: CircleAvatar(
+                    radius: 9,
+                    backgroundColor: Palatt.primaryLight,
+                    child: Icon(
+                      Icons.favorite_border,
+                      color: Palatt.primary,
+                      size: 15,
+                    ),
                   ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "10+",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Palatt.black,
-                        ),
-                      ),
-                      Text(
-                        "Exp(years)",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.grey,
-                        ),
-                      ),
-                    ],
-                  )),
-                  VerticalDivider(
-                    width: 2,
-                    thickness: 2,
-                    color: Palatt.primary,
-                    endIndent: 10,
-                    indent: 10,
-                  ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "4.5K",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Palatt.black,
-                        ),
-                      ),
-                      Text(
-                        "Followers",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.grey,
-                        ),
-                      ),
-                    ],
-                  )),
-                  VerticalDivider(
-                    width: 2,
-                    thickness: 2,
-                    color: Palatt.primary,
-                    endIndent: 10,
-                    indent: 10,
-                  ),
-                  Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "15.5K",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600,
-                          color: Palatt.black,
-                        ),
-                      ),
-                      Text(
-                        "Orders",
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w400,
-                          color: Palatt.grey,
-                        ),
-                      ),
-                    ],
-                  )),
-                ],
-              ),
+                )
+              ],
             ),
           )
         ],
@@ -263,7 +270,7 @@ class AstroDetailView extends GetView {
           ),
           childrenPadding: EdgeInsets.zero,
           title: Text(
-            "Availability Time",
+            "Availability Day/Timing",
             style: TextStyle(
               fontSize: 16,
               color: Palatt.black,
@@ -470,6 +477,48 @@ We live in an era where we are digitalized to the level, everything of our need 
         spaceVertical(20)
       ],
     );
+    Widget certificate = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Text(
+            "Certificate",
+            style: const TextStyle(
+              fontSize: 18,
+              color: Palatt.black,
+              fontWeight: FontWeight.w300,
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 100,
+          child: ListView.builder(
+            itemCount: 10,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            itemBuilder: (context, index) {
+              return Container(
+                height: 96,
+                width: 96,
+                margin: index == 10 ? null : const EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
+                      ),
+                      fit: BoxFit.cover,
+                    )),
+              );
+            },
+          ),
+        ),
+        spaceVertical(20)
+      ],
+    );
+
     Widget review = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -603,118 +652,40 @@ We live in an era where we are digitalized to the level, everything of our need 
         spaceVertical(10),
       ],
     );
-    Widget callchatButton = Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-      decoration: BoxDecoration(color: Palatt.white, boxShadow: [
-        BoxShadow(
-          blurRadius: 5,
-          color: Palatt.boxShadow,
-        )
-      ]),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          RRButton2(
-            height: 46,
-            width: 108,
-            onTap: () {},
-            backgroundColor: Palatt.primary,
-            radius: 5,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Call",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "₹5/min",
-                  style: TextStyle(
-                    fontSize: 9,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
-            ),
-          ),
-          RRButton2(
-            height: 46,
-            width: 108,
-            onTap: () {
-              Get.toNamed(Routes.chatview);
-            },
-            backgroundColor: Palatt.primary,
-            radius: 5,
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Chat",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "₹5/min",
-                  style: TextStyle(
-                    fontSize: 9,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
+    Widget contactbutton = RRButton(
+      onTap: () {
+        Get.bottomSheet(ContactAstro());
+      },
+      data: "Get Contact Details",
+      width: Get.width,
+      margin: const EdgeInsets.symmetric(horizontal: 15),
+      backgroundColor: Palatt.primary,
+      radius: 10,
+      height: 50,
+      style: TextStyle(fontSize: 16, color: Palatt.white),
     );
-
     return Scaffold(
-      backgroundColor: Palatt.white,
-      appBar: const CustomAppBar(
-        title: "Astrologers Profile",
+      appBar: CustomAppBar(
+        title: "Directory Details",
       ),
       body: ListView(
-        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
         children: [
+          registerbutton,
+          spaceVertical(20),
           astrodetails,
           availabilityTime,
           survecard,
           spaceVertical(20),
           bio,
           spaceVertical(20),
+          certificate,
           gallery,
           review,
-          callchatButton,
+          contactbutton,
           spaceVertical(30),
         ],
       ),
     );
   }
-}
-
-Widget timingSlot(String timing,
-    {Function()? onTap, bool isSelected = false, bool isbooked = false}) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Container(
-      height: Get.height * .04,
-      width: Get.width * .4,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: isbooked ? Palatt.grey.withOpacity(0.5) : Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: isSelected ? Palatt.primary : Colors.black26),
-      ),
-      child: textStyle(timing, Palatt.black,
-          fontSize: 14, fontWeight: FontWeight.w500),
-    ),
-  );
 }

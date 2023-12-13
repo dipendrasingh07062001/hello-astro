@@ -5,6 +5,8 @@ import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
+import '../../utils/imageslink.dart';
+
 class TermsAndCondition extends GetView {
   const TermsAndCondition({super.key});
   @override
@@ -14,6 +16,11 @@ class TermsAndCondition extends GetView {
         title: "Terms and Condition",
       ),
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+          AppImages.background2,
+        ))),
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

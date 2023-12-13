@@ -31,6 +31,7 @@ class AppImages {
   static const female = "$_svg/icons/female.svg";
   static const home = "$_svg/icons/home.svg";
   static const walletborder = "$_svg/icons/walletborder.svg";
+  static const refresh = "$_svg/icons/refresh.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";
@@ -40,6 +41,7 @@ class AppImages {
   static const blog = "$_svg/images/blog.svg";
   static const wave = "$_svg/images/wave.svg";
   static const languageview = "$_svg/images/language.svg";
+  static const successfull = "$_svg/images/successfull.svg";
 
   ///// png
   static const _png = "$_assets/png";
@@ -73,4 +75,7 @@ class AppImages {
   static const directory = "$_png/images/directory.png";
   static const hand = "$_png/images/hand.png";
   static const handng = "$_png/images/hand_bg.png";
+  static const confeti = "$_png/images/confeti.png";
+  static const cloudysun = "$_png/images/cloudysun.png";
+  static const splashpic = "$_png/images/splashpic.png";
 }

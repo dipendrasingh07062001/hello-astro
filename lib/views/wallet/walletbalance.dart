@@ -24,6 +24,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/views/bottomsheet/paymentdetails.dart';
 import 'package:hello_astro_user/widgets/custom_button.dart';
 
 import '../../theme/colorpalatt.dart';
@@ -276,7 +277,9 @@ class WalletBalanceView extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.symmetric(horizontal: w * .03),
                         child: CustomElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.bottomSheet(PaymentDetail());
+                            },
                             width: 345,
                             height: 50,
                             child: textStyle('Proceed to Pay', Colors.white,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
+import 'package:hello_astro_user/widgets/dialogs/logout.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 import '../../utils/buttons.dart';
 import '../../utils/constants.dart';
@@ -37,7 +38,9 @@ class HomeDrawer extends StatelessWidget {
             ),
             spaceVertical(20),
             ListTile(
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(Routes.profile);
+              },
               leading: const CircleAvatar(
                 radius: 23,
                 backgroundImage: NetworkImage(
@@ -63,12 +66,15 @@ class HomeDrawer extends StatelessWidget {
             Expanded(
               child: ListView(
                 shrinkWrap: true,
+                // physics: NeverScrollableScrollPhysics(),
                 children: [
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.myorders,
                     title: "My Orders",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.myorders);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
@@ -88,25 +94,33 @@ class HomeDrawer extends StatelessWidget {
                   DrawerTile(
                     image: AppImages.following,
                     title: "Following",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.following);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.refernearn,
                     title: "Refer and earn",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.refernearn);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.directoryofastro,
                     title: "Directory of Astro",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.directoryview);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.helpnsupport,
                     title: "Help & Support",
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.helpnsupport);
+                    },
                   ),
                   spaceVertical(10),
                   DrawerTile(
@@ -161,7 +175,7 @@ class HomeDrawer extends StatelessWidget {
               width: 254,
               radius: 10,
               elevation: 0,
-              press: () {},
+              press: () => Get.dialog(LogOut()),
             ),
             spaceVertical(10),
           ],

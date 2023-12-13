@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hello_astro_user/widgets/backgroundimages.dart';
@@ -193,21 +195,41 @@ class _LoginState extends State<Login> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Palatt.white,
+                          backgroundColor: Palatt.transparent,
                           minimumSize: Size(w * .94, h * .065),
                           maximumSize: Size(w * .94, h * .065),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
-                            side: const BorderSide(color: Palatt.primary),
+                            // side: const BorderSide(color: Palatt.primary),
                           ),
                           elevation: 0),
                       onPressed: () {},
-                      child: textStyle('Log in as guest', Palatt.primary,
-                          fontSize: w * .04, fontWeight: FontWeight.w500),
+                      child: textStyle(
+                        'Register yourself in Hello Astrologer Directory',
+                        Palatt.primary,
+                        fontSize: w * .04,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ],
                 ),
               ),
+              Align(
+                alignment: Alignment.topRight,
+                child: RRButton(
+                  onTap: () {
+                    Get.toNamed(Routes.homenav);
+                  },
+                  height: 30,
+                  width: 60,
+                  data: "Skip",
+                  style: TextStyle(
+                    color: Palatt.primary,
+                    fontSize: w * .04,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              )
             ],
           ),
         ),

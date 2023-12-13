@@ -20,6 +20,11 @@ abstract class Routes {
   static const termsncondition = _Paths.termsncondition;
   static const faqs = _Paths.faqs;
   static const homenav = _Paths.homenav;
+  static const following = _Paths.following;
+  static const directoryview = _Paths.directoryview;
+  static const directoryastrodetail = _Paths.directoryastrodetail;
+  static const refernearn = _Paths.refernearn;
+  static const chatview = _Paths.chatview;
 }
 
 abstract class _Paths {
@@ -42,4 +47,9 @@ abstract class _Paths {
   static const termsncondition = '/termsncondition';
   static const faqs = '/faqs';
   static const homenav = '/homenav';
+  static const following = '/following';
+  static const directoryview = '/directoryview';
+  static const directoryastrodetail = '/directoryastrodetail';
+  static const refernearn = '/refernearn';
+  static const chatview = '/chatview';
 }

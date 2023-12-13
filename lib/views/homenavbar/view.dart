@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/controllers/home/homecontroller.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
+import 'package:hello_astro_user/views/onboading/splash.dart';
 import 'package:hello_astro_user/widgets/space.dart';
+
+import '../home/drawer.dart';
 
 class HomeNavBar extends GetView<HomeNavController> {
   const HomeNavBar({super.key});
@@ -12,6 +16,8 @@ class HomeNavBar extends GetView<HomeNavController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
+      drawer: const HomeDrawer(),
       body: Obx(
         () => controller.body[controller.currentpage.value],
       ),
@@ -22,7 +28,7 @@ class HomeNavBar extends GetView<HomeNavController> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: Palatt.white,
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Palatt.boxShadow,
                 blurRadius: 8,
@@ -32,31 +38,33 @@ class HomeNavBar extends GetView<HomeNavController> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
-            4,
-            (index) => GestureDetector(
-              onTap: () => controller.ontapbaritem(index),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    controller.bar[index]["image"] ?? "",
-                    color: Palatt.black,
-                    height: 20,
-                    width: 20,
-                  ),
-                  spaceVertical(5),
-                  Text(
-                    controller.bar[index]["name"] ?? "",
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
+              4,
+              (index) => TextButton(
+                    onPressed: () => controller.ontapbaritem(index),
+                    style: TextButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
                     ),
-                  )
-                ],
-              ),
-            ),
-          ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          controller.bar[index]["image"] ?? "",
+                          color: Palatt.black,
+                          height: 20,
+                          width: 20,
+                        ),
+                        spaceVertical(5),
+                        Text(
+                          controller.bar[index]["name"] ?? "",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Palatt.black,
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
           //  [
 
           //   Column(

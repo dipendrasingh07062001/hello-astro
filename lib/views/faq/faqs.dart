@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
@@ -13,6 +14,11 @@ class FAQs extends GetView {
       appBar: CustomAppBar(title: "FAQs"),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+          AppImages.background2,
+        ))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

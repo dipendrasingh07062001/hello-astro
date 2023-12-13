@@ -109,6 +109,7 @@ class RRButton extends StatelessWidget {
   final TextStyle? style;
   final EdgeInsetsGeometry? padding, margin;
   final List<BoxShadow>? boxShadow;
+  final AlignmentGeometry? alignment;
   const RRButton(
       {super.key,
       required this.onTap,
@@ -121,7 +122,8 @@ class RRButton extends StatelessWidget {
       this.margin,
       this.boxShadow,
       this.width,
-      this.style});
+      this.style,
+      this.alignment});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -131,7 +133,7 @@ class RRButton extends StatelessWidget {
         margin: margin,
         height: height,
         width: width,
-        alignment: Alignment.center,
+        alignment: alignment ?? Alignment.center,
         decoration: BoxDecoration(
             border: Border.all(
               width: 1,
@@ -142,6 +144,7 @@ class RRButton extends StatelessWidget {
             boxShadow: boxShadow),
         child: Text(
           data,
+          textAlign: TextAlign.center,
           style: style,
         ),
       ),

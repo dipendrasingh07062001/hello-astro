@@ -2,14 +2,19 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/home/drawer.dart';
+import 'package:hello_astro_user/views/home/horoscope.dart';
+import 'package:hello_astro_user/widgets/dialogs/rating.dart';
+import 'package:hello_astro_user/widgets/space.dart';
 
 import '../../controllers/home/homecontroller.dart';
 import '../../models/sunshins.dart';
 import '../../routes/app_pages.dart';
 import '../../widgets/cards.dart';
+import '../../widgets/dialogs/logout.dart';
 import '../wallet/walletbalance.dart';
 import 'freeservices.dart';
 
@@ -25,6 +30,9 @@ class _HomeViewState extends State<HomeView> {
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
+    // Future.delayed(Duration(seconds: 1), () {
+    //   Get.dialog(RatingDialog());
+    // });
     Widget hangimage = SizedBox(
       height: 148,
       width: 140,
@@ -75,6 +83,10 @@ class _HomeViewState extends State<HomeView> {
             // height: 120,
             aspectRatio: 25 / 8,
             viewportFraction: 1,
+            // autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            // autoPlayInterval: const Duration(milliseconds: 800),
+            autoPlayCurve: Curves.linear,
+            autoPlay: true,
           ),
         ),
         const SizedBox(height: 20),
@@ -95,8 +107,6 @@ class _HomeViewState extends State<HomeView> {
 
     return Scaffold(
       backgroundColor: Palatt.white,
-      key: controller.scaffoldKey,
-      drawer: const HomeDrawer(),
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
@@ -307,7 +317,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () => Get.to(() => Horoscope()),
                     child: const Text(
                       "See All",
                       style: TextStyle(
@@ -339,8 +349,7 @@ class _HomeViewState extends State<HomeView> {
                 );
               })),
             ),
-
-            // const Horoscope(),
+            spaceVertical(15),
             const FreeServices(),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
@@ -370,233 +379,237 @@ class _HomeViewState extends State<HomeView> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(5, (index) {
-                  return Container(
-                    height: 160,
-                    width: 240,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Palatt.yellow2nd,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Palatt.black.withOpacity(0.1),
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                          )
-                        ]),
-                    child: Stack(
-                      children: [
-                        Column(
-                          children: [
-                            SizedBox(
-                                height: 100,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Stack(
-                                            children: [
-                                              const Positioned(
-                                                top: 0,
-                                                left: 0,
-                                                right: 0,
-                                                child: CircleAvatar(
-                                                  radius: 33,
-                                                  backgroundColor: Palatt.white,
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(Routes.astrodetailsview),
+                    child: Container(
+                      height: 160,
+                      width: 240,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Palatt.yellow2nd,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Palatt.black.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                            )
+                          ]),
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(
+                                  height: 100,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Stack(
+                                              children: [
+                                                const Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  right: 0,
                                                   child: CircleAvatar(
-                                                    radius: 31,
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                    radius: 33,
+                                                    backgroundColor:
+                                                        Palatt.white,
+                                                    child: CircleAvatar(
+                                                      radius: 31,
+                                                      backgroundImage:
+                                                          NetworkImage(
+                                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Positioned(
-                                                  top: 48,
-                                                  left: 7,
-                                                  right: 7,
-                                                  child: Container(
-                                                    width: 60,
-                                                    height: 15,
-                                                    decoration: BoxDecoration(
-                                                      color: Palatt.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 2),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: List.generate(
-                                                          5,
-                                                          (index) =>
-                                                              const Padding(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            1),
-                                                                child: Icon(
-                                                                  Icons.star,
-                                                                  size: 10,
-                                                                  color: Palatt
-                                                                      .primary,
-                                                                ),
-                                                              )),
-                                                    ),
-                                                  )),
-                                              const Positioned(
-                                                top: 65,
-                                                right: 0,
-                                                left: 0,
-                                                child: Center(
-                                                  child: Text(
-                                                    "70000 Orders",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
+                                                Positioned(
+                                                    top: 48,
+                                                    left: 7,
+                                                    right: 7,
+                                                    child: Container(
+                                                      width: 60,
+                                                      height: 15,
+                                                      decoration: BoxDecoration(
+                                                        color: Palatt.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 2),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: List.generate(
+                                                            5,
+                                                            (index) =>
+                                                                const Padding(
+                                                                  padding: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              1),
+                                                                  child: Icon(
+                                                                    Icons.star,
+                                                                    size: 10,
+                                                                    color: Palatt
+                                                                        .primary,
+                                                                  ),
+                                                                )),
+                                                      ),
+                                                    )),
+                                                const Positioned(
+                                                  top: 65,
+                                                  right: 0,
+                                                  left: 0,
+                                                  child: Center(
+                                                    child: Text(
+                                                      "70000 Orders",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                      ),
                                                     ),
                                                   ),
+                                                ),
+                                              ],
+                                            ),
+                                          )),
+                                      const Expanded(
+                                          flex: 3,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "Zoha Merchant",
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                "English, Hindi",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Tarot, Life Coach",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                        )),
-                                    const Expanded(
-                                        flex: 3,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          ))
+                                    ],
+                                  )),
+                              Expanded(
+                                  child: Container(
+                                color: Palatt.white,
+                                width: Get.width,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Exp: 6 year",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: Palatt.grey),
+                                        ),
+                                        Text(
+                                          "Jaipur, Raj",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: Palatt.grey),
+                                        ),
+                                        Text(
+                                          "₹ 12/min",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w600,
+                                              color: Palatt.black),
+                                        ),
+                                      ],
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        width: 60,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                            color: Palatt.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        padding: const EdgeInsets.all(5),
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
-                                            Text(
-                                              "Zoha Merchant",
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                            SvgPicture.asset(
+                                              AppImages.chaticon,
+                                              // ignore: deprecated_member_use
+                                              color: Palatt.white,
+                                              height: 13,
                                             ),
-                                            Text(
-                                              "English, Hindi",
+                                            const Text(
+                                              "Chat",
                                               style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Tarot, Life Coach",
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palatt.white),
                                             ),
                                           ],
-                                        ))
+                                        ),
+                                      ),
+                                    )
                                   ],
-                                )),
-                            Expanded(
-                                child: Container(
-                              color: Palatt.white,
-                              width: Get.width,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Exp: 6 year",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
-                                            color: Palatt.grey),
-                                      ),
-                                      Text(
-                                        "Jaipur, Raj",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
-                                            color: Palatt.grey),
-                                      ),
-                                      Text(
-                                        "₹ 12/min",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w600,
-                                            color: Palatt.black),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomRight,
-                                    child: Container(
-                                      width: 60,
-                                      height: 25,
-                                      decoration: BoxDecoration(
-                                          color: Palatt.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      padding: const EdgeInsets.all(5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          SvgPicture.asset(
-                                            AppImages.chaticon,
-                                            // ignore: deprecated_member_use
-                                            color: Palatt.white,
-                                            height: 13,
-                                          ),
-                                          const Text(
-                                            "Chat",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palatt.white),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )),
-                          ],
-                        ),
-                        // Positioned(
-                        //   top: -5,
-                        //   right: -20,
-                        //   child: Transform.rotate(
-                        //     angle: 0.8,
-                        //     child: Container(
-                        //       height: 10,
-                        //       width: 60,
-                        //       margin: const EdgeInsets.only(
-                        //         top: 20,
-                        //       ),
-                        //       color: Palatt.primary,
-                        //       alignment: Alignment.center,
-                        //       child: const Text(
-                        //         "Celebrity",
-                        //         style: TextStyle(
-                        //           fontSize: 8,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
-                      ],
+                                ),
+                              )),
+                            ],
+                          ),
+                          // Positioned(
+                          //   top: -5,
+                          //   right: -20,
+                          //   child: Transform.rotate(
+                          //     angle: 0.8,
+                          //     child: Container(
+                          //       height: 10,
+                          //       width: 60,
+                          //       margin: const EdgeInsets.only(
+                          //         top: 20,
+                          //       ),
+                          //       color: Palatt.primary,
+                          //       alignment: Alignment.center,
+                          //       child: const Text(
+                          //         "Celebrity",
+                          //         style: TextStyle(
+                          //           fontSize: 8,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -630,229 +643,233 @@ class _HomeViewState extends State<HomeView> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: List.generate(5, (index) {
-                  return Container(
-                    height: 160,
-                    width: 240,
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Palatt.yellow2nd,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Palatt.black.withOpacity(0.1),
-                            spreadRadius: 2,
-                            blurRadius: 4,
-                          )
-                        ]),
-                    child: Stack(
-                      children: [
-                        Column(
-                          children: [
-                            SizedBox(
-                                height: 100,
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        flex: 2,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Stack(
-                                            children: [
-                                              const Positioned(
-                                                top: 0,
-                                                left: 0,
-                                                right: 0,
-                                                child: CircleAvatar(
-                                                  radius: 33,
-                                                  backgroundColor: Palatt.white,
+                  return GestureDetector(
+                    onTap: () => Get.toNamed(Routes.astrodetailsview),
+                    child: Container(
+                      height: 160,
+                      width: 240,
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 10),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Palatt.yellow2nd,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Palatt.black.withOpacity(0.1),
+                              spreadRadius: 2,
+                              blurRadius: 4,
+                            )
+                          ]),
+                      child: Stack(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(
+                                  height: 100,
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 2,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Stack(
+                                              children: [
+                                                const Positioned(
+                                                  top: 0,
+                                                  left: 0,
+                                                  right: 0,
                                                   child: CircleAvatar(
-                                                    radius: 31,
-                                                    backgroundImage:
-                                                        NetworkImage(
-                                                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                    radius: 33,
+                                                    backgroundColor:
+                                                        Palatt.white,
+                                                    child: CircleAvatar(
+                                                      radius: 31,
+                                                      backgroundImage:
+                                                          NetworkImage(
+                                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Positioned(
-                                                  top: 48,
-                                                  left: 7,
-                                                  right: 7,
-                                                  child: Container(
-                                                    width: 60,
-                                                    height: 15,
-                                                    decoration: BoxDecoration(
-                                                      color: Palatt.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                    ),
-                                                    padding: const EdgeInsets
-                                                        .symmetric(
-                                                        horizontal: 2),
-                                                    child: Row(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: List.generate(
-                                                          5,
-                                                          (index) =>
-                                                              const Padding(
-                                                                padding: EdgeInsets
-                                                                    .symmetric(
-                                                                        horizontal:
-                                                                            1),
-                                                                child: Icon(
-                                                                  Icons.star,
-                                                                  size: 10,
-                                                                  color: Palatt
-                                                                      .primary,
-                                                                ),
-                                                              )),
-                                                    ),
-                                                  )),
-                                              const Positioned(
-                                                top: 65,
-                                                right: 0,
-                                                left: 0,
-                                                child: Center(
-                                                  child: Text(
-                                                    "70000 Orders",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
+                                                Positioned(
+                                                    top: 48,
+                                                    left: 7,
+                                                    right: 7,
+                                                    child: Container(
+                                                      width: 60,
+                                                      height: 15,
+                                                      decoration: BoxDecoration(
+                                                        color: Palatt.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                      ),
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 2),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: List.generate(
+                                                            5,
+                                                            (index) =>
+                                                                const Padding(
+                                                                  padding: EdgeInsets
+                                                                      .symmetric(
+                                                                          horizontal:
+                                                                              1),
+                                                                  child: Icon(
+                                                                    Icons.star,
+                                                                    size: 10,
+                                                                    color: Palatt
+                                                                        .primary,
+                                                                  ),
+                                                                )),
+                                                      ),
+                                                    )),
+                                                const Positioned(
+                                                  top: 65,
+                                                  right: 0,
+                                                  left: 0,
+                                                  child: Center(
+                                                    child: Text(
+                                                      "70000 Orders",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                      ),
                                                     ),
                                                   ),
+                                                ),
+                                              ],
+                                            ),
+                                          )),
+                                      const Expanded(
+                                          flex: 3,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "Zoha Merchant",
+                                                style: TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                "English, Hindi",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
+                                                ),
+                                              ),
+                                              Text(
+                                                "Tarot, Life Coach",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
                                                 ),
                                               ),
                                             ],
-                                          ),
-                                        )),
-                                    const Expanded(
-                                        flex: 3,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          ))
+                                    ],
+                                  )),
+                              Expanded(
+                                  child: Container(
+                                color: Palatt.white,
+                                width: Get.width,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Exp: 6 year",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: Palatt.grey),
+                                        ),
+                                        Text(
+                                          "Jaipur, Raj",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: Palatt.grey),
+                                        ),
+                                        Text(
+                                          "₹ 12/min",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w600,
+                                              color: Palatt.black),
+                                        ),
+                                      ],
+                                    ),
+                                    Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        width: 60,
+                                        height: 25,
+                                        decoration: BoxDecoration(
+                                            color: Palatt.primary,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        padding: const EdgeInsets.all(5),
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                              MainAxisAlignment.spaceAround,
                                           children: [
-                                            Text(
-                                              "Zoha Merchant",
+                                            SvgPicture.asset(
+                                                AppImages.callfilled),
+                                            const Text(
+                                              "Call",
                                               style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                            Text(
-                                              "English, Hindi",
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Tarot, Life Coach",
-                                              style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400,
-                                              ),
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Palatt.white),
                                             ),
                                           ],
-                                        ))
+                                        ),
+                                      ),
+                                    )
                                   ],
-                                )),
-                            Expanded(
-                                child: Container(
-                              color: Palatt.white,
-                              width: Get.width,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Exp: 6 year",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
-                                            color: Palatt.grey),
-                                      ),
-                                      Text(
-                                        "Jaipur, Raj",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w300,
-                                            color: Palatt.grey),
-                                      ),
-                                      Text(
-                                        "₹ 12/min",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w600,
-                                            color: Palatt.black),
-                                      ),
-                                    ],
-                                  ),
-                                  Align(
-                                    alignment: Alignment.bottomRight,
-                                    child: Container(
-                                      width: 60,
-                                      height: 25,
-                                      decoration: BoxDecoration(
-                                          color: Palatt.primary,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                      padding: const EdgeInsets.all(5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          SvgPicture.asset(
-                                              AppImages.callfilled),
-                                          const Text(
-                                            "Call",
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w600,
-                                                color: Palatt.white),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )),
-                          ],
-                        ),
-                        // Positioned(
-                        //   top: -5,
-                        //   right: -20,
-                        //   child: Transform.rotate(
-                        //     angle: 0.8,
-                        //     child: Container(
-                        //       height: 10,
-                        //       width: 60,
-                        //       margin: const EdgeInsets.only(
-                        //         top: 20,
-                        //       ),
-                        //       color: Palatt.primary,
-                        //       alignment: Alignment.center,
-                        //       child: const Text(
-                        //         "Celebrity",
-                        //         style: TextStyle(
-                        //           fontSize: 8,
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // )
-                      ],
+                                ),
+                              )),
+                            ],
+                          ),
+                          // Positioned(
+                          //   top: -5,
+                          //   right: -20,
+                          //   child: Transform.rotate(
+                          //     angle: 0.8,
+                          //     child: Container(
+                          //       height: 10,
+                          //       width: 60,
+                          //       margin: const EdgeInsets.only(
+                          //         top: 20,
+                          //       ),
+                          //       color: Palatt.primary,
+                          //       alignment: Alignment.center,
+                          //       child: const Text(
+                          //         "Celebrity",
+                          //         style: TextStyle(
+                          //           fontSize: 8,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
+                        ],
+                      ),
                     ),
                   );
                 }),
@@ -973,7 +990,6 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
             ),
-
             const SizedBox(
               height: 40,
             )

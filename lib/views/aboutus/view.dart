@@ -5,6 +5,8 @@ import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
+import '../../utils/imageslink.dart';
+
 class AboutUs extends GetView {
   const AboutUs({super.key});
   @override
@@ -14,6 +16,11 @@ class AboutUs extends GetView {
         title: "About us",
       ),
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+          AppImages.background2,
+        ))),
         padding: EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

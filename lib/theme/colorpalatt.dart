@@ -22,4 +22,12 @@ class Palatt {
   static const Color greyshade1 = Color(0xFF929292);
   static const Color greyshadedark = Color(0xFFEEEEEE);
   static const Color greyborder = Color(0xFF707070);
+  static const LinearGradient horogradiant = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.center,
+      colors: [
+        Color.fromARGB(255, 255, 221, 136),
+        Color(0xFFFFF174),
+        Color(0xFFFFF174),
+      ]);
 }

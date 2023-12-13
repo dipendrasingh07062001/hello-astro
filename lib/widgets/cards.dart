@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/widgets/space.dart';
+
+import '../utils/buttons.dart';
+import '../utils/imageslink.dart';
 
 class Fcard extends StatelessWidget {
   void Function()? onTap;
@@ -136,24 +140,30 @@ class FSCard extends StatelessWidget {
 class HoroCard extends StatelessWidget {
   void Function()? onTap;
   String title, image;
-  HoroCard(
-      {super.key,
-      required this.onTap,
-      required this.image,
-      required this.title});
+  String? date;
+  double? height, width;
+  HoroCard({
+    super.key,
+    required this.onTap,
+    required this.image,
+    required this.title,
+    this.height,
+    this.width,
+    this.date,
+  });
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: SizedBox(
-        height: h * 0.1,
-        width: w * 0.22,
+        height: height ?? h * 0.1,
+        width: width ?? w * 0.22,
         child: Stack(children: [
           Padding(
-            padding: const EdgeInsets.only(top: 30),
+            padding: EdgeInsets.only(top: (height ?? h * 0.1) * 0.44),
             child: Container(
-              height: 45,
+              height: height ?? h * 0.1,
               // width: 50,
               decoration: BoxDecoration(
                 color: Palatt.white,
@@ -166,24 +176,50 @@ class HoroCard extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
               ),
               alignment: Alignment.bottomCenter,
-              child: Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 12,
-                    color: Palatt.black,
-                    fontWeight: FontWeight.w600),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Palatt.black,
+                        fontWeight: FontWeight.w600),
+                  ),
+                  Visibility(
+                    visible: date != null,
+                    child: Text(
+                      date ?? "",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 10,
+                          color: Palatt.primary,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                  spaceVertical(5)
+                ],
               ),
             ),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Image.asset(
-              image,
-              height: 50,
-              width: 50,
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              margin: EdgeInsets.only(top: (height ?? h * 0.1) * 0.15),
+              height: (height ?? h * 0.1) / 1.8,
+              width: (height ?? h * 0.1) / 1.8,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                image: AssetImage(image),
+                fit: BoxFit.contain,
+              )),
+              // child: Image.asset(
+              //   image,
+              //   height: (height ?? h * 0.1) / 1.8,
+              //   width: (height ?? h * 0.1) / 1.8,
+              //   fit: BoxFit.fill,
+              // ),
             ),
             // CircleAvatar(
             //   backgroundImage: NetworkImage(image),
@@ -191,6 +227,187 @@ class HoroCard extends StatelessWidget {
             // ),
           ),
         ]),
+      ),
+    );
+  }
+}
+
+class AstroCard extends StatelessWidget {
+  const AstroCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Palatt.yellow2nd,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              blurRadius: 6,
+              spreadRadius: 3,
+              color: Palatt.greybackground,
+            )
+          ]),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 100,
+            child: Stack(
+              children: [
+                const Positioned(
+                  top: 10,
+                  left: 0,
+                  right: 0,
+                  child: CircleAvatar(
+                    radius: 33,
+                    backgroundColor: Palatt.white,
+                    child: CircleAvatar(
+                      radius: 31,
+                      backgroundImage: NetworkImage(
+                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                    top: 63,
+                    left: Get.width * 0.11,
+                    right: Get.width * 0.11,
+                    child: Center(
+                      child: Container(
+                        width: 66,
+                        height: 15,
+                        decoration: BoxDecoration(
+                          color: Palatt.white,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                              5,
+                              (index) => const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 1),
+                                    child: Icon(
+                                      Icons.star,
+                                      size: 10,
+                                      color: Palatt.primary,
+                                    ),
+                                  )),
+                        ),
+                      ),
+                    )),
+                const Positioned(
+                  top: 79,
+                  right: 0,
+                  left: 0,
+                  child: Center(
+                    child: Text(
+                      "70000 Orders",
+                      style: TextStyle(
+                        fontSize: 10,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              width: Get.width,
+              padding: const EdgeInsets.all(8),
+              decoration: const BoxDecoration(
+                  color: Palatt.white,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(10),
+                  )),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Zoha Merchant",
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.black,
+                    ),
+                  ),
+                  const Text(
+                    "English, Hindi",
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: Palatt.black,
+                    ),
+                  ),
+                  const Text(
+                    "English, Hindi",
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w400,
+                      color: Palatt.black,
+                    ),
+                  ),
+                  const Text(
+                    "Exp: 6 year",
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w300,
+                      color: Palatt.grey,
+                    ),
+                  ),
+                  const Text(
+                    "Jaipur, Raj",
+                    style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w300,
+                      color: Palatt.grey,
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "₹ 12/min",
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                          color: Palatt.primary,
+                        ),
+                      ),
+                      RRButton2(
+                        height: 25,
+                        width: 57,
+                        backgroundColor: Palatt.primary,
+                        radius: 3,
+                        onTap: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              AppImages.rocketchat,
+                            ),
+                            spaceHorizontal(5),
+                            const Text(
+                              "Chat",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Palatt.white,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

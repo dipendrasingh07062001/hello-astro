@@ -98,16 +98,17 @@ class OnboardingController extends GetxController {
 
 // signup/login api
   signin() async {
-    isLoading.value = true;
-    ApiClient apiClient = ApiClient();
-    Map<String, String> map = {"phone": phoneController.text};
-    await apiClient.postRequest(ApiUrls.signUp, map).then((value) {
-      if (value != null) {
-        Get.toNamed(Routes.otpverification, arguments: phoneController.text);
-        isLoading.value = false;
-      }
-    });
-    isLoading.value = false;
+    // isLoading.value = true;
+    // ApiClient apiClient = ApiClient();
+    // Map<String, String> map = {"phone": phoneController.text};
+    // await apiClient.postRequest(ApiUrls.signUp, map).then((value) {
+    //   if (value != null) {
+    //     Get.toNamed(Routes.otpverification, arguments: phoneController.text);
+    //     isLoading.value = false;
+    //   }
+    // });
+    // isLoading.value = false;
+    Get.toNamed(Routes.otpverification, arguments: phoneController.text);
   }
 
   onotpverfy(BuildContext context) async {
@@ -117,17 +118,18 @@ class OnboardingController extends GetxController {
         second.text.isNotEmpty &&
         third.text.isNotEmpty &&
         fourth.text.isNotEmpty) {
-      isLoading.value = true;
-      ApiClient apiClient = ApiClient();
-      Map<String, String> map = {"phone": phoneController.text, "otp": sub};
-      await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
-        if (value != null) {
-          debugPrint("==$value");
-          Get.toNamed(Routes.home);
-          isLoading.value = false;
-        }
-      });
-      isLoading.value = false;
+      // isLoading.value = true;
+      // ApiClient apiClient = ApiClient();
+      // Map<String, String> map = {"phone": phoneController.text, "otp": sub};
+      // await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
+      //   if (value != null) {
+      //     debugPrint("==$value");
+      //     Get.toNamed(Routes.home);
+      //     isLoading.value = false;
+      //   }
+      // });
+      // isLoading.value = false;
+      Get.toNamed(Routes.homenav);
     } else {
       final snackBar = SnackBar(
         content: textStyle(
