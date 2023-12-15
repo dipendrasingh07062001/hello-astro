@@ -19,42 +19,41 @@ class ReferCodeView extends StatelessWidget {
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Palatt.white,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Palatt.white,
-        leading: ModalRoute.of(context)?.canPop == true
-            ? IconButton(
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  size: w * .075,
-                  color: Palatt.black,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            : null,
-        centerTitle: true,
-        title: textStyle('Referral Code', Palatt.black,
-            fontSize: w * .059, fontWeight: FontWeight.w500),
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palatt.white,
+        image: DecorationImage(
+            image: AssetImage(AppImages.background),
+            alignment: Alignment.bottomCenter,
+            fit: BoxFit.fitWidth),
       ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: w * .04),
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(AppImages.background),
-                alignment: Alignment.bottomCenter,
-                fit: BoxFit.fitWidth),
-          ),
+      child: Scaffold(
+        backgroundColor: Palatt.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Palatt.white,
+          leading: ModalRoute.of(context)?.canPop == true
+              ? IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_rounded,
+                    size: w * .075,
+                    color: Palatt.black,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              : null,
+          centerTitle: true,
+          title: textStyle('Referral Code', Palatt.black,
+              fontSize: w * .059, fontWeight: FontWeight.w500),
+        ),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
           child: Stack(
             children: [
-              const Background2(),
               SingleChildScrollView(
                 child: Column(
                   children: [
@@ -67,7 +66,10 @@ class ReferCodeView extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: h * .04, right: w * .09, bottom: h * .024),
+                          top: h * .04,
+                          right: w * .09,
+                          bottom: h * .024,
+                          left: 15),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: textStyle(
@@ -77,7 +79,7 @@ class ReferCodeView extends StatelessWidget {
                     ),
                     Container(
                       // height: 50,
-                      // margin: EdgeInsets.symmetric(horizontal: w * .04),
+                      margin: const EdgeInsets.symmetric(horizontal: 15),
                       decoration: const BoxDecoration(
                           color: Palatt.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -209,6 +211,7 @@ class ReferCodeView extends StatelessWidget {
                   data: "Skip",
                   height: 30,
                   width: 40,
+                  margin: const EdgeInsets.only(right: 20),
                   onTap: () {
                     Get.offAllNamed(Routes.homenav);
                   },

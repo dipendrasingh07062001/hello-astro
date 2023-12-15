@@ -6,6 +6,7 @@ import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 
 import '../../controllers/onboarding/onboardingcontroller.dart';
+import 'package:easy_splash_screen/easy_splash_screen.dart';
 
 class Splash extends StatelessWidget {
   Splash({super.key});
@@ -14,14 +15,23 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.splashcounterstart();
-    return Scaffold(
-        backgroundColor: Palatt.primary,
-        body: Center(
-          child: Image.asset(
-            AppImages.splashpic,
-            // height: 250,
-            width: Get.width * 0.6,
-          ),
-        ));
+    return EasySplashScreen(
+      logo: Image.asset(AppImages.splashpic),
+      logoWidth: 130,
+
+      // title: Text(
+      //   "Title",
+      //   style: TextStyle(
+      //     fontSize: 18,
+      //     fontWeight: FontWeight.bold,
+      //   ),
+      // ),
+      backgroundColor: Palatt.primary,
+      showLoader: true,
+      // loadingText: Text("Loading..."),
+      // navigator: ,
+      loaderColor: Palatt.primary,
+      durationInSeconds: 3,
+    );
   }
 }

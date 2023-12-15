@@ -39,105 +39,101 @@ class _IntroductionState extends State<Introduction> {
   Widget build(BuildContext context) {
     h = MediaQuery.of(context).size.height;
     w = MediaQuery.of(context).size.width;
-    return Scaffold(
-      backgroundColor: Palatt.white,
-      body: Container(
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage(AppImages.background),
-              alignment: Alignment.bottomCenter,
-              fit: BoxFit.fitWidth),
-        ),
-        child: Stack(
-          children: [
-            const Background2(),
-            SingleChildScrollView(
-              child: Column(
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palatt.white,
+        image: DecorationImage(
+            image: AssetImage(AppImages.background),
+            alignment: Alignment.bottomCenter,
+            fit: BoxFit.fitWidth),
+      ),
+      child: Scaffold(
+        backgroundColor: Palatt.transparent,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
                 children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                            w * .8, h * .085, w * .02, h * .018),
-                        child: InkWell(
-                          child: textStyle('Skip >>', Palatt.black,
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                          onTap: () {
-                            Get.toNamed(Routes.login);
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //     builder: ((context) => const Login()),
-                            //   ),
-                            // );
-                            // Get.offAll(() => const Login(
-                            //       alreadyguest: false,
-                            //     ));
-                            // log(w.toString());
-                          },
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(
+                        w * .8, h * .085, w * .02, h * .018),
+                    child: InkWell(
+                      child: textStyle('Skip >>', Palatt.black,
+                          fontSize: 16, fontWeight: FontWeight.w500),
+                      onTap: () {
+                        Get.toNamed(Routes.login);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: ((context) => const Login()),
+                        //   ),
+                        // );
+                        // Get.offAll(() => const Login(
+                        //       alreadyguest: false,
+                        //     ));
+                        // log(w.toString());
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: h * .54,
+                    width: double.infinity,
+                    child: PageView.builder(
+                      controller: pageController,
+                      onPageChanged: (value) {
+                        setState(() {
+                          currentPage = value;
+                        });
+                      },
+                      itemCount: pageviewData.length,
+                      itemBuilder: (context, index) => PageviewContent(
+                        image: pageviewData[index]["image"].toString(),
+                        text: pageviewData[index]["text"].toString(),
+                        title: pageviewData[index]["title"].toString(),
+                      ),
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(
+                      pageviewData.length,
+                      (index) => buildDot(index: index),
+                    ),
+                  ),
+                  SizedBox(height: h * .04),
+                  InkWell(
+                    child: Container(
+                      padding: EdgeInsets.all(h * .014),
+                      height: h * .08,
+                      width: w * .16,
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle, color: Palatt.primary),
+                      child: FittedBox(
+                        child: Icon(
+                          Icons.arrow_forward_rounded,
+                          // size: 40.0,
+                          color: Palatt.white,
                         ),
                       ),
-                      SizedBox(
-                        height: h * .54,
-                        width: double.infinity,
-                        child: PageView.builder(
-                          controller: pageController,
-                          onPageChanged: (value) {
-                            setState(() {
-                              currentPage = value;
-                            });
-                          },
-                          itemCount: pageviewData.length,
-                          itemBuilder: (context, index) => PageviewContent(
-                            image: pageviewData[index]["image"].toString(),
-                            text: pageviewData[index]["text"].toString(),
-                            title: pageviewData[index]["title"].toString(),
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          pageviewData.length,
-                          (index) => buildDot(index: index),
-                        ),
-                      ),
-                      SizedBox(height: h * .04),
-                      InkWell(
-                        child: Container(
-                          padding: EdgeInsets.all(h * .014),
-                          height: h * .08,
-                          width: w * .16,
-                          decoration: const BoxDecoration(
-                              shape: BoxShape.circle, color: Palatt.primary),
-                          child: FittedBox(
-                            child: Icon(
-                              Icons.arrow_forward_rounded,
-                              // size: 40.0,
-                              color: Palatt.white,
-                            ),
-                          ),
-                        ),
-                        onTap: () {
-                          if (currentPage < 1) {
-                            pageController.nextPage(
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.linear);
-                          } else {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const Login()));
-                            Get.toNamed(Routes.login);
-                          }
-                        },
-                      ),
-                    ],
+                    ),
+                    onTap: () {
+                      if (currentPage < 1) {
+                        pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.linear);
+                      } else {
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const Login()));
+                        Get.toNamed(Routes.login);
+                      }
+                    },
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

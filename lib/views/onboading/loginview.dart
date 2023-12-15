@@ -26,41 +26,41 @@ class _LoginState extends State<Login> {
   double h = Get.height, w = Get.width;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Palatt.white,
-      // resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        elevation: 0,
-        leading: ModalRoute.of(context)?.canPop == true
-            ? IconButton(
-                icon: Icon(
-                  Icons.arrow_back_rounded,
-                  size: w * .075,
-                  // color: colBlack,
-                ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              )
-            : null,
-        centerTitle: true,
-        title: textStyle('Login Now', Palatt.black,
-            fontSize: w * .058, fontWeight: FontWeight.w500),
+    return Container(
+      decoration: const BoxDecoration(
+        color: Palatt.white,
+        image: DecorationImage(
+            image: AssetImage(AppImages.background),
+            alignment: Alignment.bottomCenter,
+            fit: BoxFit.fitWidth),
       ),
-      body: GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(AppImages.background),
-                alignment: Alignment.bottomCenter,
-                fit: BoxFit.fitWidth),
-          ),
+      child: Scaffold(
+        backgroundColor: Palatt.transparent,
+        // resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          elevation: 0,
+          leading: ModalRoute.of(context)?.canPop == true
+              ? IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_rounded,
+                    size: w * .075,
+                    // color: colBlack,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              : null,
+          centerTitle: true,
+          title: textStyle('Login Now', Palatt.black,
+              fontSize: w * .058, fontWeight: FontWeight.w500),
+        ),
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+          },
           child: Stack(
             children: [
-              const Background2(),
               SingleChildScrollView(
                 child: Column(
                   children: [

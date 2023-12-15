@@ -11,6 +11,18 @@ class ChatScreen extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> msgs = [
+      chatcard(
+        alignment: Alignment.centerLeft,
+        backgroundColor: Palatt.blueshadelight,
+        msg:
+            "Welcome to Hello Astrologer. Consultant will take a minute to prepare your chart. You may ask your question in the meanwhile",
+      ),
+      chatcard(
+        msg:
+            "Hi Udayy,\nBelow are my details : \nName : Rajesh Kumar \nGender : Male \nDOB : 28-Feb-1996 \nTOB : 2:30 PM \nPOB : Homnabad, Karnataka, India \nMarital Status : Single \nOccupation : Private Sector \nProblem Area : Career and Business \nQuestion : undefined \nQuestion : undefined",
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
@@ -83,23 +95,19 @@ class ChatScreen extends GetView {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              // shrinkWrap: true,
-              // padding: const EdgeInsets.symmetric(horizontal: 15),
-              reverse: true,
-
-              children: [
-                chatcard(
-                  alignment: Alignment.centerLeft,
-                  backgroundColor: Palatt.blueshadelight,
-                  msg:
-                      "Welcome to Hello Astrologer. Consultant will take a minute to prepare your chart. You may ask your question in the meanwhile",
-                ),
-                chatcard(
-                  msg:
-                      "Hi Udayy,\nBelow are my details : \nName : Rajesh Kumar \nGender : Male \nDOB : 28-Feb-1996 \nTOB : 2:30 PM \nPOB : Homnabad, Karnataka, India \nMarital Status : Single \nOccupation : Private Sector \nProblem Area : Career and Business \nQuestion : undefined \nQuestion : undefined",
-                ),
-              ],
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: ListView.separated(
+                shrinkWrap: true,
+                reverse: true,
+                itemCount: msgs.length,
+                itemBuilder: (context, index) {
+                  return msgs[index];
+                },
+                separatorBuilder: (context, index) {
+                  return Container();
+                },
+              ),
             ),
           ),
           typemessage()
