@@ -19,6 +19,8 @@ class Splash extends StatelessWidget {
         body: Center(
           child: Image.asset(
             AppImages.splashpic,
+            // height: 250,
+            width: Get.width * 0.6,
           ),
         ));
   }

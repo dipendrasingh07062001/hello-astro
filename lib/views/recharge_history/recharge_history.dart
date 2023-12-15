@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/controllers/home/homecontroller.dart';
+import 'package:hello_astro_user/controllers/homenav/controller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:hello_astro_user/widgets/custom_button.dart';
 
@@ -18,11 +21,11 @@ class RechargeHistoryView extends StatelessWidget {
         actions: [
           InkWell(
             onTap: () {
-              Get.toNamed(Routes.walletBalance);
+              Get.offAllNamed(Routes.homenav, arguments: 3);
             },
             child: Container(
               width: 73,
-              margin: const EdgeInsets.symmetric(vertical: 13, horizontal: 22),
+              margin: const EdgeInsets.symmetric(vertical: 13, horizontal: 15),
               padding: const EdgeInsets.only(left: 10),
               decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(50)),
@@ -45,7 +48,7 @@ class RechargeHistoryView extends StatelessWidget {
       ),
       body: Column(children: [
         Container(
-          padding: const EdgeInsets.fromLTRB(22, 22, 22, 10),
+          padding: const EdgeInsets.fromLTRB(15, 22, 15, 10),
           decoration: const BoxDecoration(color: Palatt.white, boxShadow: [
             BoxShadow(color: Colors.black26, blurRadius: 1, spreadRadius: 1)
           ]),
@@ -53,23 +56,23 @@ class RechargeHistoryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const IntrinsicHeight(
+              IntrinsicHeight(
                 child: Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Total',
-                            style: TextStyle(
+                            style: googleFontstyle(TextStyle(
                                 fontSize: 15,
                                 color: Palatt.black,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.w500))),
                         SizedBox(height: 5),
                         Text('Balance',
-                            style: TextStyle(
+                            style: googleFontstyle(TextStyle(
                                 fontSize: 15,
                                 color: Palatt.black,
-                                fontWeight: FontWeight.w500)),
+                                fontWeight: FontWeight.w500))),
                       ],
                     ),
                     SizedBox(width: 25),
@@ -93,11 +96,11 @@ class RechargeHistoryView extends StatelessWidget {
                 width: 146,
                 height: 40,
                 borderRadius: 10,
-                child: const Text('Recharge Now',
-                    style: TextStyle(
+                child: Text('Recharge Now',
+                    style: googleFontstyle(TextStyle(
                         fontSize: 16,
                         color: Palatt.white,
-                        fontWeight: FontWeight.w500)),
+                        fontWeight: FontWeight.w500))),
               ),
             ],
           ),
@@ -120,18 +123,19 @@ class RechargeHistoryView extends StatelessWidget {
                   width: double.infinity,
                   height: 50,
                   child: TabBar(
-                    labelPadding: const EdgeInsets.all(8),
-                    labelStyle: const TextStyle(
+                    labelPadding: const EdgeInsets.all(0),
+                    labelStyle: googleFontstyle(const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
-                    ),
+                      height: 2,
+                    )),
                     indicator: BoxDecoration(
                       color: Palatt.primary,
                       shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(8),
+                      borderRadius: BorderRadius.circular(7),
                     ),
-                    indicatorWeight: 3,
-                    indicatorColor: Palatt.primary,
+                    // indicatorWeight: 3,
+                    // indicatorColor: Palatt.primary,
                     isScrollable: false,
                     unselectedLabelColor: Palatt.primary,
                     labelColor: Colors.white,
@@ -155,45 +159,43 @@ class RechargeHistoryView extends StatelessWidget {
                           return Container(
                               padding: const EdgeInsets.only(
                                   top: 10, bottom: 15, left: 15, right: 15),
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 border: Border(
-                                  bottom: BorderSide(color: Colors.black26),
+                                  bottom: BorderSide(
+                                      color: Palatt.boxShadow.withOpacity(0.7)),
                                 ),
                               ),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                // mainAxisAlignment:
+                                //     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  Image.asset(
+                                    'assets/png/images/rupee-icons@2x.png',
+                                    height: 58,
+                                    width: 58,
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Image.asset(
-                                        'assets/png/images/rupee-icons@2x.png',
-                                        height: 58,
-                                        width: 58,
+                                      Text(
+                                        'Chat with ved for 10 minutes',
+                                        style: googleFontstyle(TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500)),
                                       ),
-                                      const SizedBox(width: 15),
-                                      const Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Chat with ved for 10 minutes',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          Text(
-                                              '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.normal,
-                                                  height: 2)),
-                                        ],
-                                      )
+                                      Text(
+                                          '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.normal,
+                                              height: 2)),
                                     ],
                                   ),
-                                  const Column(
+                                  Spacer(),
+                                  Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text('₹200.0',
@@ -202,13 +204,13 @@ class RechargeHistoryView extends StatelessWidget {
                                               color: Palatt.red,
                                               fontWeight: FontWeight.w700)),
                                       Text('\ninvoice',
-                                          style: TextStyle(
+                                          style: googleFontstyle(TextStyle(
                                             fontSize: 13,
                                             color: Palatt.primary,
                                             fontWeight: FontWeight.w500,
                                             decoration:
                                                 TextDecoration.underline,
-                                          )),
+                                          ))),
                                     ],
                                   ),
                                 ],
@@ -250,9 +252,10 @@ class RechargeHistoryView extends StatelessWidget {
                           return Container(
                               padding: const EdgeInsets.only(
                                   top: 10, bottom: 15, left: 15, right: 15),
-                              decoration: const BoxDecoration(
+                              decoration: BoxDecoration(
                                 border: Border(
-                                  bottom: BorderSide(color: Colors.black26),
+                                  bottom: BorderSide(
+                                      color: Palatt.boxShadow.withOpacity(0.7)),
                                 ),
                               ),
                               child: Row(
@@ -260,35 +263,33 @@ class RechargeHistoryView extends StatelessWidget {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
+                                  Image.asset(
+                                    'assets/png/images/rupee-icons@2x.png',
+                                    height: 58,
+                                    width: 58,
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    // mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Image.asset(
-                                        'assets/png/images/rupee-icons@2x.png',
-                                        height: 58,
-                                        width: 58,
+                                      Text(
+                                        'Recharge',
+                                        style: googleFontstyle(TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w500)),
                                       ),
-                                      const SizedBox(width: 15),
-                                      const Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'Recharge',
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          Text(
-                                              '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
-                                              style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.normal,
-                                                  height: 2.3)),
-                                        ],
-                                      )
+                                      Text(
+                                          '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.normal,
+                                              height: 2.3)),
                                     ],
                                   ),
-                                  const Column(
+                                  Spacer(),
+                                  Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
                                       Text('₹200.0',
@@ -297,11 +298,11 @@ class RechargeHistoryView extends StatelessWidget {
                                               color: Palatt.red,
                                               fontWeight: FontWeight.w700)),
                                       Text('\nFailed',
-                                          style: TextStyle(
+                                          style: googleFontstyle(TextStyle(
                                             fontSize: 15,
                                             color: Palatt.red,
                                             fontWeight: FontWeight.w500,
-                                          )),
+                                          ))),
                                     ],
                                   ),
                                 ],

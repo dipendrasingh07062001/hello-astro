@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/views/bottomsheet/paymentsuccess.dart';
 
 import '../../theme/colorpalatt.dart';
@@ -32,14 +33,14 @@ class PaymentDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 spaceHorizontal(Get.width * 0.05),
-                const Text(
-                  "Payment Detail",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                Text("Payment Detail",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GestureDetector(
                   onTap: () => Get.close(1),
                   child: const Icon(
@@ -55,14 +56,14 @@ class PaymentDetail extends StatelessWidget {
           ),
           ListTile(
             dense: true,
-            leading: const Text(
-              "Subtotal",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Palatt.black,
-              ),
-            ),
+            leading: Text("Subtotal",
+                style: googleFontstyle(
+                  TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Palatt.black,
+                  ),
+                )),
             trailing: const Text(
               "₹200",
               style: TextStyle(
@@ -74,15 +75,15 @@ class PaymentDetail extends StatelessWidget {
           ),
           ListTile(
             dense: true,
-            leading: const Text(
-              "GST @ 18%",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Palatt.black,
-              ),
-            ),
-            trailing: const Text(
+            leading: Text("GST @ 18%",
+                style: googleFontstyle(
+                  TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Palatt.black,
+                  ),
+                )),
+            trailing: Text(
               "₹36",
               style: TextStyle(
                 fontSize: 20,
@@ -93,14 +94,14 @@ class PaymentDetail extends StatelessWidget {
           ),
           ListTile(
             dense: true,
-            leading: const Text(
-              "Total",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w600,
-                color: Palatt.black,
-              ),
-            ),
+            leading: Text("Total",
+                style: googleFontstyle(
+                  TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Palatt.black,
+                  ),
+                )),
             trailing: const Text(
               "₹236",
               style: TextStyle(
@@ -114,6 +115,7 @@ class PaymentDetail extends StatelessWidget {
             color: Palatt.boxShadow,
             thickness: 1.5,
           ),
+          spaceVertical(10),
           RRButton(
             onTap: () {
               Get.close(0);
@@ -132,7 +134,8 @@ class PaymentDetail extends StatelessWidget {
               fontWeight: FontWeight.w500,
               color: Palatt.white,
             ),
-          )
+          ),
+          spaceVertical(10)
         ],
       ),
     );

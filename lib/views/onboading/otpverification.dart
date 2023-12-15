@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:pinput/pinput.dart';
 import 'package:hello_astro_user/controllers/onboarding/onboardingcontroller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
@@ -32,7 +33,7 @@ class _OtpVerficationState extends State<OtpVerfication> {
   @override
   Widget build(BuildContext context) {
     final defaultPinTheme = PinTheme(
-      // width: 75,
+      width: 75,
       height: 53,
       textStyle: const TextStyle(
         fontSize: 20,
@@ -40,7 +41,33 @@ class _OtpVerficationState extends State<OtpVerfication> {
         fontWeight: FontWeight.w600,
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: Palatt.primary),
+        border: Border.all(color: Palatt.boxShadow, width: 1.8),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+    final focusedPinTheme = PinTheme(
+      width: 75,
+      height: 53,
+      textStyle: const TextStyle(
+        fontSize: 20,
+        color: Palatt.black,
+        fontWeight: FontWeight.w600,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Palatt.primary, width: 1.8),
+        borderRadius: BorderRadius.circular(8),
+      ),
+    );
+    final disabledPinTheme = PinTheme(
+      width: 75,
+      height: 53,
+      textStyle: const TextStyle(
+        fontSize: 20,
+        color: Palatt.black,
+        fontWeight: FontWeight.w600,
+      ),
+      decoration: BoxDecoration(
+        border: Border.all(color: Palatt.boxShadow, width: 1.8),
         borderRadius: BorderRadius.circular(8),
       ),
     );
@@ -119,6 +146,8 @@ class _OtpVerficationState extends State<OtpVerfication> {
                     Pinput(
                       length: 4,
                       defaultPinTheme: defaultPinTheme,
+                      focusedPinTheme: focusedPinTheme,
+                      disabledPinTheme: disabledPinTheme,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     ),
                     // Row(
@@ -376,16 +405,16 @@ class _OtpVerficationState extends State<OtpVerfication> {
                       children: [
                         textStyle(
                             'Didn\'t Receive Code? ', Palatt.blacklightshade,
-                            fontSize: w * .039, fontWeight: FontWeight.w900),
+                            fontSize: 16, fontWeight: FontWeight.w600),
                         InkWell(
                           onTap: () {},
                           child: Text(
                             'Resend Now',
-                            style: TextStyle(
-                              fontSize: w * .039,
+                            style: googleFontstyle(const TextStyle(
+                              fontSize: 16,
                               color: Palatt.primary,
-                              fontWeight: FontWeight.w900,
-                            ),
+                              fontWeight: FontWeight.w600,
+                            )),
                           ),
                         ),
                       ],

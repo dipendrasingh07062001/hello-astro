@@ -21,9 +21,6 @@ class _AudioWidgetState extends State<AudioWidget> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     ambiguate(WidgetsBinding.instance)!.addObserver(this);
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.black,
-    ));
     _init();
   }
 

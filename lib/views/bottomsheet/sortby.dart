@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 
 import '../../theme/colorpalatt.dart';
 import '../../utils/buttons.dart';
@@ -31,14 +32,14 @@ class SortBy extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 spaceHorizontal(Get.width * 0.05),
-                const Text(
-                  "Sort by",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                Text("Sort by",
+                    style: googleFontstyle(
+                      const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GestureDetector(
                   onTap: () => Get.close(1),
                   child: const Icon(
@@ -59,6 +60,8 @@ class SortBy extends StatelessWidget {
               children: [
                 ListTile(
                   dense: true,
+                  contentPadding: EdgeInsets.zero,
+                  horizontalTitleGap: 0,
                   leading: Container(
                     height: 28,
                     width: 28,
@@ -73,16 +76,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Popularity",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Popularity",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  horizontalTitleGap: 0,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -98,16 +103,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Popularity",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Popularity",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -123,16 +130,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Experience : High to Low",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Experience : High to Low",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -148,16 +157,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Experience : Low to High",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Experience : Low to High",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -173,16 +184,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Total orders : High to Low",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Total orders : High to Low",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -198,16 +211,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Total orders : Low to High",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Total orders : Low to High",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -223,16 +238,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Price : High to Low",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Price : High to Low",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -248,16 +265,18 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Price : Low to High",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Price : Low to High",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 ),
                 ListTile(
+                  horizontalTitleGap: 0,
+                  contentPadding: EdgeInsets.zero,
                   dense: true,
                   leading: Container(
                     height: 28,
@@ -273,14 +292,14 @@ class SortBy extends StatelessWidget {
                       backgroundColor: Palatt.primary,
                     ),
                   ),
-                  title: const Text(
-                    "Rating : Low to High",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
-                    ),
-                  ),
+                  title: Text("Rating : Low to High",
+                      style: googleFontstyle(
+                        const TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          color: Palatt.black,
+                        ),
+                      )),
                 )
               ],
             ),
@@ -293,31 +312,34 @@ class SortBy extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RRButton(
-                onTap: () {},
-                data: "Clear All",
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Palatt.black,
-                ),
-              ),
+                  onTap: () {},
+                  data: "Clear All",
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  style: googleFontstyle(
+                    const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.black,
+                    ),
+                  )),
               RRButton(
-                onTap: () {},
-                data: "Apply",
-                radius: 10,
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                backgroundColor: Palatt.primary,
-                height: 43,
-                width: 173,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Palatt.white,
-                ),
-              ),
+                  onTap: () {},
+                  data: "Apply",
+                  radius: 10,
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  backgroundColor: Palatt.primary,
+                  height: 43,
+                  width: 173,
+                  style: googleFontstyle(
+                    const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.white,
+                    ),
+                  )),
             ],
-          )
+          ),
+          spaceVertical(10)
         ],
       ),
     );

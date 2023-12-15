@@ -30,7 +30,9 @@ class HomeDrawer extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 16),
                 child: CustomCloseButton(
-                  onTap: () {},
+                  onTap: () {
+                    Get.back();
+                  },
                   backgroundColor: Palatt.white.withOpacity(0.3),
                   iconColor: Palatt.white,
                 ),

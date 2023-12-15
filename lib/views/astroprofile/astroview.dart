@@ -3,6 +3,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:hello_astro_user/widgets/space.dart';
@@ -15,6 +16,7 @@ class AstroDetailView extends GetView {
 
   @override
   Widget build(BuildContext context) {
+    List langList = ["Hindi", "English", "Tamil"];
     Widget astrodetails = SizedBox(
       height: 230,
       child: Stack(
@@ -48,18 +50,19 @@ class AstroDetailView extends GetView {
                     ),
                   ),
                 )),
+                spaceHorizontal(10),
                 Expanded(
                   flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                      Text(
                         "Zoha Merchant",
-                        style: TextStyle(
+                        style: googleFontstyle(const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
                           color: Palatt.white,
-                        ),
+                        )),
                       ),
                       const Text(
                         "Tarot, Life Coach",
@@ -92,11 +95,12 @@ class AstroDetailView extends GetView {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 9, vertical: 4),
                         borderColor: Palatt.white,
-                        style: const TextStyle(
+                        backgroundColor: Palatt.white,
+                        style: googleFontstyle(const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
-                          color: Palatt.white,
-                        ),
+                          color: Palatt.primary,
+                        )),
                         onTap: () {},
                         data: "Follow",
                       )
@@ -250,96 +254,99 @@ class AstroDetailView extends GetView {
       decoration: BoxDecoration(
           color: Palatt.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Palatt.boxShadow,
               blurRadius: 4,
             )
           ]),
-      child: ExpansionTile(
-          tilePadding: EdgeInsets.symmetric(
-            horizontal: 12,
-            vertical: 0,
-          ),
-          childrenPadding: EdgeInsets.zero,
-          title: Text(
-            "Availability Time",
-            style: TextStyle(
-              fontSize: 16,
-              color: Palatt.black,
-              fontWeight: FontWeight.w500,
+      child: Theme(
+        data: ThemeData().copyWith(dividerColor: Colors.transparent),
+        child: ExpansionTile(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-          ),
-          iconColor: Palatt.primary,
-          collapsedIconColor: Palatt.primary,
-          children: [
-            const Divider(color: Palatt.grey, thickness: 1),
-            Container(
-              height: 30,
-              alignment: Alignment.centerLeft,
-              child: ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  return GestureDetector(
-                    onTap: () {
-                      // setState(() {
-                      //   astroPrfileController.selectedavailability =
-                      //       astroPrfileController
-                      //           .astrologer.availabilityTiming![index];
-                      // });
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 5),
-                      width: 67,
-                      height: 27,
-                      decoration: const BoxDecoration(
-                        color: Palatt.white,
-                        borderRadius: BorderRadius.all(Radius.circular(15)),
+            childrenPadding: EdgeInsets.zero,
+            title: Text("Availability Time",
+                style: googleFontstyle(
+                  const TextStyle(
+                    fontSize: 16,
+                    color: Palatt.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )),
+            iconColor: Palatt.primary,
+            collapsedIconColor: Palatt.primary,
+            children: [
+              const Divider(color: Palatt.boxShadow, thickness: 1),
+              Container(
+                height: 30,
+                alignment: Alignment.centerLeft,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        // setState(() {
+                        //   astroPrfileController.selectedavailability =
+                        //       astroPrfileController
+                        //           .astrologer.availabilityTiming![index];
+                        // });
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 5),
+                        width: 67,
+                        height: 27,
+                        decoration: const BoxDecoration(
+                          color: Palatt.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                        ),
+                        alignment: Alignment.center,
+                        child: Text(
+                            DateFormat("dd MMM").format(
+                                DateTime.now().add(Duration(days: index))),
+                            style: googleFontstyle(
+                              const TextStyle(
+                                  fontSize: 16,
+                                  color: Palatt.black,
+                                  fontWeight: FontWeight.w500),
+                            )),
                       ),
-                      alignment: Alignment.center,
-                      child: Text(
-                        DateFormat("dd MMM")
-                            .format(DateTime.now().add(Duration(days: index))),
-                        style: const TextStyle(
-                            fontSize: 16,
-                            color: Palatt.black,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-            const Divider(color: Palatt.grey, thickness: 1),
-            GridView.count(
-              crossAxisCount: 2,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 10,
-              ),
-              childAspectRatio: 4,
-              shrinkWrap: true,
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 15,
-              children: List.generate(
-                6,
-                (index) => timingSlot(
-                  "${DateFormat().add_jm().format(DateTime.now().add(Duration(hours: index)))} - ${DateFormat().add_jm().format(DateTime.now())}",
-                  //     onTap: () {
-                  //   setState(() {
-                  //     astroPrfileController.whichtime =
-                  //         astroPrfileController
-                  //             .selectedavailability
-                  //             .timing[index];
-                  //   });
-                  // },
+                    );
+                  },
                 ),
               ),
-            ),
-          ]),
+              const Divider(color: Palatt.boxShadow, thickness: 1),
+              GridView.count(
+                crossAxisCount: 2,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 10,
+                ),
+                childAspectRatio: 4,
+                shrinkWrap: true,
+                mainAxisSpacing: 12,
+                crossAxisSpacing: 15,
+                children: List.generate(
+                  6,
+                  (index) => timingSlot(
+                    "${DateFormat().add_jm().format(DateTime.now().add(Duration(hours: index)))} - ${DateFormat().add_jm().format(DateTime.now())}",
+                    //     onTap: () {
+                    //   setState(() {
+                    //     astroPrfileController.whichtime =
+                    //         astroPrfileController
+                    //             .selectedavailability
+                    //             .timing[index];
+                    //   });
+                    // },
+                  ),
+                ),
+              ),
+            ]),
+      ),
     );
     Widget survecard = Container(
       height: 60,
@@ -349,27 +356,27 @@ class AstroDetailView extends GetView {
         color: Palatt.primary.withOpacity(0.5),
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.thumb_up,
             color: Palatt.primary,
           ),
           spaceHorizontal(5),
-          Text(
-            "98%",
-            style: const TextStyle(
-              fontSize: 19,
-              color: Palatt.black,
-              fontWeight: FontWeight.w500,
-              height: 2,
-            ),
-          ),
+          Text("98%",
+              style: googleFontstyle(
+                const TextStyle(
+                  fontSize: 19,
+                  color: Palatt.black,
+                  fontWeight: FontWeight.w500,
+                  height: 2,
+                ),
+              )),
           spaceHorizontal(8),
-          VerticalDivider(
+          const VerticalDivider(
             width: 2,
             thickness: 2,
             color: Palatt.primary,
@@ -377,12 +384,12 @@ class AstroDetailView extends GetView {
             indent: 10,
           ),
           spaceHorizontal(8),
-          Expanded(
+          const Expanded(
             child: Text(
               "Out of all users who were surveyed. 98% of them are satisfied with Astro Ssachin S's prediction.",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
                 color: Palatt.black,
                 fontWeight: FontWeight.w300,
@@ -398,29 +405,36 @@ class AstroDetailView extends GetView {
       child: Column(
         children: [
           Row(
-            children: ["Hindi", "English", "Tamil"]
-                .map((e) => Container(
-                      constraints: const BoxConstraints(minWidth: 70),
-                      height: 26,
-                      alignment: Alignment.center,
-                      child: Text(
-                        e,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Palatt.primary,
-                          fontWeight: FontWeight.w500,
-                          height: 1,
-                        ),
-                      ),
-                    ))
-                .toList(),
-          ),
+              children: List.generate(
+                  langList.length,
+                  (index) => Container(
+                        constraints: const BoxConstraints(minWidth: 70),
+                        height: 26,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                          width: 1,
+                          color:
+                              index == 0 ? Palatt.primary : Palatt.transparent,
+                        ))),
+                        alignment: Alignment.center,
+                        child: Text(langList[index],
+                            style: googleFontstyle(
+                              TextStyle(
+                                fontSize: 16,
+                                color:
+                                    index == 0 ? Palatt.primary : Palatt.black,
+                                fontWeight: FontWeight.w500,
+                                height: 1,
+                              ),
+                            )),
+                      ))),
           spaceVertical(20),
-          Text(
+          const Text(
             """We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.
 We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.
 We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.""",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               color: Palatt.black,
               fontWeight: FontWeight.w300,
@@ -436,20 +450,21 @@ We live in an era where we are digitalized to the level, everything of our need 
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Text(
             "Gallery",
-            style: const TextStyle(
+            style: googleFontstyle(const TextStyle(
               fontSize: 18,
               color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
+              fontWeight: FontWeight.w500,
+            )),
           ),
         ),
+        spaceVertical(11),
         SizedBox(
           height: 100,
           child: ListView.builder(
             itemCount: 10,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
             itemBuilder: (context, index) {
               return Container(
                 height: 96,
@@ -457,7 +472,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                 margin: index == 10 ? null : const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
                       ),
@@ -475,15 +490,16 @@ We live in an era where we are digitalized to the level, everything of our need 
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Text(
-            "Reviews",
-            style: const TextStyle(
-              fontSize: 18,
-              color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          child: Text("Reviews",
+              style: googleFontstyle(
+                const TextStyle(
+                  fontSize: 18,
+                  color: Palatt.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
         ),
+        spaceVertical(5),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -497,8 +513,8 @@ We live in an era where we are digitalized to the level, everything of our need 
                   allowHalfRating: true,
                   itemCount: 5,
                   itemSize: 30,
-                  itemPadding: EdgeInsets.only(right: 8.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.only(right: 8.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Palatt.primary,
                   ),
@@ -506,9 +522,9 @@ We live in an era where we are digitalized to the level, everything of our need 
                     print(rating);
                   },
                 ),
-                Text(
+                const Text(
                   "Based on 900 Reviews",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     color: Palatt.black,
                     fontWeight: FontWeight.w400,
@@ -516,17 +532,18 @@ We live in an era where we are digitalized to the level, everything of our need 
                 ),
               ],
             ),
-            Text(
-              "4.58",
-              style: const TextStyle(
-                fontSize: 26,
-                color: Palatt.black,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            Text("4.58",
+                style: googleFontstyle(
+                  const TextStyle(
+                    fontSize: 26,
+                    color: Palatt.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )),
             // spaceHorizontal(25),
           ],
         ),
+        spaceVertical(10),
         ListView.builder(
             itemCount: 5,
             shrinkWrap: true,
@@ -536,19 +553,21 @@ We live in an era where we are digitalized to the level, everything of our need 
                 children: [
                   ListTile(
                     isThreeLine: true,
-                    leading: CircleAvatar(
+                    minVerticalPadding: 10,
+                    // contentPadding: EdgeInsets.zero,
+                    leading: const CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU"),
                     ),
-                    title: Text(
-                      "Rohan Sharma",
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Palatt.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    title: Text("Rohan Sharma",
+                        style: googleFontstyle(
+                          const TextStyle(
+                            fontSize: 15,
+                            color: Palatt.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -559,8 +578,8 @@ We live in an era where we are digitalized to the level, everything of our need 
                           allowHalfRating: true,
                           itemCount: 5,
                           itemSize: 15,
-                          itemPadding: EdgeInsets.only(right: 8.0),
-                          itemBuilder: (context, _) => Icon(
+                          itemPadding: const EdgeInsets.only(right: 8.0),
+                          itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Palatt.primary,
                           ),
@@ -568,9 +587,10 @@ We live in an era where we are digitalized to the level, everything of our need 
                             print(rating);
                           },
                         ),
-                        Text(
+                        spaceVertical(5),
+                        const Text(
                           "Good information given by him",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 13,
                             color: Palatt.grey,
                             fontWeight: FontWeight.w400,
@@ -582,7 +602,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                   Divider(
                     height: 1,
                     thickness: 1,
-                    color: Palatt.boxShadow,
+                    color: Palatt.boxShadow.withOpacity(0.5),
                   )
                 ],
               );
@@ -591,23 +611,23 @@ We live in an era where we are digitalized to the level, everything of our need 
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           alignment: Alignment.centerRight,
-          child: Text(
-            "All View Reviews",
-            style: const TextStyle(
-              fontSize: 18,
-              color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          child: Text("All View Reviews",
+              style: googleFontstyle(
+                const TextStyle(
+                  fontSize: 15,
+                  color: Palatt.primary,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
         ),
         spaceVertical(10),
       ],
     );
     Widget callchatButton = Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-      decoration: BoxDecoration(color: Palatt.white, boxShadow: [
+      decoration: const BoxDecoration(color: Palatt.white, boxShadow: [
         BoxShadow(
-          blurRadius: 5,
+          blurRadius: 6,
           color: Palatt.boxShadow,
         )
       ]),
@@ -623,22 +643,22 @@ We live in an era where we are digitalized to the level, everything of our need 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Call",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "₹5/min",
-                  style: TextStyle(
-                    fontSize: 9,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
+                Text("Call",
+                    style: googleFontstyle(
+                      const TextStyle(
+                        fontSize: 15,
+                        color: Palatt.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )),
+                Text("₹5/min",
+                    style: googleFontstyle(
+                      const TextStyle(
+                        fontSize: 9,
+                        color: Palatt.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ))
               ],
             ),
           ),
@@ -650,25 +670,25 @@ We live in an era where we are digitalized to the level, everything of our need 
             },
             backgroundColor: Palatt.primary,
             radius: 5,
-            child: const Column(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Chat",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  "₹5/min",
-                  style: TextStyle(
-                    fontSize: 9,
-                    color: Palatt.white,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
+                Text("Chat",
+                    style: googleFontstyle(
+                      const TextStyle(
+                        fontSize: 15,
+                        color: Palatt.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )),
+                Text("₹5/min",
+                    style: googleFontstyle(
+                      const TextStyle(
+                        fontSize: 9,
+                        color: Palatt.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ))
               ],
             ),
           ),
@@ -678,8 +698,12 @@ We live in an era where we are digitalized to the level, everything of our need 
 
     return Scaffold(
       backgroundColor: Palatt.white,
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         title: "Astrologers Profile",
+        actions: [
+          const Icon(Icons.more_vert),
+          spaceHorizontal(10),
+        ],
       ),
       body: ListView(
         physics: const BouncingScrollPhysics(),
@@ -693,7 +717,6 @@ We live in an era where we are digitalized to the level, everything of our need 
           gallery,
           review,
           callchatButton,
-          spaceVertical(30),
         ],
       ),
     );

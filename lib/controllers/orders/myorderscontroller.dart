@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class MyOrdersBindings extends Bindings {
@@ -9,6 +10,11 @@ class MyOrdersBindings extends Bindings {
 }
 
 class MyOrdersController extends GetxController {
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
   RxInt currentIndex = 0.obs;
   onTapTab(int index) {
     currentIndex.value = index;

@@ -61,7 +61,7 @@ class PaymentSuccessfull extends StatelessWidget {
               height: 150,
             ),
           ),
-          spaceVertical(20),
+          spaceVertical(30),
         ],
       ),
     );

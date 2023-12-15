@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
@@ -39,9 +40,9 @@ class Fcard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Palatt.white,
           borderRadius: borderRadius,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Palatt.blacklightshade.withOpacity(0.2),
+              color: Palatt.boxShadow,
               blurRadius: 6,
             )
           ],
@@ -62,7 +63,7 @@ class Fcard extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontSize: 12, fontWeight: FontWeight.w600, height: 1),
+                    fontSize: 12, fontWeight: FontWeight.w600, height: 1.2),
               )
             ],
           ),
@@ -165,15 +166,15 @@ class HoroCard extends StatelessWidget {
             child: Container(
               height: height ?? h * 0.1,
               // width: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Palatt.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Palatt.boxShadow.withOpacity(0.6),
+                    color: Palatt.boxShadow,
                     blurRadius: 6,
                   ),
                 ],
-                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                borderRadius: BorderRadius.all(Radius.circular(10)),
               ),
               alignment: Alignment.bottomCenter,
               child: Column(
@@ -237,177 +238,180 @@ class AstroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Palatt.yellow2nd,
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 6,
-              spreadRadius: 3,
-              color: Palatt.greybackground,
-            )
-          ]),
-      child: Column(
-        children: [
-          SizedBox(
-            height: 100,
-            child: Stack(
-              children: [
-                const Positioned(
-                  top: 10,
-                  left: 0,
-                  right: 0,
-                  child: CircleAvatar(
-                    radius: 33,
-                    backgroundColor: Palatt.white,
-                    child: CircleAvatar(
-                      radius: 31,
-                      backgroundImage: NetworkImage(
-                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                    top: 63,
-                    left: Get.width * 0.11,
-                    right: Get.width * 0.11,
-                    child: Center(
-                      child: Container(
-                        width: 66,
-                        height: 15,
-                        decoration: BoxDecoration(
-                          color: Palatt.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 2),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: List.generate(
-                              5,
-                              (index) => const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 1),
-                                    child: Icon(
-                                      Icons.star,
-                                      size: 10,
-                                      color: Palatt.primary,
-                                    ),
-                                  )),
-                        ),
-                      ),
-                    )),
-                const Positioned(
-                  top: 79,
-                  right: 0,
-                  left: 0,
-                  child: Center(
-                    child: Text(
-                      "70000 Orders",
-                      style: TextStyle(
-                        fontSize: 10,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              width: Get.width,
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                  color: Palatt.white,
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                  )),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.astrodetailsview),
+      child: Container(
+        decoration: BoxDecoration(
+            color: Palatt.yellow2nd,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 6,
+                // spreadRadius: 3,
+                color: Palatt.boxShadow,
+              )
+            ]),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 100,
+              child: Stack(
                 children: [
-                  const Text(
-                    "Zoha Merchant",
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
-                      color: Palatt.black,
+                  const Positioned(
+                    top: 10,
+                    left: 0,
+                    right: 0,
+                    child: CircleAvatar(
+                      radius: 33,
+                      backgroundColor: Palatt.white,
+                      child: CircleAvatar(
+                        radius: 31,
+                        backgroundImage: NetworkImage(
+                          "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                        ),
+                      ),
                     ),
                   ),
-                  const Text(
-                    "English, Hindi",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Palatt.black,
-                    ),
-                  ),
-                  const Text(
-                    "English, Hindi",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w400,
-                      color: Palatt.black,
-                    ),
-                  ),
-                  const Text(
-                    "Exp: 6 year",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: Palatt.grey,
-                    ),
-                  ),
-                  const Text(
-                    "Jaipur, Raj",
-                    style: TextStyle(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w300,
-                      color: Palatt.grey,
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        "₹ 12/min",
+                  Positioned(
+                      top: 63,
+                      left: Get.width * 0.11,
+                      right: Get.width * 0.11,
+                      child: Center(
+                        child: Container(
+                          width: 66,
+                          height: 15,
+                          decoration: BoxDecoration(
+                            color: Palatt.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: const EdgeInsets.symmetric(horizontal: 2),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(
+                                5,
+                                (index) => const Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 1),
+                                      child: Icon(
+                                        Icons.star,
+                                        size: 10,
+                                        color: Palatt.primary,
+                                      ),
+                                    )),
+                          ),
+                        ),
+                      )),
+                  const Positioned(
+                    top: 79,
+                    right: 0,
+                    left: 0,
+                    child: Center(
+                      child: Text(
+                        "70000 Orders",
                         style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: Palatt.primary,
+                          fontSize: 10,
                         ),
                       ),
-                      RRButton2(
-                        height: 25,
-                        width: 57,
-                        backgroundColor: Palatt.primary,
-                        radius: 3,
-                        onTap: () {},
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              AppImages.rocketchat,
-                            ),
-                            spaceHorizontal(5),
-                            const Text(
-                              "Chat",
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: Palatt.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
             ),
-          )
-        ],
+            Expanded(
+              child: Container(
+                width: Get.width,
+                padding: const EdgeInsets.all(8),
+                decoration: const BoxDecoration(
+                    color: Palatt.white,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Zoha Merchant",
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    ),
+                    const Text(
+                      "English, Hindi",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: Palatt.black,
+                      ),
+                    ),
+                    const Text(
+                      "English, Hindi",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w400,
+                        color: Palatt.black,
+                      ),
+                    ),
+                    const Text(
+                      "Exp: 6 year",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w300,
+                        color: Palatt.grey,
+                      ),
+                    ),
+                    const Text(
+                      "Jaipur, Raj",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w300,
+                        color: Palatt.grey,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "₹ 12/min",
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                            color: Palatt.primary,
+                          ),
+                        ),
+                        RRButton2(
+                          height: 25,
+                          width: 57,
+                          backgroundColor: Palatt.primary,
+                          radius: 3,
+                          onTap: () {},
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                AppImages.rocketchat,
+                              ),
+                              spaceHorizontal(5),
+                              const Text(
+                                "Chat",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Palatt.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

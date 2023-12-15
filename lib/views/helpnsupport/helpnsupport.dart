@@ -32,12 +32,12 @@ class HelpNSupport extends GetView {
 
   Widget typemessage() => Container(
         width: Get.width,
-        // height: 80,
+        constraints: const BoxConstraints(minHeight: 80),
         padding: const EdgeInsets.symmetric(
           horizontal: 15,
           vertical: 18,
         ),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             color: Palatt.white,
             boxShadow: [BoxShadow(color: Palatt.boxShadow, blurRadius: 4)]),
         child: Row(
@@ -58,13 +58,13 @@ class HelpNSupport extends GetView {
                   fillColor: Palatt.white,
                   hintText: "Type a message",
                   contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      const EdgeInsets.symmetric(horizontal: 13, vertical: 15),
                   hintStyle: const TextStyle(
-                      color: Palatt.greyshadedark, fontSize: 13, height: 2),
+                      color: Palatt.grey, fontSize: 13, height: 1),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                       borderSide: const BorderSide(
-                        color: Palatt.greyshadedark,
+                        color: Palatt.grey,
                       )),
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),

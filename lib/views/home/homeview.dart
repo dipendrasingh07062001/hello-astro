@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:hello_astro_user/controllers/homenav/controller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/home/drawer.dart';
@@ -94,7 +95,7 @@ class _HomeViewState extends State<HomeView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [1, 2, 3]
               .map((e) => const Padding(
-                    padding: EdgeInsets.all(2.0),
+                    padding: EdgeInsets.all(3.0),
                     child: CircleAvatar(
                       radius: 4,
                       backgroundColor: Palatt.primary,
@@ -120,9 +121,8 @@ class _HomeViewState extends State<HomeView> {
                     boxShadow: [
                       BoxShadow(
                         color: Palatt.boxShadow,
-                        blurRadius: 4,
-                        spreadRadius: -2,
-                        offset: Offset(0, 5),
+                        blurRadius: 2,
+                        offset: Offset(0, 3),
                       ),
                     ],
                     gradient: LinearGradient(
@@ -172,7 +172,12 @@ class _HomeViewState extends State<HomeView> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed(Routes.walletBalance);
+                                    // Get.offAllNamed(Routes.homenav,
+                                    //     arguments: 3);
+                                    Get.find<HomeNavController>()
+                                        .currentpage
+                                        .value = 3;
+                                    // Get.toNamed(Routes.walletBalance);
                                   },
                                   child: Container(
                                     decoration: const BoxDecoration(
@@ -187,6 +192,8 @@ class _HomeViewState extends State<HomeView> {
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
                                         SvgPicture.asset(
                                           AppImages.wallet,
@@ -198,6 +205,7 @@ class _HomeViewState extends State<HomeView> {
                                         ),
                                         const WalletBalance(
                                           color: Palatt.white,
+                                          size: 16,
                                         ),
                                         // textStyle("₹ 200", Palatt.white,
                                         //     w * .039, FontWeight.bold),
@@ -216,7 +224,9 @@ class _HomeViewState extends State<HomeView> {
                                         height: 25,
                                         width: 25,
                                       ),
-                                      onTap: () {},
+                                      onTap: () {
+                                        Get.toNamed(Routes.notification);
+                                      },
                                     ),
                                   ),
                                 ),
@@ -242,7 +252,9 @@ class _HomeViewState extends State<HomeView> {
                         keyboardType: TextInputType.text,
                         style: TextStyle(fontSize: w * .049),
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(top: h * .0022),
+                          iconColor: Palatt.primary,
+                          contentPadding:
+                              EdgeInsets.only(top: h * .0022, right: 10),
                           prefixIcon: const Icon(Icons.search),
                           // isDense: tr,
                           hintText: 'Astrologers, products,........'.tr,
@@ -286,7 +298,7 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   Fcard(
                     image: AppImages.call,
-                    text: "Call with \nAstrologer",
+                    text: "Talk to \nAstrologer",
                     width: 80,
                     height: 100,
                     onTap: () {},
@@ -317,7 +329,7 @@ class _HomeViewState extends State<HomeView> {
                     ),
                   ),
                   InkWell(
-                    onTap: () => Get.to(() => Horoscope()),
+                    onTap: () => Get.to(() => const Horoscope()),
                     child: const Text(
                       "See All",
                       style: TextStyle(
@@ -332,8 +344,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ),
             Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: w * .040, vertical: h * .0),
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 0),
               child: Row(
                   children: List.generate(4, (index) {
                 Sunshine e = SunshineData.sunshines[index];
@@ -351,8 +362,9 @@ class _HomeViewState extends State<HomeView> {
             ),
             spaceVertical(15),
             const FreeServices(),
+            spaceVertical(20),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: w * .040),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -375,6 +387,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
+            // spaceVertical(13),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -389,11 +402,10 @@ class _HomeViewState extends State<HomeView> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Palatt.yellow2nd,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
-                              color: Palatt.black.withOpacity(0.1),
-                              spreadRadius: 2,
-                              blurRadius: 4,
+                              color: Palatt.boxShadow,
+                              blurRadius: 6,
                             )
                           ]),
                       child: Stack(
@@ -428,7 +440,7 @@ class _HomeViewState extends State<HomeView> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                    top: 48,
+                                                    top: 52,
                                                     left: 7,
                                                     right: 7,
                                                     child: Container(
@@ -465,7 +477,7 @@ class _HomeViewState extends State<HomeView> {
                                                       ),
                                                     )),
                                                 const Positioned(
-                                                  top: 65,
+                                                  top: 68,
                                                   right: 0,
                                                   left: 0,
                                                   child: Center(
@@ -480,7 +492,7 @@ class _HomeViewState extends State<HomeView> {
                                               ],
                                             ),
                                           )),
-                                      const Expanded(
+                                      Expanded(
                                           flex: 3,
                                           child: Column(
                                             crossAxisAlignment:
@@ -509,13 +521,19 @@ class _HomeViewState extends State<HomeView> {
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
+                                              spaceVertical(20)
                                             ],
                                           ))
                                     ],
                                   )),
                               Expanded(
                                   child: Container(
-                                color: Palatt.white,
+                                decoration: const BoxDecoration(
+                                  color: Palatt.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10)),
+                                ),
                                 width: Get.width,
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 5),
@@ -562,7 +580,7 @@ class _HomeViewState extends State<HomeView> {
                                         padding: const EdgeInsets.all(5),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.center,
                                           children: [
                                             SvgPicture.asset(
                                               AppImages.chaticon,
@@ -570,6 +588,7 @@ class _HomeViewState extends State<HomeView> {
                                               color: Palatt.white,
                                               height: 13,
                                             ),
+                                            spaceHorizontal(10),
                                             const Text(
                                               "Chat",
                                               style: TextStyle(
@@ -615,8 +634,9 @@ class _HomeViewState extends State<HomeView> {
                 }),
               ),
             ),
+            spaceVertical(10),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: w * .040),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -639,6 +659,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               ),
             ),
+            // spaceVertical(13),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -653,11 +674,10 @@ class _HomeViewState extends State<HomeView> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Palatt.yellow2nd,
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
-                              color: Palatt.black.withOpacity(0.1),
-                              spreadRadius: 2,
-                              blurRadius: 4,
+                              color: Palatt.boxShadow,
+                              blurRadius: 6,
                             )
                           ]),
                       child: Stack(
@@ -692,7 +712,7 @@ class _HomeViewState extends State<HomeView> {
                                                   ),
                                                 ),
                                                 Positioned(
-                                                    top: 48,
+                                                    top: 52,
                                                     left: 7,
                                                     right: 7,
                                                     child: Container(
@@ -729,7 +749,7 @@ class _HomeViewState extends State<HomeView> {
                                                       ),
                                                     )),
                                                 const Positioned(
-                                                  top: 65,
+                                                  top: 68,
                                                   right: 0,
                                                   left: 0,
                                                   child: Center(
@@ -744,7 +764,7 @@ class _HomeViewState extends State<HomeView> {
                                               ],
                                             ),
                                           )),
-                                      const Expanded(
+                                      Expanded(
                                           flex: 3,
                                           child: Column(
                                             crossAxisAlignment:
@@ -752,37 +772,43 @@ class _HomeViewState extends State<HomeView> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              Text(
+                                              const Text(
                                                 "Zoha Merchant",
                                                 style: TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
-                                              Text(
+                                              const Text(
                                                 "English, Hindi",
                                                 style: TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
-                                              Text(
+                                              const Text(
                                                 "Tarot, Life Coach",
                                                 style: TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
+                                              spaceVertical(20),
                                             ],
                                           ))
                                     ],
                                   )),
                               Expanded(
                                   child: Container(
-                                color: Palatt.white,
                                 width: Get.width,
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 5),
+                                decoration: const BoxDecoration(
+                                  color: Palatt.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10)),
+                                ),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -826,10 +852,11 @@ class _HomeViewState extends State<HomeView> {
                                         padding: const EdgeInsets.all(5),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                              MainAxisAlignment.center,
                                           children: [
                                             SvgPicture.asset(
                                                 AppImages.callfilled),
+                                            spaceHorizontal(10),
                                             const Text(
                                               "Call",
                                               style: TextStyle(
@@ -875,17 +902,20 @@ class _HomeViewState extends State<HomeView> {
                 }),
               ),
             ),
+            spaceVertical(10),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: w * .040, vertical: 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Call with Astrologer",
+                    "User Reviews",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.review);
+                    },
                     child: const Text(
                       "See All",
                       style: TextStyle(
@@ -915,11 +945,10 @@ class _HomeViewState extends State<HomeView> {
                     decoration: BoxDecoration(
                         color: Palatt.white,
                         borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
-                            color: Palatt.boxShadow.withOpacity(0.2),
-                            blurRadius: 13,
-                            offset: const Offset(0, 2),
+                            color: Palatt.boxShadow,
+                            blurRadius: 6,
                           )
                         ]),
                     padding: const EdgeInsets.all(10),
@@ -990,9 +1019,7 @@ class _HomeViewState extends State<HomeView> {
                 },
               ),
             ),
-            const SizedBox(
-              height: 40,
-            )
+            spaceVertical(Get.height * 0.14)
           ],
         ),
       ),

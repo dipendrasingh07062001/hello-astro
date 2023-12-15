@@ -17,7 +17,7 @@ class OnboardingController extends GetxController {
 
   splashcounterstart() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offAndToNamed(Routes.login);
+      Get.offAndToNamed(Routes.intro);
     });
   }
 
@@ -114,33 +114,34 @@ class OnboardingController extends GetxController {
   onotpverfy(BuildContext context) async {
     String sub = "${first.text}${second.text}${third.text}${fourth.text}";
 
-    if (first.text.isNotEmpty &&
-        second.text.isNotEmpty &&
-        third.text.isNotEmpty &&
-        fourth.text.isNotEmpty) {
-      // isLoading.value = true;
-      // ApiClient apiClient = ApiClient();
-      // Map<String, String> map = {"phone": phoneController.text, "otp": sub};
-      // await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
-      //   if (value != null) {
-      //     debugPrint("==$value");
-      //     Get.toNamed(Routes.home);
-      //     isLoading.value = false;
-      //   }
-      // });
-      // isLoading.value = false;
-      Get.toNamed(Routes.homenav);
-    } else {
-      final snackBar = SnackBar(
-        content: textStyle(
-          'Please enter valid OTP',
-          Palatt.white,
-          fontSize: 16,
-        ),
-        backgroundColor: Palatt.red,
-      );
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
+    Get.toNamed(Routes.referview);
+    // if (first.text.isNotEmpty &&
+    //     second.text.isNotEmpty &&
+    //     third.text.isNotEmpty &&
+    //     fourth.text.isNotEmpty) {
+    //   // isLoading.value = true;
+    //   // ApiClient apiClient = ApiClient();
+    //   // Map<String, String> map = {"phone": phoneController.text, "otp": sub};
+    //   // await apiClient.postRequest(ApiUrls.verifiotp, map).then((value) {
+    //   //   if (value != null) {
+    //   //     debugPrint("==$value");
+    //   //     Get.toNamed(Routes.home);
+    //   //     isLoading.value = false;
+    //   //   }
+    //   // });
+    //   // isLoading.value = false;
+    //   Get.toNamed(Routes.homenav);
+    // } else {
+    //   final snackBar = SnackBar(
+    //     content: textStyle(
+    //       'Please enter valid OTP',
+    //       Palatt.white,
+    //       fontSize: 16,
+    //     ),
+    //     backgroundColor: Palatt.red,
+    //   );
+    //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    // }
   }
 
   @override

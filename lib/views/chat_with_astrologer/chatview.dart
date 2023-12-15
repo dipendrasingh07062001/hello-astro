@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/bottomsheet/filtersheet.dart';
@@ -128,7 +129,13 @@ class ChatWithAstrologer extends GetView {
       padding: const EdgeInsets.symmetric(
         horizontal: 15,
       ),
-      children: List.generate(10, (index) => const AstroCard()),
+      children: List.generate(
+        10,
+        (index) => Padding(
+          padding: EdgeInsets.only(top: index == 0 || index == 1 ? 10 : 0),
+          child: const AstroCard(),
+        ),
+      ),
     );
 
     return Scaffold(
@@ -199,17 +206,20 @@ class ChatWithAstrologer extends GetView {
                           vertical: 5,
                           horizontal: 13,
                         ),
+                        style: googleFontstyle(const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Palatt.black)),
                         margin: EdgeInsets.only(
                           left: index == 0 ? 15 : 0,
-                          right: 10,
+                          right: 6,
                           top: 10,
                           bottom: 10,
                         ),
                         boxShadow: const [
                           BoxShadow(
-                            blurRadius: 8,
-                            spreadRadius: 2,
-                            color: Palatt.greybackground,
+                            blurRadius: 12,
+                            color: Palatt.boxShadow,
                           )
                         ],
                       )),

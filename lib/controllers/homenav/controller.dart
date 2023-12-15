@@ -17,6 +17,12 @@ class HomeNavBinding extends Bindings {
 }
 
 class HomeNavController extends GetxController {
+  @override
+  void onInit() {
+    currentpage.value = Get.arguments ?? 0;
+    super.onInit();
+  }
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   RxInt currentpage = 0.obs;
   RxList<Widget> body = RxList([

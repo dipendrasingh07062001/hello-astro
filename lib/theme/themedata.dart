@@ -16,3 +16,11 @@ class AppThemeData {
 class AppFontFamily {
   static get family => GoogleFonts.hind().fontFamily;
 }
+
+TextStyle googleFontstyle(TextStyle style) => GoogleFonts.hind(
+      fontSize: style.fontSize,
+      height: style.height,
+      color: style.color,
+      fontWeight: style.fontWeight,
+      decoration: style.decoration,
+    );

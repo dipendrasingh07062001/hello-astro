@@ -3,10 +3,12 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hello_astro_user/widgets/backgroundimages.dart';
+import 'package:hello_astro_user/widgets/space.dart';
 import '../../controllers/onboarding/onboardingcontroller.dart';
 import '../../widgets/loader.dart';
 import '../../widgets/textwidgets.dart';
@@ -26,6 +28,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palatt.white,
+      // resizeToAvoidBottomInset: false,
       appBar: AppBar(
         elevation: 0,
         leading: ModalRoute.of(context)?.canPop == true
@@ -49,7 +52,6 @@ class _LoginState extends State<Login> {
           FocusScope.of(context).requestFocus(FocusNode());
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: w * .04),
           decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(AppImages.background),
@@ -68,7 +70,7 @@ class _LoginState extends State<Login> {
                     SvgPicture.asset(AppImages.login, width: w * .65),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: h * .04, right: w * .09, bottom: h * .024),
+                          top: h * .04, right: 15, bottom: h * .024, left: 15),
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: textStyle('Please enter your phone number',
@@ -77,7 +79,8 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                     Container(
-                      height: h * .063,
+                      // height: 50,
+                      margin: EdgeInsets.symmetric(horizontal: w * .04),
                       decoration: const BoxDecoration(
                           color: Palatt.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -99,6 +102,11 @@ class _LoginState extends State<Login> {
                         style: TextStyle(fontSize: w * .043),
                         decoration: InputDecoration(
                           hintText: 'Phone number',
+                          // isDense: true,
+                          isCollapsed: true,
+                          constraints: const BoxConstraints(minHeight: 50),
+                          contentPadding: const EdgeInsets.only(
+                              top: 10, left: 10, right: 10),
                           hintStyle: TextStyle(
                               fontSize: w * .039,
                               color: const Color(0xffa4a4a4)),
@@ -131,6 +139,7 @@ class _LoginState extends State<Login> {
                     ),
                     Row(
                       children: [
+                        spaceHorizontal(15),
                         SizedBox(
                           width: w * .05,
                           child: Transform.scale(
@@ -190,26 +199,17 @@ class _LoginState extends State<Login> {
                     ),
                     textStyle('OR', Palatt.primary,
                         fontSize: w * .039, fontWeight: FontWeight.w500),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Palatt.transparent,
-                          minimumSize: Size(w * .94, h * .065),
-                          maximumSize: Size(w * .94, h * .065),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0),
-                            // side: const BorderSide(color: Palatt.primary),
-                          ),
-                          elevation: 0),
-                      onPressed: () {},
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    GestureDetector(
+                      onTap: () {},
                       child: textStyle(
-                        'Register yourself in Hello Astrologer Directory',
-                        Palatt.primary,
-                        fontSize: w * .04,
-                        fontWeight: FontWeight.w500,
-                      ),
+                          'Register yourself in Hello Astrologer Directory',
+                          Palatt.primary,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline),
                     ),
                   ],
                 ),
@@ -218,16 +218,17 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.topRight,
                 child: RRButton(
                   onTap: () {
-                    Get.toNamed(Routes.homenav);
+                    Get.offAllNamed(Routes.homenav);
                   },
                   height: 30,
                   width: 60,
                   data: "Skip",
-                  style: TextStyle(
+                  style: googleFontstyle(TextStyle(
                     color: Palatt.primary,
                     fontSize: w * .04,
                     fontWeight: FontWeight.w500,
-                  ),
+                    decoration: TextDecoration.underline,
+                  )),
                 ),
               )
             ],

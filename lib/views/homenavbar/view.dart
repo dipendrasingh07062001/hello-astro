@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/home/homecontroller.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/onboading/splash.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
+import '../../widgets/textwidgets.dart';
 import '../home/drawer.dart';
 
 class HomeNavBar extends GetView<HomeNavController> {
@@ -17,6 +19,7 @@ class HomeNavBar extends GetView<HomeNavController> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: controller.scaffoldKey,
+      extendBody: true,
       drawer: const HomeDrawer(),
       body: Obx(
         () => controller.body[controller.currentpage.value],
@@ -39,7 +42,7 @@ class HomeNavBar extends GetView<HomeNavController> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
               4,
-              (index) => TextButton(
+              (index) => Obx(() => TextButton(
                     onPressed: () => controller.ontapbaritem(index),
                     style: TextButton.styleFrom(
                       splashFactory: NoSplash.splashFactory,
@@ -49,22 +52,26 @@ class HomeNavBar extends GetView<HomeNavController> {
                       children: [
                         SvgPicture.asset(
                           controller.bar[index]["image"] ?? "",
-                          color: Palatt.black,
+                          color: controller.currentpage.value == index
+                              ? Palatt.primary
+                              : Palatt.black,
                           height: 20,
                           width: 20,
                         ),
                         spaceVertical(5),
-                        Text(
-                          controller.bar[index]["name"] ?? "",
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Palatt.black,
-                          ),
-                        )
+                        Text(controller.bar[index]["name"] ?? "",
+                            style: googleFontstyle(
+                              TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: controller.currentpage.value == index
+                                    ? Palatt.primary
+                                    : Palatt.black,
+                              ),
+                            ))
                       ],
                     ),
-                  )),
+                  ))),
           //  [
 
           //   Column(

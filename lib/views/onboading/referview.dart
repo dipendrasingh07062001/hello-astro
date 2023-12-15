@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import '../../controllers/onboarding/refercontroller.dart';
 import '../../theme/colorpalatt.dart';
 import '../../utils/buttons.dart';
@@ -74,7 +76,8 @@ class ReferCodeView extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: h * .063,
+                      // height: 50,
+                      // margin: EdgeInsets.symmetric(horizontal: w * .04),
                       decoration: const BoxDecoration(
                           color: Palatt.white,
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -86,12 +89,21 @@ class ReferCodeView extends StatelessWidget {
                             ),
                           ]),
                       child: TextFormField(
+                        keyboardType: TextInputType.number,
                         maxLength: 10,
                         controller: referController.referController,
+                        // inputFormatters: [
+                        //   FilteringTextInputFormatter.digitsOnly
+                        // ],
                         onChanged: (value) {},
                         style: TextStyle(fontSize: w * .043),
                         decoration: InputDecoration(
                           hintText: 'Referral code',
+                          // isDense: true,
+                          isCollapsed: true,
+                          constraints: const BoxConstraints(minHeight: 50),
+                          contentPadding: const EdgeInsets.only(
+                              top: 10, left: 10, right: 10),
                           hintStyle: TextStyle(
                               fontSize: w * .039,
                               color: const Color(0xffa4a4a4)),
@@ -119,8 +131,55 @@ class ReferCodeView extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    // Container(
+                    //   height: h * .063,
+                    //   decoration: const BoxDecoration(
+                    //       color: Palatt.white,
+                    //       borderRadius: BorderRadius.all(Radius.circular(10)),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: Palatt.boxShadow,
+                    //           blurRadius: 5,
+                    //           offset: Offset(-1, 2),
+                    //         ),
+                    //       ]),
+                    //   child: TextFormField(
+                    //     maxLength: 10,
+                    //     controller: referController.referController,
+                    //     onChanged: (value) {},
+                    //     style: TextStyle(fontSize: w * .043),
+                    //     decoration: InputDecoration(
+                    //       hintText: 'Referral code',
+                    //       hintStyle: TextStyle(
+                    //           fontSize: w * .039,
+                    //           color: const Color(0xffa4a4a4)),
+                    //       fillColor: Colors.transparent,
+                    //       filled: true,
+                    //       counterText: "",
+                    //       focusedBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //             width: w * 0, color: Colors.transparent),
+                    //         borderRadius:
+                    //             const BorderRadius.all(Radius.circular(10.0)),
+                    //       ),
+                    //       enabledBorder: OutlineInputBorder(
+                    //         borderSide: BorderSide(
+                    //             width: w * 0, color: Colors.transparent),
+                    //         borderRadius:
+                    //             const BorderRadius.all(Radius.circular(10.0)),
+                    //       ),
+                    //       focusedErrorBorder: const UnderlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.transparent),
+                    //       ),
+                    //       errorBorder: const UnderlineInputBorder(
+                    //         borderSide: BorderSide(color: Colors.transparent),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
-                      height: h * .05,
+                      height: 54,
                     ),
                     Obx(
                       () => referController.isLoading.value
@@ -129,7 +188,9 @@ class ReferCodeView extends StatelessWidget {
                               title: 'Continue',
                               width: w * .92,
                               height: h * .065,
-                              press: () {},
+                              press: () {
+                                Get.toNamed(Routes.languageview);
+                              },
                               color: Palatt.primary,
                               radius: 10.0,
                               fntSize: w * .04,
@@ -142,6 +203,23 @@ class ReferCodeView extends StatelessWidget {
                   ],
                 ),
               ),
+              Align(
+                alignment: Alignment.topRight,
+                child: RRButton(
+                  data: "Skip",
+                  height: 30,
+                  width: 40,
+                  onTap: () {
+                    Get.offAllNamed(Routes.homenav);
+                  },
+                  style: googleFontstyle(const TextStyle(
+                    fontSize: 18,
+                    color: Palatt.primary,
+                    fontWeight: FontWeight.w500,
+                    decoration: TextDecoration.underline,
+                  )),
+                ),
+              )
             ],
           ),
         ),

@@ -24,6 +24,8 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
+import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/views/bottomsheet/paymentdetails.dart';
 import 'package:hello_astro_user/widgets/custom_button.dart';
 
@@ -89,15 +91,15 @@ class WalletBalanceView extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 8,
                     shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      mainAxisExtent: h * .141,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 1,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        margin: EdgeInsets.all(w * .017),
-                        // height: h * .15,
-                        width: 23,
                         decoration: BoxDecoration(
                           color: Palatt.primary,
                           borderRadius: BorderRadius.circular(7),
@@ -117,16 +119,16 @@ class WalletBalanceView extends StatelessWidget {
                                   ),
                                 ),
                                 child: textStyle('New user only', Colors.white,
-                                    fontSize: 10, fontWeight: FontWeight.bold)),
+                                    fontSize: 10, fontWeight: FontWeight.w500)),
                             SizedBox(
                               height: h * .01,
                             ),
                             textStyle('₹1', Colors.white,
                                 fontSize: w * .054,
-                                fontWeight: FontWeight.w900),
+                                fontWeight: FontWeight.w500),
                             textStyle('Get ₹100', Colors.white,
                                 fontSize: w * .043,
-                                fontWeight: FontWeight.w900),
+                                fontWeight: FontWeight.w500),
                           ],
                         ),
                       );
@@ -156,7 +158,7 @@ class WalletBalanceView extends StatelessWidget {
                           Image.asset('assets/png/icons/coupon.png'),
                           SizedBox(width: w * .02),
                           textStyle('Coupon', Colors.black,
-                              fontSize: w * .041, fontWeight: FontWeight.w900),
+                              fontSize: w * .041, fontWeight: FontWeight.w500),
                           SizedBox(width: w * .65),
                           Image.asset('assets/png/icons/arrow_forward.png')
                         ],
@@ -171,13 +173,13 @@ class WalletBalanceView extends StatelessWidget {
                     ),
                     SizedBox(height: h * .014),
                     TextFormField(
-                      style: TextStyle(
-                          fontSize: w * .038, fontWeight: FontWeight.w500),
+                      style: googleFontstyle(TextStyle(
+                          fontSize: w * .038, fontWeight: FontWeight.w500)),
                       keyboardType: TextInputType.name,
                       cursorColor: Palatt.primary,
                       // cursorColor: Theme.of(context).primaryColor,
                       decoration: InputDecoration(
-                        isDense: true,
+                        // isDense: true,
                         contentPadding: EdgeInsets.all(w * .02),
                         hintText: 'Please enter a valid code',
                         hintStyle: TextStyle(fontSize: w * .033),
@@ -223,13 +225,13 @@ class WalletBalanceView extends StatelessWidget {
                         Image.asset('assets/png/icons/rupee.png'),
                         SizedBox(width: w * .02),
                         textStyle('Amount', Colors.black,
-                            fontSize: w * .041, fontWeight: FontWeight.w900),
+                            fontSize: w * .041, fontWeight: FontWeight.w500),
                       ],
                     ),
                     SizedBox(height: h * .015),
                     TextFormField(
-                      style: TextStyle(
-                          fontSize: w * .038, fontWeight: FontWeight.w500),
+                      style: googleFontstyle(TextStyle(
+                          fontSize: w * .038, fontWeight: FontWeight.w500)),
                       keyboardType: TextInputType.number,
                       cursorColor: Palatt.primary,
                       // cursorColor: Theme.of(context).primaryColor,
@@ -274,16 +276,22 @@ class WalletBalanceView extends StatelessWidget {
                     SizedBox(
                       height: h * .01,
                     ),
-                    Padding(
-                        padding: EdgeInsets.symmetric(horizontal: w * .03),
-                        child: CustomElevatedButton(
-                            onPressed: () {
-                              Get.bottomSheet(PaymentDetail());
-                            },
-                            width: 345,
-                            height: 50,
-                            child: textStyle('Proceed to Pay', Colors.white,
-                                fontSize: 16, fontWeight: FontWeight.normal))),
+                    RRButton(
+                      onTap: () {
+                        Get.bottomSheet(PaymentDetail());
+                      },
+                      // width: 345,
+                      width: Get.width,
+                      backgroundColor: Palatt.primary,
+                      radius: 10,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      height: 50,
+                      data: "Proceed to Pay",
+                      style: TextStyle(
+                          color: Palatt.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal),
+                    ),
                     SizedBox(
                       height: h * .02,
                     ),
@@ -339,12 +347,8 @@ class _WalletBalanceState extends State<WalletBalance> {
   RxString walletamount = "".obs;
   @override
   Widget build(BuildContext context) {
-    return textStyle(
-      "₹ 200",
-      widget.color,
-      fontSize: widget.size,
-      fontWeight: FontWeight.w500,
-    );
+    return textStyle("₹200", widget.color,
+        fontSize: widget.size, fontWeight: FontWeight.w500, height: 1.8);
   }
 
   // cron() async {

@@ -6,7 +6,9 @@ import 'package:hello_astro_user/views/directory/widgets.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 import 'package:intl/intl.dart';
 
+import '../../routes/app_pages.dart';
 import '../../theme/colorpalatt.dart';
+import '../../theme/themedata.dart';
 import '../../utils/buttons.dart';
 import '../../widgets/space.dart';
 import '../astroprofile/astroview.dart';
@@ -14,6 +16,7 @@ import '../astroprofile/astroview.dart';
 class DirectoryAstroDetails extends GetView {
   @override
   Widget build(BuildContext context) {
+    List langList = ["Hindi", "English", "Tamil"];
     Widget astrodetails = Container(
       margin: EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
@@ -280,7 +283,7 @@ class DirectoryAstroDetails extends GetView {
           iconColor: Palatt.primary,
           collapsedIconColor: Palatt.primary,
           children: [
-            const Divider(color: Palatt.grey, thickness: 1),
+            const Divider(color: Palatt.boxShadow, thickness: 1),
             Container(
               height: 30,
               alignment: Alignment.centerLeft,
@@ -320,7 +323,7 @@ class DirectoryAstroDetails extends GetView {
                 },
               ),
             ),
-            const Divider(color: Palatt.grey, thickness: 1),
+            const Divider(color: Palatt.boxShadow, thickness: 1),
             GridView.count(
               crossAxisCount: 2,
               padding: const EdgeInsets.symmetric(
@@ -405,29 +408,36 @@ class DirectoryAstroDetails extends GetView {
       child: Column(
         children: [
           Row(
-            children: ["Hindi", "English", "Tamil"]
-                .map((e) => Container(
-                      constraints: const BoxConstraints(minWidth: 70),
-                      height: 26,
-                      alignment: Alignment.center,
-                      child: Text(
-                        e,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          color: Palatt.primary,
-                          fontWeight: FontWeight.w500,
-                          height: 1,
-                        ),
-                      ),
-                    ))
-                .toList(),
-          ),
+              children: List.generate(
+                  langList.length,
+                  (index) => Container(
+                        constraints: const BoxConstraints(minWidth: 70),
+                        height: 26,
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: BorderSide(
+                          width: 1,
+                          color:
+                              index == 0 ? Palatt.primary : Palatt.transparent,
+                        ))),
+                        alignment: Alignment.center,
+                        child: Text(langList[index],
+                            style: googleFontstyle(
+                              TextStyle(
+                                fontSize: 16,
+                                color:
+                                    index == 0 ? Palatt.primary : Palatt.black,
+                                fontWeight: FontWeight.w500,
+                                height: 1,
+                              ),
+                            )),
+                      ))),
           spaceVertical(20),
-          Text(
+          const Text(
             """We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.
 We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.
 We live in an era where we are digitalized to the level, everything of our need is available at the tip of our hands like health, food, clothing, etc.""",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 15,
               color: Palatt.black,
               fontWeight: FontWeight.w300,
@@ -440,23 +450,24 @@ We live in an era where we are digitalized to the level, everything of our need 
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 15),
           child: Text(
             "Gallery",
-            style: const TextStyle(
+            style: googleFontstyle(TextStyle(
               fontSize: 18,
               color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
+              fontWeight: FontWeight.w500,
+            )),
           ),
         ),
+        spaceVertical(11),
         SizedBox(
           height: 100,
           child: ListView.builder(
             itemCount: 10,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 3),
             itemBuilder: (context, index) {
               return Container(
                 height: 96,
@@ -477,62 +488,21 @@ We live in an era where we are digitalized to the level, everything of our need 
         spaceVertical(20)
       ],
     );
-    Widget certificate = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Text(
-            "Certificate",
-            style: const TextStyle(
-              fontSize: 18,
-              color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 100,
-          child: ListView.builder(
-            itemCount: 10,
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            itemBuilder: (context, index) {
-              return Container(
-                height: 96,
-                width: 96,
-                margin: index == 10 ? null : const EdgeInsets.only(right: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
-                      ),
-                      fit: BoxFit.cover,
-                    )),
-              );
-            },
-          ),
-        ),
-        spaceVertical(20)
-      ],
-    );
-
     Widget review = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Text(
-            "Reviews",
-            style: const TextStyle(
-              fontSize: 18,
-              color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          child: Text("Reviews",
+              style: googleFontstyle(
+                TextStyle(
+                  fontSize: 18,
+                  color: Palatt.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
         ),
+        spaceVertical(5),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -565,17 +535,18 @@ We live in an era where we are digitalized to the level, everything of our need 
                 ),
               ],
             ),
-            Text(
-              "4.58",
-              style: const TextStyle(
-                fontSize: 26,
-                color: Palatt.black,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
+            Text("4.58",
+                style: googleFontstyle(
+                  TextStyle(
+                    fontSize: 26,
+                    color: Palatt.black,
+                    fontWeight: FontWeight.w500,
+                  ),
+                )),
             // spaceHorizontal(25),
           ],
         ),
+        spaceVertical(10),
         ListView.builder(
             itemCount: 5,
             shrinkWrap: true,
@@ -585,19 +556,21 @@ We live in an era where we are digitalized to the level, everything of our need 
                 children: [
                   ListTile(
                     isThreeLine: true,
+                    minVerticalPadding: 10,
+                    // contentPadding: EdgeInsets.zero,
                     leading: CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU"),
                     ),
-                    title: Text(
-                      "Rohan Sharma",
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Palatt.black,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
+                    title: Text("Rohan Sharma",
+                        style: googleFontstyle(
+                          TextStyle(
+                            fontSize: 15,
+                            color: Palatt.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        )),
                     subtitle: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -617,6 +590,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                             print(rating);
                           },
                         ),
+                        spaceVertical(5),
                         Text(
                           "Good information given by him",
                           style: const TextStyle(
@@ -631,7 +605,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                   Divider(
                     height: 1,
                     thickness: 1,
-                    color: Palatt.boxShadow,
+                    color: Palatt.boxShadow.withOpacity(0.5),
                   )
                 ],
               );
@@ -640,18 +614,62 @@ We live in an era where we are digitalized to the level, everything of our need 
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           alignment: Alignment.centerRight,
-          child: Text(
-            "All View Reviews",
-            style: const TextStyle(
-              fontSize: 18,
-              color: Palatt.black,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
+          child: Text("All View Reviews",
+              style: googleFontstyle(
+                TextStyle(
+                  fontSize: 15,
+                  color: Palatt.primary,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
         ),
         spaceVertical(10),
       ],
     );
+
+    Widget certificate = Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: Text("Certificate",
+              style: googleFontstyle(
+                const TextStyle(
+                  fontSize: 18,
+                  color: Palatt.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              )),
+        ),
+        spaceVertical(11),
+        SizedBox(
+          height: 100,
+          child: ListView.builder(
+            itemCount: 10,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            itemBuilder: (context, index) {
+              return Container(
+                height: 96,
+                width: 96,
+                margin: index == 10 ? null : const EdgeInsets.only(right: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
+                      ),
+                      fit: BoxFit.cover,
+                    )),
+              );
+            },
+          ),
+        ),
+        spaceVertical(20)
+      ],
+    );
+
     Widget contactbutton = RRButton(
       onTap: () {
         Get.bottomSheet(ContactAstro());

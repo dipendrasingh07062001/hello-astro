@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 
 import '../../controllers/profile/controller.dart';
@@ -40,9 +41,27 @@ class Profile extends GetView<ProfileController> {
                   },
                 )
               : null,
-          title: textStyle('Intake Form', Palatt.black,
-              fontSize: w * .054, fontWeight: FontWeight.w700),
+          title: textStyle('User Profile', Palatt.black,
+              fontSize: w * .054, fontWeight: FontWeight.w500),
           centerTitle: true,
+          actions: [
+            PopupMenuButton(
+                position: PopupMenuPosition.under,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8)),
+                itemBuilder: (_) {
+                  return [
+                    PopupMenuItem(
+                        // padding: EdgeInsets.zero,
+                        height: 30,
+                        child: Text(
+                          "Edit",
+                          style: googleFontstyle(const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w500)),
+                        ))
+                  ];
+                })
+          ],
         ),
         body: Obx(
           () => SingleChildScrollView(
@@ -52,15 +71,15 @@ class Profile extends GetView<ProfileController> {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               SizedBox(height: h * .023),
               textStyle('Name', Palatt.black,
-                  fontSize: w * .041, fontWeight: FontWeight.w900),
-              SizedBox(height: h * .02),
+                  fontSize: w * .041, fontWeight: FontWeight.w500),
+              SizedBox(height: 9),
               intakeTextFormField("Enter your name", controller.name, ((p0) {
                 return null;
               }), TextCapitalization.words),
               SizedBox(height: h * .025),
               textStyle('Gender', Palatt.black,
-                  fontSize: w * .041, fontWeight: FontWeight.w900),
-              SizedBox(height: h * .02),
+                  fontSize: w * .041, fontWeight: FontWeight.w500),
+              SizedBox(height: 9),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -71,8 +90,8 @@ class Profile extends GetView<ProfileController> {
 
               SizedBox(height: h * .025),
               textStyle('Email', Palatt.black,
-                  fontSize: w * .041, fontWeight: FontWeight.w900),
-              SizedBox(height: h * .02),
+                  fontSize: w * .041, fontWeight: FontWeight.w500),
+              SizedBox(height: 9),
               intakeTextFormField(
                 "Enter your name",
                 controller.email,
@@ -82,8 +101,8 @@ class Profile extends GetView<ProfileController> {
               ),
               SizedBox(height: h * .025),
               textStyle('Phone', Palatt.black,
-                  fontSize: w * .041, fontWeight: FontWeight.w900),
-              SizedBox(height: h * .02),
+                  fontSize: w * .041, fontWeight: FontWeight.w500),
+              SizedBox(height: 9),
               intakeTextFormField(
                 "Phone No.",
                 controller.email,
@@ -96,20 +115,20 @@ class Profile extends GetView<ProfileController> {
               Row(
                 children: [
                   textStyle('Birth Date', Palatt.black,
-                      fontSize: w * .041, fontWeight: FontWeight.w900),
+                      fontSize: w * .041, fontWeight: FontWeight.w500),
                   SizedBox(width: w * .32),
                   textStyle('Time', Palatt.black,
-                      fontSize: w * .041, fontWeight: FontWeight.w900),
+                      fontSize: w * .041, fontWeight: FontWeight.w500),
                 ],
               ),
-              SizedBox(height: h * .02),
+              SizedBox(height: 9),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
                 Container(
                   height: h * .06,
                   width: w * .4,
                   decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color(0xffdbdbdb), width: w * .0044),
+                    border:
+                        Border.all(color: const Color(0xffdbdbdb), width: 1),
                     borderRadius: const BorderRadius.all(Radius.circular(11)),
                   ),
                   child: TextFormField(
@@ -163,8 +182,8 @@ class Profile extends GetView<ProfileController> {
                   width: w * .4,
                   padding: EdgeInsets.symmetric(horizontal: w * .032),
                   decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color(0xffdbdbdb), width: w * .0044),
+                    border:
+                        Border.all(color: const Color(0xffdbdbdb), width: 1),
                     borderRadius: const BorderRadius.all(Radius.circular(11)),
                   ),
                   child: Center(
@@ -224,8 +243,8 @@ class Profile extends GetView<ProfileController> {
               ]),
               SizedBox(height: h * .025),
               textStyle('Place Of Birth', Palatt.black,
-                  fontSize: w * .041, fontWeight: FontWeight.w900),
-              SizedBox(height: h * .02),
+                  fontSize: w * .041, fontWeight: FontWeight.w500),
+              SizedBox(height: 9),
               intakeTextFormField(
                 "Place Of Birth",
                 controller.birthplace,
@@ -233,9 +252,9 @@ class Profile extends GetView<ProfileController> {
                   return null;
                 }),
               ),
-              SizedBox(height: h * .025),
+              SizedBox(height: 9),
               // textStyle('Occupation', Palatt.black,
-              //     fontSize: w * .041, fontWeight: FontWeight.w900),
+              //     fontSize: w * .041, fontWeight: FontWeight.w500),
               // SizedBox(height: h * .02),
               // intakeTextFormField(
               //   "Occupation",
@@ -246,7 +265,7 @@ class Profile extends GetView<ProfileController> {
               // ),
               // SizedBox(height: h * .025),
               // textStyle('Marital status', Palatt.black,
-              //     fontSize: w * .041, fontWeight: FontWeight.w900),
+              //     fontSize: w * .041, fontWeight: FontWeight.w500),
               // SizedBox(height: h * .02),
               // intakeTextFormField(
               //   "Marriage",
@@ -257,7 +276,7 @@ class Profile extends GetView<ProfileController> {
               // ),
               // SizedBox(height: h * .025),
               // textStyle('Area of Concern/Services', Palatt.black,
-              //     fontSize: w * .041, fontWeight: FontWeight.w900),
+              //     fontSize: w * .041, fontWeight: FontWeight.w500),
               // SizedBox(height: h * .02),
               // intakeTextFormField(
               //   "Area of concern",
@@ -268,7 +287,7 @@ class Profile extends GetView<ProfileController> {
               // ),
               // SizedBox(height: h * .025),
               // textStyle('Attachment', Palatt.black,
-              //     fontSize: w * .041, fontWeight: FontWeight.w900),
+              //     fontSize: w * .041, fontWeight: FontWeight.w500),
               // SizedBox(height: h * .02),
 
               SizedBox(height: h * .032),
@@ -305,7 +324,7 @@ class Profile extends GetView<ProfileController> {
               color: controller.gender.value == title
                   ? Colors.green
                   : const Color(0xffdbdbdb),
-              width: w * .0044),
+              width: 1),
           borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         child: Column(
@@ -334,13 +353,12 @@ class Profile extends GetView<ProfileController> {
       validator: validator,
       decoration: InputDecoration(
         contentPadding:
-            EdgeInsets.symmetric(horizontal: w * .032, vertical: h * .018),
+            EdgeInsets.symmetric(horizontal: w * .032, vertical: 10),
         isDense: true,
+        isCollapsed: true,
         hintText: hintText,
         hintStyle: TextStyle(
-            color: Palatt.grey,
-            fontSize: w * .044,
-            fontWeight: FontWeight.w500),
+            color: Palatt.grey, fontSize: 16, fontWeight: FontWeight.w500),
         fillColor: Colors.white,
         filled: true,
         focusedBorder: OutlineInputBorder(
@@ -349,8 +367,7 @@ class Profile extends GetView<ProfileController> {
           borderRadius: const BorderRadius.all(Radius.circular(11)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderSide:
-              BorderSide(width: w * .0044, color: const Color(0xffdbdbdb)),
+          borderSide: BorderSide(width: 1, color: const Color(0xffdbdbdb)),
           borderRadius: const BorderRadius.all(Radius.circular(11)),
         ),
       ),

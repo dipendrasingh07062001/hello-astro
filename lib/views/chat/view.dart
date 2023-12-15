@@ -12,98 +12,99 @@ class ChatScreen extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(70),
-        child: AppBar(
-          title: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Row(
+      appBar: AppBar(
+        titleSpacing: 0,
+        toolbarHeight: 75,
+        title: Row(
+          children: [
+            const CircleAvatar(
+              radius: 27,
+              backgroundImage: NetworkImage(
+                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
+              ),
+            ),
+            spaceHorizontal(14),
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CircleAvatar(
-                  radius: 27,
-                  backgroundImage: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-JXTGHFY17JKveGhEsuP2rz0qxFMoKb6eHg&usqp=CAU",
-                  ),
+                Text(
+                  "Harry John",
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.black,
+                      height: 1.2),
                 ),
-                spaceHorizontal(14),
-                const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Harry John",
-                      style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
-                          color: Palatt.black,
-                          height: 1.2),
-                    ),
-                    Text(
-                      "(3:51 mins)",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Palatt.primary,
-                          height: 1.2),
-                    ),
-                    Text(
-                      "Chat in-Progress",
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w500,
-                          color: Palatt.black,
-                          height: 1.2),
-                    )
-                  ],
+                Text(
+                  "(3:51 mins)",
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.primary,
+                      height: 1.2),
+                ),
+                Text(
+                  "Chat in-Progress",
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.black,
+                      height: 1.2),
                 )
+              ],
+            )
+          ],
+        ),
+        actions: [
+          RRButton2(
+              onTap: () {},
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(
+                    AppImages.refresh,
+                    height: 14,
+                    width: 17,
+                  ),
+                  spaceHorizontal(10),
+                  const Text(
+                    "End",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Palatt.black,
+                    ),
+                  )
+                ],
+              )),
+          spaceHorizontal(15)
+        ],
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: ListView(
+              // shrinkWrap: true,
+              // padding: const EdgeInsets.symmetric(horizontal: 15),
+              reverse: true,
+
+              children: [
+                chatcard(
+                  alignment: Alignment.centerLeft,
+                  backgroundColor: Palatt.blueshadelight,
+                  msg:
+                      "Welcome to Hello Astrologer. Consultant will take a minute to prepare your chart. You may ask your question in the meanwhile",
+                ),
+                chatcard(
+                  msg:
+                      "Hi Udayy,\nBelow are my details : \nName : Rajesh Kumar \nGender : Male \nDOB : 28-Feb-1996 \nTOB : 2:30 PM \nPOB : Homnabad, Karnataka, India \nMarital Status : Single \nOccupation : Private Sector \nProblem Area : Career and Business \nQuestion : undefined \nQuestion : undefined",
+                ),
               ],
             ),
           ),
-          actions: [
-            RRButton2(
-                onTap: () {},
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      AppImages.refresh,
-                      height: 14,
-                      width: 17,
-                    ),
-                    spaceHorizontal(10),
-                    const Text(
-                      "End",
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Palatt.black,
-                      ),
-                    )
-                  ],
-                )),
-            spaceHorizontal(15)
-          ],
-        ),
-      ),
-      body: ListView(
-        shrinkWrap: true,
-        // padding: const EdgeInsets.symmetric(horizontal: 15),
-        reverse: true,
-
-        children: [
-          chatcard(
-            alignment: Alignment.centerLeft,
-            backgroundColor: Palatt.blueshadelight,
-            msg:
-                "Welcome to Hello Astrologer. Consultant will take a minute to prepare your chart. You may ask your question in the meanwhile",
-          ),
-          chatcard(
-            msg:
-                "Hi Udayy,\nBelow are my details : \nName : Rajesh Kumar \nGender : Male \nDOB : 28-Feb-1996 \nTOB : 2:30 PM \nPOB : Homnabad, Karnataka, India \nMarital Status : Single \nOccupation : Private Sector \nProblem Area : Career and Business \nQuestion : undefined \nQuestion : undefined",
-          ),
+          typemessage()
         ],
       ),
-      floatingActionButton: typemessage(),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 

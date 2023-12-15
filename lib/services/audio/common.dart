@@ -77,8 +77,9 @@ class SeekBarState extends State<SeekBar> {
               ),
               SliderTheme(
                 data: _sliderThemeData.copyWith(
-                  inactiveTrackColor: Colors.transparent,
-                ),
+                    inactiveTrackColor: Colors.transparent,
+                    thumbShape:
+                        const RoundSliderThumbShape(enabledThumbRadius: 6)),
                 child: Slider(
                   inactiveColor: Palatt.white,
                   activeColor: Palatt.white,

@@ -17,6 +17,7 @@ class MyOrders extends GetView<MyOrdersController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Palatt.white,
       appBar: const CustomAppBar(
         title: "My Orders",
       ),
@@ -27,17 +28,30 @@ class MyOrders extends GetView<MyOrdersController> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              spaceVertical(15),
               Obx(
-                () => TabBar(
-                    indicatorPadding: const EdgeInsets.symmetric(
-                      horizontal: 15,
-                    ),
-                    indicatorColor: Palatt.primary,
-                    onTap: controller.onTapTab,
-                    tabs: [
-                      Tab(
-                        child: Text(
-                          "All",
+                () => Container(
+                  decoration: BoxDecoration(color: Palatt.white, boxShadow: [
+                    BoxShadow(
+                      color: Palatt.boxShadow.withOpacity(0.5),
+                      blurRadius: 3,
+                      offset: Offset(0, 3),
+                    )
+                  ]),
+                  child: TabBar(
+                      indicatorPadding: const EdgeInsets.symmetric(
+                          // horizontal: 15,
+                          ),
+                      indicatorColor: Palatt.primary,
+                      onTap: controller.onTapTab,
+                      indicatorWeight: 2.0,
+                      indicatorSize: TabBarIndicatorSize.label,
+
+                      // isScrollable: true,
+                      padding: EdgeInsets.zero,
+                      tabs: [
+                        Text(
+                          "  All  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 0
@@ -48,10 +62,8 @@ class MyOrders extends GetView<MyOrdersController> {
                                 : Palatt.grey,
                           ),
                         ),
-                      ),
-                      Tab(
-                        child: Text(
-                          "Onging",
+                        Text(
+                          "  Onging  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 1
@@ -62,10 +74,8 @@ class MyOrders extends GetView<MyOrdersController> {
                                 : Palatt.grey,
                           ),
                         ),
-                      ),
-                      Tab(
-                        child: Text(
-                          "Completed",
+                        Text(
+                          "  Completed  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 2
@@ -75,9 +85,9 @@ class MyOrders extends GetView<MyOrdersController> {
                                 ? Palatt.black
                                 : Palatt.grey,
                           ),
-                        ),
-                      )
-                    ]),
+                        )
+                      ]),
+                ),
               ),
               Expanded(
                   child: TabBarView(
@@ -296,7 +306,7 @@ class OrderCard extends StatelessWidget {
             color: Palatt.grey,
             indent: 10,
             endIndent: 10,
-            height: 1,
+            height: 10,
           ),
           const Padding(
             padding: EdgeInsets.symmetric(
@@ -307,7 +317,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Charge",
+                  "Total Charge",
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w500,

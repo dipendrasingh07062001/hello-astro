@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -16,11 +17,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 22, fontWeight: FontWeight.w500, color: Palatt.black),
-      ),
+      title: Text(title,
+          style: googleFontstyle(
+            const TextStyle(
+                fontSize: 22, fontWeight: FontWeight.w500, color: Palatt.black),
+          )),
       centerTitle: true,
       actions: actions,
       automaticallyImplyLeading: true,

@@ -11,10 +11,9 @@ class FAQs extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "FAQs"),
+      appBar: const CustomAppBar(title: "FAQs"),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
           AppImages.background2,
@@ -23,12 +22,15 @@ class FAQs extends GetView {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             spaceVertical(15),
-            Text(
-              "FAQs",
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w500,
-                color: Palatt.black,
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Text(
+                "FAQs",
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w500,
+                  color: Palatt.black,
+                ),
               ),
             ),
             spaceVertical(15),
@@ -37,22 +39,28 @@ class FAQs extends GetView {
                 itemCount: 10,
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.only(top: 10),
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 15),
+                    margin:
+                        const EdgeInsets.only(bottom: 15, left: 15, right: 15),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Palatt.white,
                         boxShadow: const [
                           BoxShadow(
                             color: Palatt.boxShadow,
-                            blurRadius: 4,
+                            blurRadius: 6,
                           )
                         ]),
                     child: ExpansionTile(
-                      iconColor: Palatt.primary,
-                      collapsedIconColor: Palatt.primary,
-                      title: Text(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      iconColor: Palatt.black,
+                      collapsedIconColor: Palatt.black,
+                      backgroundColor: Palatt.white,
+                      title: const Text(
                         "Lorem ipsum",
                         style: TextStyle(
                           fontSize: 16,
@@ -60,9 +68,9 @@ class FAQs extends GetView {
                           color: Palatt.black,
                         ),
                       ),
-                      childrenPadding: EdgeInsets.all(10),
+                      childrenPadding: const EdgeInsets.all(10),
                       children: [
-                        Text(
+                        const Text(
                           "Lorem ipsum, or lapsus as it is sometimes known, is dummy text used in laying out print, graphic or web designs. The passage is attributed to an unknown typesetter in the 15th century who is thought to have scrambled parts of Cicero's De Fin bus Bono rum et Malo rum for use.",
                           style: TextStyle(
                             fontSize: 16,

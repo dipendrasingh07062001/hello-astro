@@ -32,6 +32,8 @@ class AppImages {
   static const home = "$_svg/icons/home.svg";
   static const walletborder = "$_svg/icons/walletborder.svg";
   static const refresh = "$_svg/icons/refresh.svg";
+  static const intro1 = "$_svg/icons/intro1.svg";
+  static const intro2 = "$_svg/icons/intro2.svg";
 
   //images
   static const login = "$_svg/images/loginimage.svg";

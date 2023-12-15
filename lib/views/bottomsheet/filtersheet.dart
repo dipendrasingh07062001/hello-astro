@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
@@ -30,14 +31,14 @@ class FilterSheet extends GetView {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 spaceHorizontal(Get.width * 0.05),
-                const Text(
-                  "Filters",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                Text("Filters",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GestureDetector(
                   onTap: () => Get.close(1),
                   child: const Icon(
@@ -56,14 +57,15 @@ class FilterSheet extends GetView {
               shrinkWrap: true,
               padding: const EdgeInsets.symmetric(horizontal: 15),
               children: [
-                const Text(
-                  "Language",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                spaceVertical(10),
+                Text("Language",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GridView.count(
                   crossAxisCount: 3,
                   shrinkWrap: true,
@@ -76,7 +78,7 @@ class FilterSheet extends GetView {
                     return RRButton2(
                       onTap: () {},
                       radius: 8,
-                      borderColor: Palatt.grey,
+                      borderColor: Palatt.greyshade2,
                       child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -85,7 +87,7 @@ class FilterSheet extends GetView {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              color: Palatt.grey,
+                              color: Palatt.greyshade2,
                             ),
                           ),
                           Text(
@@ -93,7 +95,7 @@ class FilterSheet extends GetView {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-                              color: Palatt.grey,
+                              color: Palatt.greyshade2,
                             ),
                           ),
                         ],
@@ -101,14 +103,15 @@ class FilterSheet extends GetView {
                     );
                   }),
                 ),
-                const Text(
-                  "Skill",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                spaceVertical(10),
+                Text("Skill",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GridView.count(
                   crossAxisCount: 3,
                   shrinkWrap: true,
@@ -124,21 +127,22 @@ class FilterSheet extends GetView {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: Palatt.grey,
+                        color: Palatt.greyshade2,
                       ),
                       radius: 8,
-                      borderColor: Palatt.grey,
+                      borderColor: Palatt.greyshade2,
                     );
                   }),
                 ),
-                const Text(
-                  "Experience",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                spaceVertical(10),
+                Text("Experience",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 CustomSlider(
                   min: 0,
                   max: 20,
@@ -150,40 +154,40 @@ class FilterSheet extends GetView {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "0",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Palatt.black,
-                      ),
-                    ),
-                    Text(
-                      "20",
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Palatt.black,
-                      ),
-                    ),
+                    Text("0",
+                        style: googleFontstyle(
+                          TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Palatt.black,
+                          ),
+                        )),
+                    Text("20",
+                        style: googleFontstyle(
+                          TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Palatt.black,
+                          ),
+                        )),
                   ],
                 ),
-                const Text(
-                  "Price",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
-                const Text(
-                  "₹8~₹99",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                Text("Price",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
+                Text("₹8~₹99",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 CustomSlider(
                   min: 0,
                   max: 20,
@@ -193,14 +197,14 @@ class FilterSheet extends GetView {
                   },
                 ),
                 spaceVertical(15),
-                const Text(
-                  "Speciality",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Palatt.black,
-                  ),
-                ),
+                Text("Speciality",
+                    style: googleFontstyle(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                        color: Palatt.black,
+                      ),
+                    )),
                 GridView.count(
                   crossAxisCount: 3,
                   shrinkWrap: true,
@@ -217,10 +221,10 @@ class FilterSheet extends GetView {
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.w400,
-                        color: Palatt.grey,
+                        color: Palatt.greyshade2,
                       ),
                       radius: 8,
-                      borderColor: Palatt.grey,
+                      borderColor: Palatt.greyshade2,
                     );
                   }),
                 ),
@@ -235,31 +239,34 @@ class FilterSheet extends GetView {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               RRButton(
-                onTap: () {},
-                data: "Clear All",
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Palatt.black,
-                ),
-              ),
+                  onTap: () {},
+                  data: "Clear All",
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  style: googleFontstyle(
+                    const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.black,
+                    ),
+                  )),
               RRButton(
-                onTap: () {},
-                data: "Apply",
-                radius: 10,
-                margin: const EdgeInsets.symmetric(horizontal: 15),
-                backgroundColor: Palatt.primary,
-                height: 43,
-                width: 173,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
-                  color: Palatt.white,
-                ),
-              ),
+                  onTap: () {},
+                  data: "Apply",
+                  radius: 10,
+                  margin: const EdgeInsets.symmetric(horizontal: 15),
+                  backgroundColor: Palatt.primary,
+                  height: 43,
+                  width: 173,
+                  style: googleFontstyle(
+                    const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Palatt.white,
+                    ),
+                  )),
             ],
-          )
+          ),
+          spaceVertical(10)
         ],
       ),
     );

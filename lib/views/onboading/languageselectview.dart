@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/onboarding/languagecontroller.dart';
+import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/views/onboading/widgets.dart';
 
 import '../../theme/colorpalatt.dart';
@@ -100,7 +101,9 @@ class LanguageSelectView extends GetView<LanguageController> {
                               title: 'Continue',
                               width: w * .92,
                               height: h * .065,
-                              press: () {},
+                              press: () {
+                                Get.offAllNamed(Routes.homenav);
+                              },
                               color: Palatt.primary,
                               radius: 10.0,
                               fntSize: w * .04,
