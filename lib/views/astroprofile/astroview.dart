@@ -716,9 +716,9 @@ We live in an era where we are digitalized to the level, everything of our need 
           spaceVertical(20),
           gallery,
           review,
-          callchatButton,
         ],
       ),
+      bottomNavigationBar: callchatButton,
     );
   }
 }

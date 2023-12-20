@@ -18,10 +18,17 @@ class HelpNSupport extends GetView {
       body: Column(
         children: [
           Expanded(
-            child: ListView(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              children: [chatcard(), chatcard(), chatcard(), chatcard()],
+            child: Container(
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                AppImages.background2,
+              ))),
+              child: ListView(
+                shrinkWrap: true,
+                physics: const BouncingScrollPhysics(),
+                children: [chatcard(), chatcard(), chatcard(), chatcard()],
+              ),
             ),
           ),
           typemessage(),

@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/theme/themedata.dart';
 
 class EltdButton extends StatelessWidget {
   String? title;
@@ -145,7 +146,7 @@ class RRButton extends StatelessWidget {
         child: Text(
           data,
           textAlign: TextAlign.center,
-          style: style,
+          style: style == null ? null : googleFontstyle(style!),
         ),
       ),
     );

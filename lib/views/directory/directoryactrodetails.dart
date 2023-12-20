@@ -18,7 +18,7 @@ class DirectoryAstroDetails extends GetView {
   Widget build(BuildContext context) {
     List langList = ["Hindi", "English", "Tamil"];
     Widget astrodetails = Container(
-      margin: EdgeInsets.symmetric(horizontal: 15),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
           color: Palatt.white,
           borderRadius: BorderRadius.circular(10),
@@ -40,7 +40,7 @@ class DirectoryAstroDetails extends GetView {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 33,
                   backgroundColor: Palatt.primary,
                   child: CircleAvatar(
@@ -61,7 +61,7 @@ class DirectoryAstroDetails extends GetView {
                   decoration: BoxDecoration(
                       color: Palatt.white,
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(color: Palatt.boxShadow, blurRadius: 3)
                       ]),
                   padding: const EdgeInsets.symmetric(horizontal: 2),
@@ -80,7 +80,7 @@ class DirectoryAstroDetails extends GetView {
                   ),
                 ),
                 spaceVertical(5),
-                Text(
+                const Text(
                   "View - 70000",
                   style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
                 ),
@@ -88,7 +88,7 @@ class DirectoryAstroDetails extends GetView {
             ),
           ),
           spaceHorizontal(10),
-          Expanded(
+          const Expanded(
             flex: 3,
             child: Stack(
               children: [
@@ -97,7 +97,7 @@ class DirectoryAstroDetails extends GetView {
                   children: [
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Name : ",
                           style: TextStyle(
                             fontSize: 11,
@@ -105,7 +105,7 @@ class DirectoryAstroDetails extends GetView {
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "Zoha Merchant",
                           style: TextStyle(
                             fontSize: 11,
@@ -117,7 +117,7 @@ class DirectoryAstroDetails extends GetView {
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Expertise : ",
                           style: TextStyle(
                             fontSize: 11,
@@ -125,7 +125,7 @@ class DirectoryAstroDetails extends GetView {
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "Tarot, Psychic",
                           style: TextStyle(
                             fontSize: 11,
@@ -137,16 +137,16 @@ class DirectoryAstroDetails extends GetView {
                     ),
                     Row(
                       children: [
-                        const Text(
-                          "Expertise : ",
+                        Text(
+                          "Consltancy Charge : ",
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
-                          "Tarot, Psychic",
+                        Text(
+                          "20/min INR",
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w400,
@@ -157,7 +157,7 @@ class DirectoryAstroDetails extends GetView {
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Language : ",
                           style: TextStyle(
                             fontSize: 11,
@@ -165,7 +165,7 @@ class DirectoryAstroDetails extends GetView {
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "English, Hindi",
                           style: TextStyle(
                             fontSize: 11,
@@ -177,7 +177,7 @@ class DirectoryAstroDetails extends GetView {
                     ),
                     Row(
                       children: [
-                        const Text(
+                        Text(
                           "Years of experience : ",
                           style: TextStyle(
                             fontSize: 11,
@@ -185,7 +185,7 @@ class DirectoryAstroDetails extends GetView {
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
+                        Text(
                           "22 Years",
                           style: TextStyle(
                             fontSize: 11,
@@ -197,36 +197,16 @@ class DirectoryAstroDetails extends GetView {
                     ),
                     Row(
                       children: [
-                        const Text(
-                          "City : ",
+                        Text(
+                          "Location : ",
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w600,
                             color: Palatt.black,
                           ),
                         ),
-                        const Text(
-                          "Jaipur",
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w400,
-                            color: Palatt.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          "State : ",
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                            color: Palatt.black,
-                          ),
-                        ),
-                        const Text(
-                          "Rajasthan",
+                        Text(
+                          "Jaipur, Rajasthan",
                           style: TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w400,
@@ -260,19 +240,19 @@ class DirectoryAstroDetails extends GetView {
       decoration: BoxDecoration(
           color: Palatt.white,
           borderRadius: BorderRadius.circular(10),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Palatt.boxShadow,
               blurRadius: 4,
             )
           ]),
       child: ExpansionTile(
-          tilePadding: EdgeInsets.symmetric(
+          tilePadding: const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 0,
           ),
           childrenPadding: EdgeInsets.zero,
-          title: Text(
+          title: const Text(
             "Availability Day/Timing",
             style: TextStyle(
               fontSize: 16,
@@ -359,19 +339,19 @@ class DirectoryAstroDetails extends GetView {
         color: Palatt.primary.withOpacity(0.5),
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 10,
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.thumb_up,
             color: Palatt.primary,
           ),
           spaceHorizontal(5),
-          Text(
+          const Text(
             "98%",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 19,
               color: Palatt.black,
               fontWeight: FontWeight.w500,
@@ -379,7 +359,7 @@ class DirectoryAstroDetails extends GetView {
             ),
           ),
           spaceHorizontal(8),
-          VerticalDivider(
+          const VerticalDivider(
             width: 2,
             thickness: 2,
             color: Palatt.primary,
@@ -387,12 +367,12 @@ class DirectoryAstroDetails extends GetView {
             indent: 10,
           ),
           spaceHorizontal(8),
-          Expanded(
+          const Expanded(
             child: Text(
               "Out of all users who were surveyed. 98% of them are satisfied with Astro Ssachin S's prediction.",
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
                 color: Palatt.black,
                 fontWeight: FontWeight.w300,
@@ -450,10 +430,10 @@ We live in an era where we are digitalized to the level, everything of our need 
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Text(
             "Gallery",
-            style: googleFontstyle(TextStyle(
+            style: googleFontstyle(const TextStyle(
               fontSize: 18,
               color: Palatt.black,
               fontWeight: FontWeight.w500,
@@ -475,7 +455,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                 margin: index == 10 ? null : const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
                       ),
@@ -495,7 +475,7 @@ We live in an era where we are digitalized to the level, everything of our need 
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Text("Reviews",
               style: googleFontstyle(
-                TextStyle(
+                const TextStyle(
                   fontSize: 18,
                   color: Palatt.black,
                   fontWeight: FontWeight.w500,
@@ -516,8 +496,8 @@ We live in an era where we are digitalized to the level, everything of our need 
                   allowHalfRating: true,
                   itemCount: 5,
                   itemSize: 30,
-                  itemPadding: EdgeInsets.only(right: 8.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.only(right: 8.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Palatt.primary,
                   ),
@@ -525,9 +505,9 @@ We live in an era where we are digitalized to the level, everything of our need 
                     print(rating);
                   },
                 ),
-                Text(
+                const Text(
                   "Based on 900 Reviews",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     color: Palatt.black,
                     fontWeight: FontWeight.w400,
@@ -537,7 +517,7 @@ We live in an era where we are digitalized to the level, everything of our need 
             ),
             Text("4.58",
                 style: googleFontstyle(
-                  TextStyle(
+                  const TextStyle(
                     fontSize: 26,
                     color: Palatt.black,
                     fontWeight: FontWeight.w500,
@@ -558,14 +538,14 @@ We live in an era where we are digitalized to the level, everything of our need 
                     isThreeLine: true,
                     minVerticalPadding: 10,
                     // contentPadding: EdgeInsets.zero,
-                    leading: CircleAvatar(
+                    leading: const CircleAvatar(
                       radius: 25,
                       backgroundImage: NetworkImage(
                           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU"),
                     ),
                     title: Text("Rohan Sharma",
                         style: googleFontstyle(
-                          TextStyle(
+                          const TextStyle(
                             fontSize: 15,
                             color: Palatt.black,
                             fontWeight: FontWeight.w500,
@@ -581,8 +561,8 @@ We live in an era where we are digitalized to the level, everything of our need 
                           allowHalfRating: true,
                           itemCount: 5,
                           itemSize: 15,
-                          itemPadding: EdgeInsets.only(right: 8.0),
-                          itemBuilder: (context, _) => Icon(
+                          itemPadding: const EdgeInsets.only(right: 8.0),
+                          itemBuilder: (context, _) => const Icon(
                             Icons.star,
                             color: Palatt.primary,
                           ),
@@ -591,9 +571,9 @@ We live in an era where we are digitalized to the level, everything of our need 
                           },
                         ),
                         spaceVertical(5),
-                        Text(
+                        const Text(
                           "Good information given by him",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 13,
                             color: Palatt.grey,
                             fontWeight: FontWeight.w400,
@@ -616,7 +596,7 @@ We live in an era where we are digitalized to the level, everything of our need 
           alignment: Alignment.centerRight,
           child: Text("All View Reviews",
               style: googleFontstyle(
-                TextStyle(
+                const TextStyle(
                   fontSize: 15,
                   color: Palatt.primary,
                   fontWeight: FontWeight.w500,
@@ -656,7 +636,7 @@ We live in an era where we are digitalized to the level, everything of our need 
                 margin: index == 10 ? null : const EdgeInsets.only(right: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    image: DecorationImage(
+                    image: const DecorationImage(
                       image: NetworkImage(
                         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4HIIl8vm4izK8M9wIAz5C_rGfJzA1noXe6A&usqp=CAU",
                       ),
@@ -672,7 +652,7 @@ We live in an era where we are digitalized to the level, everything of our need 
 
     Widget contactbutton = RRButton(
       onTap: () {
-        Get.bottomSheet(ContactAstro());
+        Get.bottomSheet(const ContactAstro());
       },
       data: "Get Contact Details",
       width: Get.width,
@@ -680,16 +660,16 @@ We live in an era where we are digitalized to the level, everything of our need 
       backgroundColor: Palatt.primary,
       radius: 10,
       height: 50,
-      style: TextStyle(fontSize: 16, color: Palatt.white),
+      style: const TextStyle(fontSize: 16, color: Palatt.white),
     );
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         title: "Directory Details",
       ),
       body: ListView(
         shrinkWrap: true,
         children: [
-          registerbutton,
+          registerbutton(),
           spaceVertical(20),
           astrodetails,
           availabilityTime,

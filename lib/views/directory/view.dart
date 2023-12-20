@@ -3,12 +3,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
+import 'package:hello_astro_user/views/bottomsheet/sortby.dart';
 import 'package:hello_astro_user/views/directory/widgets.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 
 import '../../utils/buttons.dart';
 import '../../utils/imageslink.dart';
 import '../../widgets/space.dart';
+import '../bottomsheet/filtersheet.dart';
 
 class DirectoryView extends GetView {
   const DirectoryView({super.key});
@@ -44,7 +46,7 @@ class DirectoryView extends GetView {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     alignment: Alignment.center,
-                    child: Text(
+                    child: const Text(
                       "All Astrolger",
                       style: TextStyle(
                         fontSize: 15,
@@ -61,7 +63,7 @@ class DirectoryView extends GetView {
                       borderRadius: BorderRadius.circular(8),
                     ),
                     alignment: Alignment.center,
-                    child: Text(
+                    child: const Text(
                       "Favourites",
                       style: TextStyle(
                         fontSize: 15,
@@ -76,30 +78,42 @@ class DirectoryView extends GetView {
           ),
         ),
         const Spacer(),
-        CircleAvatar(
-          backgroundColor: Palatt.grey,
-          radius: 13,
+        GestureDetector(
+          onTap: () => Get.bottomSheet(
+            const FilterSheet(),
+            isScrollControlled: true,
+          ),
           child: CircleAvatar(
-            radius: 12.5,
-            backgroundColor: Palatt.white,
-            child: SvgPicture.asset(
-              AppImages.filter,
-              height: 11,
-              width: 11,
+            backgroundColor: Palatt.grey,
+            radius: 13,
+            child: CircleAvatar(
+              radius: 12.5,
+              backgroundColor: Palatt.white,
+              child: SvgPicture.asset(
+                AppImages.filter,
+                height: 11,
+                width: 11,
+              ),
             ),
           ),
         ),
         spaceHorizontal(10),
-        CircleAvatar(
-          backgroundColor: Palatt.grey,
-          radius: 13,
+        GestureDetector(
+          onTap: () => Get.bottomSheet(
+            const SortBy(),
+            // isScrollControlled: true,
+          ),
           child: CircleAvatar(
-            radius: 12.5,
-            backgroundColor: Palatt.white,
-            child: SvgPicture.asset(
-              AppImages.menu_burger,
-              height: 11,
-              width: 11,
+            backgroundColor: Palatt.grey,
+            radius: 13,
+            child: CircleAvatar(
+              radius: 12.5,
+              backgroundColor: Palatt.white,
+              child: SvgPicture.asset(
+                AppImages.menu_burger,
+                height: 11,
+                width: 11,
+              ),
             ),
           ),
         ),
@@ -335,7 +349,7 @@ class DirectoryView extends GetView {
       ),
       body: Column(
         children: [
-          registerbutton,
+          registerbutton(),
           spaceVertical(15),
           menubar,
           Expanded(child: astroView)

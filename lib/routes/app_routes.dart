@@ -28,6 +28,7 @@ abstract class Routes {
   static const intro = _Paths.intro;
   static const notification = _Paths.notification;
   static const review = _Paths.review;
+  static const settings = _Paths.settings;
 }
 
 abstract class _Paths {
@@ -58,4 +59,5 @@ abstract class _Paths {
   static const intro = '/intro';
   static const notification = '/notification';
   static const review = '/review';
+  static const settings = '/settings';
 }

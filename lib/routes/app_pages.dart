@@ -19,6 +19,7 @@ import 'package:hello_astro_user/views/privacypolicy/view.dart';
 import 'package:hello_astro_user/views/recharge_history/recharge_history.dart';
 import 'package:hello_astro_user/views/refernearn/view.dart';
 import 'package:hello_astro_user/views/reviews/view.dart';
+import 'package:hello_astro_user/views/settings/view.dart';
 import 'package:hello_astro_user/views/termsncondition/view.dart';
 import 'package:hello_astro_user/views/wallet/walletbalance.dart';
 import 'package:hello_astro_user/controllers/orders/myorderscontroller.dart';
@@ -37,6 +38,7 @@ class AppPages {
   static const initial = Routes.splash;
   static final routes = [
     GetPage(name: _Paths.splash, page: () => Splash()),
+    GetPage(name: _Paths.settings, page: () => SettingsView()),
     GetPage(name: _Paths.login, page: () => const Login()),
     GetPage(name: _Paths.review, page: () => const ReviewsView()),
     GetPage(name: _Paths.notification, page: () => const NotificationView()),

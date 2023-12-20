@@ -153,7 +153,7 @@ class ChatWithAstrologer extends GetView {
               const Spacer(),
               GestureDetector(
                 onTap: () => Get.bottomSheet(
-                  FilterSheet(),
+                  const FilterSheet(),
                   isScrollControlled: true,
                 ),
                 child: CircleAvatar(
@@ -199,7 +199,7 @@ class ChatWithAstrologer extends GetView {
                   (index) => RRButton(
                         onTap: () {},
                         data: "Marriage",
-                        height: 30,
+                        // height: 30,
                         backgroundColor: Palatt.white,
                         radius: 40,
                         padding: const EdgeInsets.symmetric(

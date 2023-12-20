@@ -124,30 +124,30 @@ class HomeDrawer extends StatelessWidget {
                       Get.toNamed(Routes.helpnsupport);
                     },
                   ),
-                  spaceVertical(10),
-                  DrawerTile(
-                    image: AppImages.aboutus,
-                    title: "About us",
-                    onTap: () {
-                      Get.toNamed(Routes.aboutus);
-                    },
-                  ),
-                  spaceVertical(10),
-                  DrawerTile(
-                    image: AppImages.privacypolicy,
-                    title: "Privacy Policy",
-                    onTap: () {
-                      Get.toNamed(Routes.privacypolicy);
-                    },
-                  ),
-                  spaceVertical(10),
-                  DrawerTile(
-                    image: AppImages.termsnconditions,
-                    title: "Terms and Conditions",
-                    onTap: () {
-                      Get.toNamed(Routes.termsncondition);
-                    },
-                  ),
+                  // spaceVertical(10),
+                  // DrawerTile(
+                  //   image: AppImages.aboutus,
+                  //   title: "About us",
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.aboutus);
+                  //   },
+                  // ),
+                  // spaceVertical(10),
+                  // DrawerTile(
+                  //   image: AppImages.privacypolicy,
+                  //   title: "Privacy Policy",
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.privacypolicy);
+                  //   },
+                  // ),
+                  // spaceVertical(10),
+                  // DrawerTile(
+                  //   image: AppImages.termsnconditions,
+                  //   title: "Terms and Conditions",
+                  //   onTap: () {
+                  //     Get.toNamed(Routes.termsncondition);
+                  //   },
+                  // ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.faqs,
@@ -155,7 +155,14 @@ class HomeDrawer extends StatelessWidget {
                     onTap: () {
                       Get.toNamed(Routes.faqs);
                     },
-                    showdivider: false,
+                  ),
+                  spaceVertical(10),
+                  DrawerTile(
+                    image: AppImages.settings,
+                    title: "Settings",
+                    onTap: () {
+                      Get.toNamed(Routes.settings);
+                    },
                   ),
                 ],
               ),
@@ -167,6 +174,16 @@ class HomeDrawer extends StatelessWidget {
                   .map((e) =>
                       SocialMediabutton(e["image"] ?? "", e["link"] ?? ""))
                   .toList(),
+            ),
+            spaceVertical(5),
+            RRButton(
+              onTap: () {},
+              data: "Register as Astrologer",
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: Palatt.white,
+              ),
             ),
             spaceVertical(10),
             EltdButton(

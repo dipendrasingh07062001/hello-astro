@@ -42,16 +42,12 @@ class FreeServices extends StatelessWidget {
                       image: AppImages.kundli,
                       text: "Kundli",
                     ),
-                    FSCard(
-                      margin: const EdgeInsets.only(right: 10),
-                      image: AppImages.directory,
-                      text: "Directory",
-                    ),
-                    FSCard(
-                      margin: const EdgeInsets.only(right: 10),
-                      image: AppImages.horoscope,
-                      text: "Horoscope",
-                    ),
+
+                    // FSCard(
+                    //   margin: const EdgeInsets.only(right: 10),
+                    //   image: AppImages.horoscope,
+                    //   text: "Horoscope",
+                    // ),
                     FSCard(
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.kundlimaching,
@@ -61,6 +57,11 @@ class FreeServices extends StatelessWidget {
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.panchang,
                       text: "Panchang",
+                    ),
+                    FSCard(
+                      margin: const EdgeInsets.only(right: 10),
+                      image: AppImages.directory,
+                      text: "Directory",
                     ),
                   ],
                 ),
