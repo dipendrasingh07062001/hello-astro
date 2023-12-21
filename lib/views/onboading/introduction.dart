@@ -5,6 +5,7 @@ import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/onboading/pageview_content.dart';
 
+import '../../services/notification/service.dart';
 import '../../widgets/backgroundimages.dart';
 import '../../widgets/textwidgets.dart';
 
@@ -61,7 +62,9 @@ class _IntroductionState extends State<Introduction> {
                       child: textStyle('Skip >>', Palatt.black,
                           fontSize: 16, fontWeight: FontWeight.w500),
                       onTap: () {
-                        Get.toNamed(Routes.login);
+                        // Get.toNamed(Routes.login);
+                        // NotificationServices.showNotification(
+                        //     id: 0, title: "test", body: "this is body");
                         // Navigator.push(
                         //   context,
                         //   MaterialPageRoute(

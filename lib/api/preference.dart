@@ -24,6 +24,7 @@ class PreferenceConstants {
   static const userid = "userid";
   static const username = "username";
   static const email = "email";
+  static const phone = "phone";
   static const fullname = "fullname";
   static const dob = "dob";
   static const gender = "gender";

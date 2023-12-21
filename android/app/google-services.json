@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "724496789632",
+    "project_id": "hello-astro-bfb74",
+    "storage_bucket": "hello-astro-bfb74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724496789632:android:275eb14e54e5e09bde7665",
+        "android_client_info": {
+          "package_name": "com.example.hello_astro_user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC09t59tZ3uXifKUUrRer3BLs0O1jc1t5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

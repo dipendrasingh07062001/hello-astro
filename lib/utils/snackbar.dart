@@ -33,7 +33,7 @@ redsnackbar(String message) {
     elevation: 8,
     content: Text(
       message,
-      textAlign: TextAlign.center,
+      // textAlign: TextAlign.center,
     ),
   ));
 }

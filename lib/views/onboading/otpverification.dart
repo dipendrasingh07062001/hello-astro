@@ -26,7 +26,6 @@ class _OtpVerficationState extends State<OtpVerfication> {
   @override
   void initState() {
     super.initState();
-    onboardingController.onInit();
     onboardingController.setphonenumber(Get.arguments);
   }
 
@@ -141,259 +140,13 @@ class _OtpVerficationState extends State<OtpVerfication> {
                   ),
                   SizedBox(height: h * .02),
                   Pinput(
+                    controller: onboardingController.otpController,
                     length: 4,
                     defaultPinTheme: defaultPinTheme,
                     focusedPinTheme: focusedPinTheme,
                     disabledPinTheme: disabledPinTheme,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     SizedBox(
-                  //       width: w * .213,
-                  //       height: h * .07,
-                  //       child: TextFormField(
-                  //         onChanged: (value) {
-                  //           onboardingController.nextField(
-                  //               value, onboardingController.pin2FocusNode);
-                  //           //previousField(value, pin2FocusNode);
-                  //         },
-                  //         focusNode: onboardingController.pin1FocusNode,
-                  //         showCursor: true,
-                  //         autofocus: false,
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //             fontSize: w * .054,
-                  //             fontWeight: FontWeight.w900),
-                  //         keyboardType: TextInputType.number,
-                  //         controller: onboardingController.first,
-                  //         maxLength: 1,
-                  //         cursorColor: Palatt.primary,
-                  //         // cursorColor: Theme.of(context).primaryColor,
-                  //         decoration: InputDecoration(
-                  //           counterText: "",
-                  //           fillColor: Colors.white,
-                  //           filled: true,
-                  //           focusedBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044, color: Palatt.primary),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //           enabledBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044,
-                  //                 color: onboardingController
-                  //                         .first.text.isNotEmpty
-                  //                     ? Palatt.primary
-                  //                     : Palatt.otpborder),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-
-                  //     SizedBox(width: w * .02),
-
-                  //     SizedBox(
-                  //       width: w * .213,
-                  //       height: h * .07,
-                  //       child: TextFormField(
-                  //         focusNode: onboardingController.pin2FocusNode,
-                  //         onChanged: (value) {
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap2 == 0) {
-                  //             onboardingController.tap2 = 1;
-                  //           }
-                  //           if (value.toString().isNotEmpty) {
-                  //             FocusScope.of(context).requestFocus(
-                  //                 onboardingController.pin3FocusNode);
-                  //           }
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap2 == 1) {
-                  //             FocusScope.of(context).requestFocus(
-                  //                 onboardingController.pin1FocusNode);
-                  //           }
-                  //         },
-                  //         showCursor: true,
-                  //         autofocus: false,
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //             fontSize: w * .054,
-                  //             fontWeight: FontWeight.w900),
-                  //         keyboardType: TextInputType.number,
-                  //         controller: onboardingController.second,
-                  //         maxLength: 1,
-                  //         cursorColor: Palatt.primary,
-                  //         // cursorColor: Theme.of(context).primaryColor,
-                  //         decoration: InputDecoration(
-                  //           counterText: "",
-                  //           fillColor: Colors.white,
-                  //           filled: true,
-                  //           focusedBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044, color: Palatt.primary),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //           enabledBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044,
-                  //                 color: onboardingController
-                  //                         .second.text.isNotEmpty
-                  //                     ? Palatt.primary
-                  //                     : Palatt.otpborder),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-
-                  //     SizedBox(width: w * .02),
-
-                  //     SizedBox(
-                  //       width: w * .213,
-                  //       height: h * .07,
-                  //       child: TextFormField(
-                  //         focusNode: onboardingController.pin3FocusNode,
-                  //         onChanged: (value) {
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap3 == 0) {
-                  //             onboardingController.tap3 = 1;
-                  //           }
-                  //           if (value.toString().isNotEmpty) {
-                  //             FocusScope.of(context).requestFocus(
-                  //                 onboardingController.pin4FocusNode);
-                  //           }
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap3 == 1) {
-                  //             FocusScope.of(context).requestFocus(
-                  //                 onboardingController.pin2FocusNode);
-                  //           }
-                  //         },
-                  //         showCursor: true,
-                  //         autofocus: false,
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //             fontSize: w * .054,
-                  //             fontWeight: FontWeight.w900),
-                  //         keyboardType: TextInputType.number,
-                  //         controller: onboardingController.third,
-                  //         maxLength: 1,
-                  //         cursorColor: Palatt.primary,
-                  //         // cursorColor: Theme.of(context).primaryColor,
-                  //         decoration: InputDecoration(
-                  //           counterText: "",
-                  //           fillColor: Colors.white,
-                  //           filled: true,
-                  //           focusedBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044, color: Palatt.primary),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //           enabledBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044,
-                  //                 color: onboardingController
-                  //                         .third.text.isNotEmpty
-                  //                     ? Palatt.primary
-                  //                     : Palatt.otpborder),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-
-                  //     SizedBox(width: w * .02),
-
-                  //     SizedBox(
-                  //       width: w * .213,
-                  //       height: h * .07,
-                  //       child: TextFormField(
-                  //         focusNode: onboardingController.pin4FocusNode,
-                  //         onChanged: (value) {
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap3 == 0) {
-                  //             onboardingController.tap3 = 1;
-                  //           }
-                  //           if (value.toString().isNotEmpty) {
-                  //             FocusScope.of(context).unfocus();
-                  //           }
-                  //           if (value.toString().isEmpty &&
-                  //               onboardingController.tap3 == 1) {
-                  //             FocusScope.of(context).requestFocus(
-                  //                 onboardingController.pin3FocusNode);
-                  //           }
-                  //         },
-                  //         showCursor: true,
-                  //         autofocus: false,
-                  //         textAlign: TextAlign.center,
-                  //         style: TextStyle(
-                  //             fontSize: w * .054,
-                  //             fontWeight: FontWeight.w900),
-                  //         keyboardType: TextInputType.number,
-                  //         controller: onboardingController.fourth,
-                  //         maxLength: 1,
-                  //         cursorColor: Palatt.primary,
-                  //         // cursorColor: Theme.of(context).primaryColor,
-                  //         decoration: InputDecoration(
-                  //           counterText: "",
-                  //           fillColor: Colors.white,
-                  //           filled: true,
-                  //           focusedBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044, color: Palatt.primary),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //           enabledBorder: OutlineInputBorder(
-                  //             borderSide: BorderSide(
-                  //                 width: w * .0044,
-                  //                 color: onboardingController
-                  //                         .fourth.text.isNotEmpty
-                  //                     ? Palatt.primary
-                  //                     : Palatt.otpborder),
-                  //             borderRadius:
-                  //                 const BorderRadius.all(Radius.circular(10)),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-
-                  //     // _textFieldOTP(
-                  //     //   context,
-                  //     //   first,
-                  //     //   first: true,
-                  //     //   last: false,
-                  //     // ),
-                  //     // SizedBox(width: w * .02),
-                  //     // _textFieldOTP(
-                  //     //   context,
-                  //     //   second,
-                  //     //   first: false,
-                  //     //   last: false,
-                  //     // ),
-                  //     // SizedBox(width: w * .02),
-                  //     // _textFieldOTP(
-                  //     //   context,
-                  //     //   third,
-                  //     //   first: false,
-                  //     //   last: false,
-                  //     // ),
-                  //     // SizedBox(width: w * .02),
-                  //     // _textFieldOTP(
-                  //     //   context,
-                  //     //   fourth,
-                  //     //   first: false,
-                  //     //   last: true,
-                  //     // ),
-                  //   ],
-                  // ),
                   SizedBox(
                     height: h * .024,
                   ),
@@ -426,8 +179,7 @@ class _OtpVerficationState extends State<OtpVerfication> {
                             title: 'Continue',
                             width: w * .92,
                             height: h * .065,
-                            press: () =>
-                                onboardingController.onotpverfy(context),
+                            press: onboardingController.onotpverfy,
                             color: Palatt.primary,
                             radius: 10.0,
                             fntSize: w * .04,

@@ -30,6 +30,12 @@ class _HomeViewState extends State<HomeView> {
   HomeController controller = Get.put(HomeController(), permanent: false);
   double h = Get.height, w = Get.width;
   @override
+  void initState() {
+    controller.increamenteturn(true);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // Future.delayed(Duration(seconds: 1), () {
     //   Get.dialog(RatingDialog());
@@ -40,14 +46,20 @@ class _HomeViewState extends State<HomeView> {
       child: Stack(
         children: [
           Align(
-            alignment: Alignment.center,
-            child: Image.asset(
-              AppImages.handng,
-              fit: BoxFit.fill,
-              height: 148,
-              width: 148,
-            ),
-          ),
+              alignment: Alignment.center,
+              child: Obx(
+                () => AnimatedRotation(
+                  turns: controller.turns.value,
+                  duration: const Duration(seconds: 10),
+                  onEnd: controller.increamenteturn,
+                  child: Image.asset(
+                    AppImages.handng,
+                    fit: BoxFit.contain,
+                    height: 148,
+                    width: 148,
+                  ),
+                ),
+              )),
           Align(
             alignment: Alignment.center,
             child: Image.asset(
