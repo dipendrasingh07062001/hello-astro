@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/views/home/drawer.dart';
@@ -244,7 +245,9 @@ class _HomeViewState extends State<HomeView> {
                                 ),
                                 // SvgPicture.asset('assets/icons/language_1.svg')
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    Get.toNamed(Routes.languageview);
+                                  },
                                   child: SvgPicture.asset(
                                     AppImages.language,
                                     height: 25,
@@ -298,9 +301,11 @@ class _HomeViewState extends State<HomeView> {
                 children: [
                   Fcard(
                     image: AppImages.chat,
-                    text: "Chat with \nAstrologer",
+                    text: Words.chatWithAstrologer.tr,
                     width: 80,
                     height: 100,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: w * 0.12),
                     onTap: () {},
                     margin: const EdgeInsets.only(
                       top: 20,
@@ -310,8 +315,10 @@ class _HomeViewState extends State<HomeView> {
                   ),
                   Fcard(
                     image: AppImages.call,
-                    text: "Talk to \nAstrologer",
+                    text: "Talk to Astrologer".tr,
                     width: 80,
+                    padding:
+                        EdgeInsets.symmetric(vertical: 8, horizontal: w * 0.12),
                     height: 100,
                     onTap: () {},
                     margin: const EdgeInsets.only(top: 20, left: 12.5),
@@ -333,18 +340,18 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Horoscope",
-                    style: TextStyle(
+                  Text(
+                    Words.horroscope.tr,
+                    style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   InkWell(
                     onTap: () => Get.to(() => const Horoscope()),
-                    child: const Text(
-                      "See All",
-                      style: TextStyle(
+                    child: Text(
+                      Words.seeAll.tr,
+                      style: const TextStyle(
                         fontSize: 15,
                         color: Palatt.primary,
                         decoration: TextDecoration.underline,

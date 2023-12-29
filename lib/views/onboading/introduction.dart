@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
@@ -62,7 +64,22 @@ class _IntroductionState extends State<Introduction> {
                       child: textStyle('Skip >>', Palatt.black,
                           fontSize: 16, fontWeight: FontWeight.w500),
                       onTap: () {
-                        // Get.toNamed(Routes.login);
+                        // NotificationServices().shownotification();
+                        // Timer.periodic(const Duration(milliseconds: 333),
+                        //     (timer) {
+                        //   if (now.difference(DateTime.now()).inSeconds.abs() >
+                        //       progress) {
+                        //     progress =
+                        //         now.difference(DateTime.now()).inSeconds.abs();
+
+                        //     NotificationServices().shownotification(progress);
+                        //   }
+                        //   if (progress > 100) {
+                        //     timer.cancel();
+                        //     NotificationServices().cancleNotification(0);
+                        //   }
+                        // });
+                        Get.toNamed(Routes.login);
                         // NotificationServices.showNotification(
                         //     id: 0, title: "test", body: "this is body");
                         // Navigator.push(

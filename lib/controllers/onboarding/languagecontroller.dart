@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:get/get.dart';
 
 class LanguageBinding extends Bindings {
@@ -10,7 +11,12 @@ class LanguageBinding extends Bindings {
 class LanguageController extends GetxController {
   RxBool isLoading = false.obs;
   RxString selectedlanguage = "".obs;
-  selectlang(String lang) {
-    selectedlanguage.value = lang;
+  List languages = [
+    {"language": "English", "local": const Locale('en', 'US')},
+    {"language": "हिंदी", "local": const Locale('hi', 'IN')},
+  ];
+  selectlang(int index) {
+    selectedlanguage.value = languages[index]["language"];
+    Get.updateLocale(languages[index]["local"]);
   }
 }

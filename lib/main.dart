@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/api/preference.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/language.dart';
 import 'package:hello_astro_user/services/notification/service.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/nevugationservices.dart';
@@ -12,9 +13,9 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DefaultFirebaseOptions.init();
-  await NotificationServices().initNotifications();
+  // await NotificationServices().initNotifications();
   await Preference.getInstance();
-  // await NotificationServices.init();
+  await NotificationServices().init();
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
         );
       },
       title: "Hello Astro User",
+      translations: LanguageClass(),
+      locale: const Locale('en', 'US'),
+      fallbackLocale: const Locale('en', 'US'),
       navigatorKey: NavigationServices.navigatorKey,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/onboarding/languagecontroller.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/views/onboading/widgets.dart';
 
 import '../../theme/colorpalatt.dart';
@@ -43,7 +44,7 @@ class LanguageSelectView extends GetView<LanguageController> {
                 )
               : null,
           centerTitle: true,
-          title: textStyle('Select Language', Palatt.black,
+          title: textStyle(Words.selectLanguage.tr, Palatt.black,
               fontSize: w * .059, fontWeight: FontWeight.w500),
         ),
         body: GestureDetector(
@@ -68,15 +69,15 @@ class LanguageSelectView extends GetView<LanguageController> {
                   ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 2,
+                      itemCount: controller.languages.length,
                       itemBuilder: (_, index) {
+                        var lang = controller.languages[index];
                         return Obx(() => LanguageTile(
+                              lang["language"], // "English",
+                              lang["language"], // "English",
                               "English",
-                              "English",
-                              "English",
-                              "India",
                               isTypeSelected: controller.selectedlanguage.value,
-                              onTap: () => controller.selectlang("English"),
+                              onTap: () => controller.selectlang(index),
                             ));
                       }),
                   // Padding(

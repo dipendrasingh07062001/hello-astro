@@ -14,7 +14,7 @@ class Fcard extends StatelessWidget {
   void Function()? onTap;
   double? height;
   double? width;
-  EdgeInsetsGeometry? margin;
+  EdgeInsetsGeometry? margin, padding;
   BorderRadiusGeometry? borderRadius;
   String image;
   String text;
@@ -25,6 +25,7 @@ class Fcard extends StatelessWidget {
     this.width,
     this.margin,
     this.borderRadius,
+    this.padding,
     required this.image,
     required this.text,
   });
@@ -36,7 +37,7 @@ class Fcard extends StatelessWidget {
         height: height,
         width: width,
         margin: margin,
-        padding: const EdgeInsets.all(8),
+        padding: padding ?? const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Palatt.white,
           borderRadius: borderRadius,
