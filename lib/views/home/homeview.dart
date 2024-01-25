@@ -13,6 +13,7 @@ import 'package:hello_astro_user/widgets/dialogs/rating.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
 import '../../controllers/home/homecontroller.dart';
+import '../../models/home/homemodel.dart';
 import '../../models/sunshins.dart';
 import '../../routes/app_pages.dart';
 import '../../widgets/cards.dart';
@@ -33,6 +34,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   void initState() {
     controller.increamenteturn(true);
+    controller.gethomeData();
     super.initState();
   }
 
@@ -73,52 +75,60 @@ class _HomeViewState extends State<HomeView> {
       ),
     );
 
-    Widget banners = Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const SizedBox(height: 20),
-        CarouselSlider.builder(
-          itemCount: 3,
-          itemBuilder: (_, index1, index2) {
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: w * .040),
-              height: 120,
-              width: w,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    image: NetworkImage(
-                        "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXN0cm9waG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"),
-                    fit: BoxFit.cover,
-                  )),
-            );
-          },
-          options: CarouselOptions(
-            // height: 120,
-            aspectRatio: 25 / 8,
-            viewportFraction: 1,
-            // autoPlayAnimationDuration: const Duration(milliseconds: 800),
-            // autoPlayInterval: const Duration(milliseconds: 800),
-            autoPlayCurve: Curves.linear,
-            autoPlay: true,
-          ),
-        ),
-        const SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [1, 2, 3]
-              .map((e) => const Padding(
-                    padding: EdgeInsets.all(3.0),
-                    child: CircleAvatar(
-                      radius: 4,
-                      backgroundColor: Palatt.primary,
-                    ),
-                  ))
-              .toList(),
-        )
-      ],
-    );
-
+    Widget banners = Obx(() => controller.isloading.value
+        ? Container()
+        : Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 20),
+              CarouselSlider.builder(
+                itemCount: controller.banners.length,
+                carouselController: controller.carouselController,
+                itemBuilder: (_, index1, index2) {
+                  Banners model = controller.banners[index1];
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: w * .040),
+                    height: 120,
+                    width: w,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: NetworkImage(
+                              // model.image ??
+                              //     "", //
+                              "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YXN0cm9waG90b2dyYXBoeXxlbnwwfHwwfHx8MA%3D%3D"),
+                          fit: BoxFit.cover,
+                        )),
+                  );
+                },
+                options: CarouselOptions(
+                  // height: 120,
+                  aspectRatio: 25 / 8,
+                  viewportFraction: 1,
+                  // autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                  // autoPlayInterval: const Duration(milliseconds: 800),
+                  autoPlayCurve: Curves.linear,
+                  autoPlay: true,
+                  onPageChanged: (index, _) => controller.onbannerchange(index),
+                ),
+              ),
+              const SizedBox(height: 20),
+              Obx(() => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                      controller.banners.length,
+                      (index) => Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: CircleAvatar(
+                              radius: 4,
+                              backgroundColor:
+                                  controller.currentbanner.value == index
+                                      ? Palatt.primary
+                                      : Palatt.boxShadow,
+                            ),
+                          ))))
+            ],
+          ));
     return Scaffold(
       backgroundColor: Palatt.white,
       body: SingleChildScrollView(
@@ -350,7 +360,7 @@ class _HomeViewState extends State<HomeView> {
                   InkWell(
                     onTap: () => Get.to(() => const Horoscope()),
                     child: Text(
-                      Words.seeAll.tr,
+                      Words.SeeAll.tr,
                       style: const TextStyle(
                         fontSize: 15,
                         color: Palatt.primary,
@@ -373,7 +383,7 @@ class _HomeViewState extends State<HomeView> {
                     child: HoroCard(
                       image: e.image,
                       onTap: () {},
-                      title: e.name,
+                      title: e.name.tr,
                     ),
                   ),
                 );
@@ -387,15 +397,16 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Chat with Astrologer",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  Text(
+                    Words.chatWithAstrologer.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
                     onTap: () {},
-                    child: const Text(
-                      "See All",
-                      style: TextStyle(
+                    child: Text(
+                      Words.SeeAll.tr,
+                      style: const TextStyle(
                         fontSize: 15,
                         color: Palatt.primary,
                         decoration: TextDecoration.underline,
@@ -410,7 +421,8 @@ class _HomeViewState extends State<HomeView> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: List.generate(5, (index) {
+                children: List.generate(controller.astrologers.length, (index) {
+                  Astrologer astrologer = controller.astrologers[index];
                   return GestureDetector(
                     onTap: () => Get.toNamed(Routes.astrodetailsview),
                     child: Container(
@@ -441,7 +453,7 @@ class _HomeViewState extends State<HomeView> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Stack(
                                               children: [
-                                                const Positioned(
+                                                Positioned(
                                                   top: 0,
                                                   left: 0,
                                                   right: 0,
@@ -451,10 +463,13 @@ class _HomeViewState extends State<HomeView> {
                                                         Palatt.white,
                                                     child: CircleAvatar(
                                                       radius: 31,
-                                                      backgroundImage:
-                                                          NetworkImage(
-                                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
-                                                      ),
+                                                      backgroundImage: NetworkImage(
+                                                          astrologer.image ?? ""
+                                                          // "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                          ),
+                                                      onBackgroundImageError:
+                                                          (exception,
+                                                              stackTrace) {},
                                                     ),
                                                   ),
                                                 ),
@@ -520,22 +535,24 @@ class _HomeViewState extends State<HomeView> {
                                                 MainAxisAlignment.center,
                                             children: [
                                               Text(
-                                                "Zoha Merchant",
-                                                style: TextStyle(
+                                                astrologer.name ?? "",
+                                                style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                 ),
                                               ),
                                               Text(
-                                                "English, Hindi",
-                                                style: TextStyle(
+                                                // "English, Hindi",
+                                                astrologer.language ?? "",
+                                                style: const TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                 ),
                                               ),
                                               Text(
-                                                "Tarot, Life Coach",
-                                                style: TextStyle(
+                                                // "Tarot, Life Coach",
+                                                astrologer.expertise.toString(),
+                                                style: const TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w400,
                                                 ),
@@ -560,27 +577,30 @@ class _HomeViewState extends State<HomeView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Column(
+                                    Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Exp: 6 year",
+                                          "Exp: ${astrologer.experience} year",
+                                          style: const TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w300,
+                                              color: Palatt.grey),
+                                        ),
+                                        Text(
+                                          // "Jaipur, Raj",
+                                          "${astrologer.city ?? ""}, ${astrologer.state ?? ""}"
+                                                  .camelCase ??
+                                              "",
                                           style: TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w300,
                                               color: Palatt.grey),
                                         ),
                                         Text(
-                                          "Jaipur, Raj",
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w300,
-                                              color: Palatt.grey),
-                                        ),
-                                        Text(
-                                          "₹ 12/min",
-                                          style: TextStyle(
+                                          "₹ ${astrologer.chatPrice}/min",
+                                          style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w600,
                                               color: Palatt.black),
@@ -608,9 +628,9 @@ class _HomeViewState extends State<HomeView> {
                                               height: 13,
                                             ),
                                             spaceHorizontal(10),
-                                            const Text(
-                                              "Chat",
-                                              style: TextStyle(
+                                            Text(
+                                              Words.Chat.tr,
+                                              style: const TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600,
                                                   color: Palatt.white),
@@ -659,15 +679,16 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Call with Astrologer",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  Text(
+                    Words.callWithAstrologer.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
                     onTap: () {},
-                    child: const Text(
-                      "See All",
-                      style: TextStyle(
+                    child: Text(
+                      Words.SeeAll.tr,
+                      style: const TextStyle(
                         fontSize: 15,
                         color: Palatt.primary,
                         decoration: TextDecoration.underline,
@@ -682,7 +703,8 @@ class _HomeViewState extends State<HomeView> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: List.generate(5, (index) {
+                children: List.generate(controller.astrologers.length, (index) {
+                  Astrologer astrologer = controller.astrologers[index];
                   return GestureDetector(
                     onTap: () => Get.toNamed(Routes.astrodetailsview),
                     child: Container(
@@ -713,7 +735,7 @@ class _HomeViewState extends State<HomeView> {
                                             padding: const EdgeInsets.all(8.0),
                                             child: Stack(
                                               children: [
-                                                const Positioned(
+                                                Positioned(
                                                   top: 0,
                                                   left: 0,
                                                   right: 0,
@@ -723,10 +745,10 @@ class _HomeViewState extends State<HomeView> {
                                                         Palatt.white,
                                                     child: CircleAvatar(
                                                       radius: 31,
-                                                      backgroundImage:
-                                                          NetworkImage(
-                                                        "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
-                                                      ),
+                                                      backgroundImage: NetworkImage(
+                                                          astrologer.image ?? ""
+                                                          // "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
+                                                          ),
                                                     ),
                                                   ),
                                                 ),
@@ -791,9 +813,10 @@ class _HomeViewState extends State<HomeView> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              const Text(
-                                                "Zoha Merchant",
-                                                style: TextStyle(
+                                              Text(
+                                                astrologer.name ?? "",
+                                                // "Zoha Merchant",
+                                                style: const TextStyle(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.w600,
                                                 ),
@@ -832,26 +855,27 @@ class _HomeViewState extends State<HomeView> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const Column(
+                                    Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Exp: 6 year",
-                                          style: TextStyle(
+                                          "Exp: ${astrologer.experience} year",
+                                          style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w300,
                                               color: Palatt.grey),
                                         ),
                                         Text(
-                                          "Jaipur, Raj",
-                                          style: TextStyle(
+                                          "${astrologer.city}, ${astrologer.state}",
+                                          // "Jaipur, Raj",
+                                          style: const TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w300,
                                               color: Palatt.grey),
                                         ),
                                         Text(
-                                          "₹ 12/min",
+                                          "₹ ${astrologer.callPrice}/min",
                                           style: TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w600,
@@ -876,9 +900,9 @@ class _HomeViewState extends State<HomeView> {
                                             SvgPicture.asset(
                                                 AppImages.callfilled),
                                             spaceHorizontal(10),
-                                            const Text(
-                                              "Call",
-                                              style: TextStyle(
+                                            Text(
+                                              Words.Call.tr,
+                                              style: const TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.w600,
                                                   color: Palatt.white),
@@ -927,17 +951,18 @@ class _HomeViewState extends State<HomeView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "User Reviews",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  Text(
+                    Words.UserReview.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
                     onTap: () {
                       Get.toNamed(Routes.review);
                     },
-                    child: const Text(
-                      "See All",
-                      style: TextStyle(
+                    child: Text(
+                      Words.SeeAll.tr,
+                      style: const TextStyle(
                         fontSize: 15,
                         color: Palatt.primary,
                         decoration: TextDecoration.underline,
@@ -951,11 +976,12 @@ class _HomeViewState extends State<HomeView> {
             SizedBox(
               height: 160,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: controller.reviews.length,
                 shrinkWrap: true,
                 padding: const EdgeInsets.symmetric(vertical: 7.5),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
+                  Review review = controller.reviews[index];
                   return Container(
                     height: 145,
                     width: 270,
@@ -975,9 +1001,10 @@ class _HomeViewState extends State<HomeView> {
                       children: [
                         Row(
                           children: [
-                            const CircleAvatar(
+                            CircleAvatar(
                               radius: 30,
                               backgroundImage: NetworkImage(
+                                // review. ?? ""
                                 "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&w=1000&q=80",
                               ),
                             ),
@@ -987,9 +1014,9 @@ class _HomeViewState extends State<HomeView> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                const Text(
+                                Text(
                                   "Rohan Sharma",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 16,
                                     color: Palatt.black,
                                     fontWeight: FontWeight.w600,

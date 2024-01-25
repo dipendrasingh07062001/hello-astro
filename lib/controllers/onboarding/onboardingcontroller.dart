@@ -97,10 +97,12 @@ class OnboardingController extends GetxController {
                 PreferenceConstants.fullname, user.firstName ?? "");
             // Preference.setString(
             // PreferenceConstants.gender, user.gender ?? "");
+            Get.toNamed(Routes.homenav);
           } else {
             Preference.setString(
                 PreferenceConstants.userid, user.id.toString());
             Preference.setString(PreferenceConstants.tokenid, data.token ?? "");
+            Get.toNamed(Routes.languageview);
           }
 
           isLoading.value = false;

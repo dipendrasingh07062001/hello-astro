@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/widgets/space.dart';
@@ -18,8 +19,8 @@ class MyOrders extends GetView<MyOrdersController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Palatt.white,
-      appBar: const CustomAppBar(
-        title: "My Orders",
+      appBar: CustomAppBar(
+        title: Words.MyOrders.tr,
       ),
       body: SafeArea(
         child: DefaultTabController(
@@ -51,7 +52,7 @@ class MyOrders extends GetView<MyOrdersController> {
                       padding: EdgeInsets.zero,
                       tabs: [
                         Text(
-                          "  All  ",
+                          "  ${Words.All.tr}  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 0
@@ -63,7 +64,7 @@ class MyOrders extends GetView<MyOrdersController> {
                           ),
                         ),
                         Text(
-                          "  Onging  ",
+                          "  ${Words.Ongoing.tr}  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 1
@@ -75,7 +76,7 @@ class MyOrders extends GetView<MyOrdersController> {
                           ),
                         ),
                         Text(
-                          "  Completed  ",
+                          "  ${Words.Completed.tr}  ",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: controller.currentIndex.value == 2
@@ -138,10 +139,10 @@ class OrderCard extends StatelessWidget {
             ),
             child: Row(
               children: [
-                const Expanded(
+                Expanded(
                   child: Text(
-                    "Completed",
-                    style: TextStyle(
+                    Words.Completed.tr,
+                    style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w500,
                       color: Palatt.black,
@@ -213,7 +214,7 @@ class OrderCard extends StatelessWidget {
                   width: 85,
                   radius: 4,
                   backgroundColor: Palatt.primary,
-                  data: "Consult",
+                  data: Words.Consult.tr,
                   style: const TextStyle(fontSize: 16, color: Palatt.white),
                   onTap: () {},
                 ),
@@ -221,8 +222,8 @@ class OrderCard extends StatelessWidget {
             ),
           ),
           spaceVertical(5),
-          const Padding(
-            padding: EdgeInsets.symmetric(
+          Padding(
+            padding: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 5,
             ),
@@ -230,14 +231,14 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Time",
-                  style: TextStyle(
+                  Words.Time.tr,
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
                     color: Palatt.grey,
                   ),
                 ),
-                Text(
+                const Text(
                   "2:10 PM 01/08/2022",
                   style: TextStyle(
                     fontSize: 15,
@@ -248,7 +249,7 @@ class OrderCard extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 5,
@@ -257,7 +258,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Duration",
+                  Words.Duration.tr,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
@@ -275,7 +276,7 @@ class OrderCard extends StatelessWidget {
               ],
             ),
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 5,
@@ -284,7 +285,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Charge",
+                  Words.Charge.tr,
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w300,
@@ -308,7 +309,7 @@ class OrderCard extends StatelessWidget {
             endIndent: 10,
             height: 10,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 5,
@@ -317,7 +318,7 @@ class OrderCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Total Charge",
+                  Words.TotalCharge.tr,
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w500,
@@ -349,7 +350,7 @@ class OrderCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   backgroundColor: Palatt.white,
                   borderColor: Palatt.black,
-                  data: "Have doubts?",
+                  data: Words.HaveDoubts.tr,
                   style: const TextStyle(fontSize: 16, color: Palatt.black),
                   onTap: () {},
                 ),
@@ -360,7 +361,7 @@ class OrderCard extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   backgroundColor: Palatt.white,
                   borderColor: Palatt.black,
-                  data: "Review",
+                  data: Words.Reviews.tr,
                   style: const TextStyle(fontSize: 16, color: Palatt.black),
                   onTap: () {},
                 ),

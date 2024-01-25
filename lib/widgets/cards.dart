@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/widgets/space.dart';
 
@@ -394,9 +395,9 @@ class AstroCard extends StatelessWidget {
                                 AppImages.rocketchat,
                               ),
                               spaceHorizontal(5),
-                              const Text(
-                                "Chat",
-                                style: TextStyle(
+                              Text(
+                                Words.Chat.tr,
+                                style: const TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                   color: Palatt.white,

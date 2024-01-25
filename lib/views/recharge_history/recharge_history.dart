@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/home/homecontroller.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
@@ -16,7 +17,7 @@ class RechargeHistoryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Recharge History',
+        title: Words.RechargeHistory.tr,
         height: 60,
         actions: [
           InkWell(
@@ -62,13 +63,13 @@ class RechargeHistoryView extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Total',
+                        Text(Words.Total.tr,
                             style: googleFontstyle(TextStyle(
                                 fontSize: 15,
                                 color: Palatt.black,
                                 fontWeight: FontWeight.w500))),
                         SizedBox(height: 5),
-                        Text('Balance',
+                        Text(Words.Balance,
                             style: googleFontstyle(TextStyle(
                                 fontSize: 15,
                                 color: Palatt.black,
@@ -96,7 +97,7 @@ class RechargeHistoryView extends StatelessWidget {
                 width: 146,
                 height: 40,
                 borderRadius: 10,
-                child: Text('Recharge Now',
+                child: Text(Words.Rechargenow.tr,
                     style: googleFontstyle(TextStyle(
                         fontSize: 16,
                         color: Palatt.white,
@@ -139,12 +140,12 @@ class RechargeHistoryView extends StatelessWidget {
                     isScrollable: false,
                     unselectedLabelColor: Palatt.primary,
                     labelColor: Colors.white,
-                    tabs: const [
+                    tabs: [
                       Tab(
-                        text: "Wallet Transactions",
+                        text: Words.WalletTransactions.tr,
                       ),
                       Tab(
-                        text: "Payment Logs",
+                        text: Words.PaymentLogs.tr,
                       ),
                     ],
                   ),
@@ -187,7 +188,7 @@ class RechargeHistoryView extends StatelessWidget {
                                             fontWeight: FontWeight.w500)),
                                       ),
                                       Text(
-                                          '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
+                                          '07-07-2022 12:40 PM\n${Words.TransactionID.tr}: AAF62A6F645',
                                           style: TextStyle(
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,
@@ -275,13 +276,15 @@ class RechargeHistoryView extends StatelessWidget {
                                     // mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text(
-                                        'Recharge',
+                                        Words.Recharge.tr,
                                         style: googleFontstyle(TextStyle(
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500)),
                                       ),
                                       Text(
-                                          '07-07-2022 12:40 PM\nTRANSACTION ID: AAF62A6F645',
+                                          '07-07-2022 12:40 PM\n' +
+                                              Words.TransactionID.tr +
+                                              ': AAF62A6F645',
                                           style: TextStyle(
                                               fontSize: 13,
                                               fontWeight: FontWeight.normal,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/widgets/custom_appbar.dart';
 
 import '../../widgets/cards.dart';
@@ -20,7 +21,7 @@ class Following extends GetView {
     );
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Following",
+        title: Words.Following.tr,
       ),
       body: view,
     );

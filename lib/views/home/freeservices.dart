@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import '../../theme/colorpalatt.dart';
 import '../../utils/imageslink.dart';
 import '../../widgets/cards.dart';
@@ -20,11 +21,11 @@ class FreeServices extends StatelessWidget {
           const SizedBox(
             height: 14,
           ),
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              "Free Services",
-              style: TextStyle(
+              Words.FreeServices.tr,
+              style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
@@ -40,7 +41,7 @@ class FreeServices extends StatelessWidget {
                     FSCard(
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.kundli,
-                      text: "Kundli",
+                      text: Words.Kundli.tr,
                     ),
 
                     // FSCard(
@@ -51,17 +52,17 @@ class FreeServices extends StatelessWidget {
                     FSCard(
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.kundlimaching,
-                      text: "Matchmaking",
+                      text: Words.Matchmaking.tr,
                     ),
                     FSCard(
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.panchang,
-                      text: "Panchang",
+                      text: Words.Panchang.tr,
                     ),
                     FSCard(
                       margin: const EdgeInsets.only(right: 10),
                       image: AppImages.directory,
-                      text: "Directory",
+                      text: Words.Directory.tr,
                     ),
                   ],
                 ),

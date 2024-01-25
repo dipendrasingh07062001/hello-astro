@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
 import 'package:hello_astro_user/widgets/dialogs/logout.dart';
@@ -73,7 +74,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.myorders,
-                    title: "My Orders",
+                    title: Words.MyOrders.tr,
                     onTap: () {
                       Get.toNamed(Routes.myorders);
                     },
@@ -81,13 +82,13 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.blogs,
-                    title: "Blogs",
+                    title: Words.Blogs.tr,
                     onTap: () {},
                   ),
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.recargehistory,
-                    title: "Recharge History",
+                    title: Words.RechargeHistory.tr,
                     onTap: () {
                       Get.toNamed(Routes.rechargeHistory);
                     },
@@ -95,7 +96,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.following,
-                    title: "Following",
+                    title: Words.Following.tr,
                     onTap: () {
                       Get.toNamed(Routes.following);
                     },
@@ -103,7 +104,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.refernearn,
-                    title: "Refer and earn",
+                    title: Words.ReferandEarn.tr,
                     onTap: () {
                       Get.toNamed(Routes.refernearn);
                     },
@@ -111,7 +112,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.directoryofastro,
-                    title: "Directory of Astro",
+                    title: Words.DirectoryofAstro.tr,
                     onTap: () {
                       Get.toNamed(Routes.directoryview);
                     },
@@ -119,7 +120,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.helpnsupport,
-                    title: "Help & Support",
+                    title: Words.HelpnSupport.tr,
                     onTap: () {
                       Get.toNamed(Routes.helpnsupport);
                     },
@@ -151,7 +152,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.faqs,
-                    title: "FAQ's",
+                    title: Words.FAQs.tr,
                     onTap: () {
                       Get.toNamed(Routes.faqs);
                     },
@@ -159,7 +160,7 @@ class HomeDrawer extends StatelessWidget {
                   spaceVertical(10),
                   DrawerTile(
                     image: AppImages.settings,
-                    title: "Settings",
+                    title: Words.Settings.tr,
                     onTap: () {
                       Get.toNamed(Routes.settings);
                     },
@@ -178,7 +179,7 @@ class HomeDrawer extends StatelessWidget {
             spaceVertical(5),
             RRButton(
               onTap: () {},
-              data: "Register as Astrologer",
+              data: Words.RegisterasAstrologer.tr,
               style: const TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
@@ -189,7 +190,7 @@ class HomeDrawer extends StatelessWidget {
             EltdButton(
               color: Palatt.white,
               foregroundColor: Palatt.primary,
-              title: "Log Out",
+              title: Words.logout.tr,
               height: 50,
               width: 254,
               radius: 10,

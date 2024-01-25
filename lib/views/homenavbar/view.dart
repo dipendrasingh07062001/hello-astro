@@ -59,7 +59,7 @@ class HomeNavBar extends GetView<HomeNavController> {
                           width: 20,
                         ),
                         spaceVertical(5),
-                        Text(controller.bar[index]["name"] ?? "",
+                        Text((controller.bar[index]["name"] ?? "").tr,
                             style: googleFontstyle(
                               TextStyle(
                                 fontSize: 12,

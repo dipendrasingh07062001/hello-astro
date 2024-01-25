@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/home/homecontroller.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/views/home/homeview.dart';
 
 import '../../utils/imageslink.dart';
@@ -33,19 +34,19 @@ class HomeNavController extends GetxController {
   ]);
   List<Map<String, String>> bar = [
     {
-      "name": "Home",
+      "name": Words.Home,
       "image": AppImages.home,
     },
     {
-      "name": "Call Astrologer",
+      "name": Words.CallAstrologer,
       "image": AppImages.callicon,
     },
     {
-      "name": "Chat Astrologer",
+      "name": Words.ChatAstrologer,
       "image": AppImages.chaticon,
     },
     {
-      "name": "Wallet",
+      "name": Words.Wallet,
       "image": AppImages.walletborder,
     }
   ];

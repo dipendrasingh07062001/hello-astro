@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/utils/imageslink.dart';
@@ -12,7 +13,7 @@ class ReferandEarn extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: "Refer and earn",
+        title: Words.ReferandEarn.tr,
       ),
       body: Column(
         children: [
@@ -74,7 +75,7 @@ class ReferandEarn extends GetView {
                 backgroundColor: Palatt.primary,
                 radius: 6,
                 onTap: () {},
-                data: "Share",
+                data: Words.Share.tr,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,

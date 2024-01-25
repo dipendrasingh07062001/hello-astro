@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
@@ -643,7 +644,7 @@ We live in an era where we are digitalized to the level, everything of our need 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Call",
+                Text(Words.Call.tr,
                     style: googleFontstyle(
                       const TextStyle(
                         fontSize: 15,
@@ -673,7 +674,7 @@ We live in an era where we are digitalized to the level, everything of our need 
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Chat",
+                Text(Words.Chat.tr,
                     style: googleFontstyle(
                       const TextStyle(
                         fontSize: 15,

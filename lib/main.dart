@@ -1,8 +1,11 @@
+import 'dart:io';
+import 'services/localization/keywords.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/api/preference.dart';
 import 'package:hello_astro_user/routes/app_pages.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/services/localization/language.dart';
 import 'package:hello_astro_user/services/notification/service.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
@@ -15,7 +18,9 @@ void main() async {
   await DefaultFirebaseOptions.init();
   // await NotificationServices().initNotifications();
   await Preference.getInstance();
-  await NotificationServices().init();
+  if (Platform.isAndroid) {
+    await NotificationServices().init();
+  }
   await SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -40,12 +45,40 @@ class MyApp extends StatelessWidget {
       },
       title: "Hello Astro User",
       translations: LanguageClass(),
-      locale: const Locale('en', 'US'),
+      locale:
+          Preference.getString(PreferenceConstants.language).languageValue() ==
+                  Language.english
+              ? const Locale('en', 'US')
+              : const Locale('hi', 'IN'),
       fallbackLocale: const Locale('en', 'US'),
       navigatorKey: NavigationServices.navigatorKey,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       theme: AppThemeData.appTheme,
     );
+  }
+}
+
+extension on Language {
+  String stringValue() {
+    switch (this) {
+      case Language.hindi:
+        return "हिंदी";
+      case Language.english:
+        return "English";
+    }
+  }
+}
+
+extension on String {
+  Language languageValue() {
+    switch (this) {
+      case "हिंदी":
+        return Language.hindi;
+      case "English":
+        return Language.english;
+      default:
+        return Language.english;
+    }
   }
 }

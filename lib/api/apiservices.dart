@@ -16,7 +16,7 @@ class ApiClient {
             : {
                 'content-Type': 'application/json',
                 "authorization":
-                    Preference.getString(PreferenceConstants.tokenid),
+                    "bearer ${Preference.getString(PreferenceConstants.tokenid)}",
                 "accept": "*/*"
               },
       );

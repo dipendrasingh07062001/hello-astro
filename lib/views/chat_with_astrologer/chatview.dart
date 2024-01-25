@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/colorpalatt.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
@@ -61,7 +62,7 @@ class ChatWithAstrologer extends GetView {
                         ),
                         spaceHorizontal(10),
                         Text(
-                          "Call",
+                          Words.Call.tr,
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
@@ -100,7 +101,7 @@ class ChatWithAstrologer extends GetView {
                         ),
                         spaceHorizontal(10),
                         Text(
-                          "Chat",
+                          Words.Chat.tr,
                           style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.w500,
@@ -140,8 +141,10 @@ class ChatWithAstrologer extends GetView {
 
     return Scaffold(
       backgroundColor: Palatt.white,
-      appBar: const CustomAppBar(
-        title: "Chat with Astrologers",
+      appBar: CustomAppBar(
+        title: Get.find<HomeNavController>().currentpage.value == 1
+            ? Words.callWithAstrologer.tr
+            : Words.chatWithAstrologer.tr,
       ),
       body: Column(
         children: [

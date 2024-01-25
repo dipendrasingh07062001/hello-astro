@@ -24,6 +24,7 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hello_astro_user/services/localization/keywords.dart';
 import 'package:hello_astro_user/theme/themedata.dart';
 import 'package:hello_astro_user/utils/buttons.dart';
 import 'package:hello_astro_user/views/bottomsheet/paymentdetails.dart';
@@ -53,7 +54,7 @@ class WalletBalanceView extends StatelessWidget {
         backgroundColor: Colors.white,
         title: Row(
           children: [
-            textStyle('Wallet Balance: ', Palatt.black,
+            textStyle('${Words.WalletBalance.tr}: ', Palatt.black,
                 fontSize: 22, fontWeight: FontWeight.w500),
             // textStyle('₹90', Palatt.primary, w * .054, FontWeight.w500),
             const WalletBalance(
@@ -157,9 +158,9 @@ class WalletBalanceView extends StatelessWidget {
                         children: [
                           Image.asset('assets/png/icons/coupon.png'),
                           SizedBox(width: w * .02),
-                          textStyle('Coupon', Colors.black,
+                          textStyle(Words.Coupon.tr, Colors.black,
                               fontSize: w * .041, fontWeight: FontWeight.w500),
-                          SizedBox(width: w * .65),
+                          const Spacer(),
                           Image.asset('assets/png/icons/arrow_forward.png')
                         ],
                       ),
@@ -224,7 +225,7 @@ class WalletBalanceView extends StatelessWidget {
                       children: [
                         Image.asset('assets/png/icons/rupee.png'),
                         SizedBox(width: w * .02),
-                        textStyle('Amount', Colors.black,
+                        textStyle(Words.Amount.tr, Colors.black,
                             fontSize: w * .041, fontWeight: FontWeight.w500),
                       ],
                     ),
@@ -286,7 +287,7 @@ class WalletBalanceView extends StatelessWidget {
                       radius: 10,
                       margin: EdgeInsets.symmetric(horizontal: 10),
                       height: 50,
-                      data: "Proceed to Pay",
+                      data: Words.ProceedtoPay.tr,
                       style: TextStyle(
                           color: Palatt.white,
                           fontSize: 16,
