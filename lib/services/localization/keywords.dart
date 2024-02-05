@@ -82,6 +82,7 @@ class Words {
   static const HaveDoubts = "Have doubts?";
   static const Balance = "Balance";
   static const Share = "Share";
+  static const Prediction = "Prediction";
   // static const ChatWith  = "Chat with";
   // static const for10mins  = "for 10 mins";
 }

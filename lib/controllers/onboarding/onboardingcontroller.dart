@@ -21,7 +21,9 @@ class OnboardingController extends GetxController {
 
   splashcounterstart() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.offAllNamed(Routes.intro);
+      Preference.getString(PreferenceConstants.tokenid).isEmpty
+          ? Get.offAllNamed(Routes.intro)
+          : Get.offAllNamed(Routes.homenav);
     });
   }
 

@@ -88,6 +88,7 @@ class LanguageClass extends Translations {
           "Settings": "Settings",
           "Have doubts?": "Have doubts?",
           "Balance": "Balance",
+          "Prediction": "Prediction",
         },
         "hi_IN": {
           "Chat with Astrologer": "ज्योतिषी के साथ चैट",
@@ -174,7 +175,8 @@ class LanguageClass extends Translations {
           "Settings": "सेटिंग",
           "Have doubts?": "संदेह है?",
           "Balance": "शेष",
-          "Share": "शेयर"
+          "Share": "शेयर",
+          "Prediction": "पूर्वानुमान",
         }
       };
 }

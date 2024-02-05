@@ -29,6 +29,7 @@ abstract class Routes {
   static const notification = _Paths.notification;
   static const review = _Paths.review;
   static const settings = _Paths.settings;
+  static const predictionView = _Paths.predictionView;
 }
 
 abstract class _Paths {
@@ -60,4 +61,5 @@ abstract class _Paths {
   static const notification = '/notification';
   static const review = '/review';
   static const settings = '/settings';
+  static const predictionView = "/predictionView";
 }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:hello_astro_user/controllers/homenav/controller.dart';
+import 'package:hello_astro_user/controllers/horroscope/prediction.dart';
 import 'package:hello_astro_user/controllers/onboarding/languagecontroller.dart';
 import 'package:hello_astro_user/views/aboutus/view.dart';
 import 'package:hello_astro_user/views/chat/view.dart';
@@ -29,6 +30,7 @@ import 'package:hello_astro_user/views/myorders/myorders.dart';
 
 import '../controllers/profile/controller.dart';
 import '../views/astroprofile/astroview.dart';
+import '../views/home/predictionview.dart';
 import '../views/notification/view.dart';
 import '../views/profile/profile.dart';
 part './app_routes.dart';
@@ -85,5 +87,9 @@ class AppPages {
       page: () => LanguageSelectView(),
       binding: LanguageBinding(),
     ),
+    GetPage(
+        name: _Paths.predictionView,
+        page: () => const PredictionView(),
+        binding: PredictionBinding())
   ];
 }
